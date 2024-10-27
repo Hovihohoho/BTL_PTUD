@@ -5,32 +5,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
-	public static Connection con = null;
-	private static final ConnectDB instance = new ConnectDB();
+    private static ConnectDB instance;
+    private static Connection connection;
 
-	public static ConnectDB getInstance() {
-		return instance;
-	}
+    public ConnectDB() {
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDatBan;encrypt=true;trustServerCertificate=true";
+        try {
+            connection = DriverManager.getConnection(url , "sa", "nhocconpro1202");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public static Connection getConnection() {
-		return con;
-	}
+    public synchronized static ConnectDB getInstance() {
+        if(instance == null)
+            instance = new ConnectDB();
+        return instance;
+    }
 
-	public Connection connect() throws SQLException {
-		String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDatBan;encrypt=false;trustServerCertificate=true";
-                String user = "sa";
-                String password = "sa1";
-                con = DriverManager.getConnection(url, user, password);
-                return con; // Trả về đối tượng Connection
-	}
-
-	public void disconnect() throws SQLException {
-		try {
-			if (con != null) {
-				con.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+    public static Connection getConnection() {
+        return connection;
+    }
 }
