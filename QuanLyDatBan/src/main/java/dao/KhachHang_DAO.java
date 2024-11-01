@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,39 +31,9 @@ public class KhachHang_DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeResources(ps, conn);  // Ensure resources are closed
+            closeResources(ps, ps, conn);  // Ensure resources are closed
         }
         return false;
-    }
-
-    // Lấy danh sách tất cả khách hàng từ cơ sở dữ liệu
-    public List<KhachHang> getAllKhachHang() {
-        List<KhachHang> list = new ArrayList<>();
-        String sql = "SELECT * FROM khach_hang";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        try {
-            ConnectDB.getInstance().connect();  // Establish the connection
-            conn = ConnectDB.getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                String maKH = rs.getString("maKH");
-                String tenKH = rs.getString("tenKH");
-                String soDienThoai = rs.getString("soDienThoai");
-                String diaChi = rs.getString("diaChi");
-
-                KhachHang khachHang = new KhachHang(maKH, tenKH, soDienThoai, diaChi);
-                list.add(khachHang);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(rs, ps, conn);  // Ensure resources are closed
-        }
-        return list;
     }
 
     // Cập nhật thông tin khách hàng
@@ -83,11 +54,48 @@ public class KhachHang_DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeResources(ps, conn);  // Ensure resources are closed
+            closeResources(ps, ps, conn);  // Ensure resources are closed
         }
         return false;
     }
+    
+    public List<KhachHang> getAllKhachHang() {
+    List<KhachHang> listKhachHang = new ArrayList<>();
+    
+    try {
+        Connection conn = ConnectDB.getInstance().getConnection();
+        String sql = "SELECT maKH, tenKH, sdt, email, lichSuDatBan FROM KhachHang"; // Cập nhật tên cột nếu cần
+        PreparedStatement ps = conn.prepareStatement(sql);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            String maKH = rs.getString("maKH");
+            String tenKH = rs.getString("tenKH");
+            String soDienThoai = rs.getString("soDienThoai");
+            String gioiTinh = rs.getString("gioiTinh");
+            String diaChi = rs.getString("diaChi");
+            
+            listKhachHang.add(new KhachHang(maKH, tenKH, soDienThoai, gioiTinh, diaChi)); // Cập nhật tham số nếu cần
+        }
+        
+        rs.close();
+        ps.close();
+        conn.close();
+            
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return listKhachHang;
+}
 
+
+
+
+
+    // Cập nhật thông tin khách hàng
+   
     // Xóa khách hàng khỏi cơ sở dữ liệu
     public boolean deleteKhachHang(String maKH) {
         String sql = "DELETE FROM khach_hang WHERE maKH = ?";
@@ -95,7 +103,7 @@ public class KhachHang_DAO {
         PreparedStatement ps = null;
         
         try {
-            ConnectDB.getInstance().connect();  // Establish the connection
+            ConnectDB.getInstance().getConnection();  // Establish the connection
             conn = ConnectDB.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, maKH);
@@ -103,50 +111,15 @@ public class KhachHang_DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeResources(ps, conn);  // Ensure resources are closed
+            closeResources(ps, ps, conn);  // Ensure resources are closed
         }
         return false;
     }
-
-    // Tìm khách hàng theo maKH
-    public KhachHang findKhachHangByMaKH(String maKH) {
-        String sql = "SELECT * FROM khach_hang WHERE maKH = ?";
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        try {
-            ConnectDB.getInstance().connect();  // Establish the connection
-            conn = ConnectDB.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, maKH);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                String tenKH = rs.getString("tenKH");
-                String soDienThoai = rs.getString("soDienThoai");
-                String diaChi = rs.getString("diaChi");
-                return new KhachHang(maKH, tenKH, soDienThoai, diaChi);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources(rs, ps, conn);  // Ensure resources are closed
-        }
-        return null;
-    }
-
-    // Helper method to close resources
-    private void closeResources(ResultSet rs, PreparedStatement ps, Connection conn) {
-        try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void closeResources(PreparedStatement ps, Connection conn) {
+    private void closeResources(PreparedStatement ps, PreparedStatement ps1, Connection conn) {
         closeResources(null, ps, conn);
+    }
+
+    KhachHang findKhachHangByMaKH(String maKH) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

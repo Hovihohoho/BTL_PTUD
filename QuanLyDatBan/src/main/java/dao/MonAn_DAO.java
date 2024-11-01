@@ -3,6 +3,7 @@ package dao;
 import connectDB.ConnectDB;
 import entity.LoaiMon;
 import entity.MonAn;
+import gui.card.Card_Mon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MonAn_DAO {
-
+    
     public String getLastMaMonAn() {
         String sql = "SELECT TOP 1 maMonAn FROM MonAn ORDER BY maMonAn DESC";
         String lastMaMonAn = null;
@@ -88,6 +89,17 @@ public class MonAn_DAO {
             e.printStackTrace(); // Consider using a logger
         }
         return list;
+    }
+    
+    public List<Card_Mon> taoDanhSachCardMon() {
+        List<Card_Mon> cardList = new ArrayList<>();
+        List<MonAn> monAnList = getAllMonAn();
+
+        for (MonAn monAn : monAnList) {
+            Card_Mon card = new Card_Mon(monAn);
+            cardList.add(card);
+        }
+        return cardList;
     }
 
     private LoaiMon getLoaiMonByMa(String maLoai) {
@@ -221,6 +233,18 @@ public class MonAn_DAO {
             closeResources(rs, ps, con);
         }
         return list;
+    }
+    
+    public List<Card_Mon> createCardMonList() {
+        List<Card_Mon> cardMonList = new ArrayList<>();
+        List<MonAn> monAnList = getAllMonAn(); // Gọi phương thức để lấy danh sách món ăn
+        
+        for (MonAn monAn : monAnList) {
+            Card_Mon cardMon = new Card_Mon(monAn); // Tạo đối tượng Card_Mon cho mỗi món ăn
+            cardMonList.add(cardMon); // Thêm vào danh sách cardMonList
+        }
+
+        return cardMonList; // Trả về danh sách các Card_Mon
     }
 
     private void closeResources(ResultSet rs, PreparedStatement ps, Connection con) {

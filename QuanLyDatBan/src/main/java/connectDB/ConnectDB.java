@@ -5,25 +5,42 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
-    private static ConnectDB instance;
-    private static Connection connection;
+    private static Connection con = null;
+    private static final ConnectDB instance = new ConnectDB();
 
     public ConnectDB() {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDatBan;encrypt=true;trustServerCertificate=true";
-        try {
-            connection = DriverManager.getConnection(url , "sa", "nhocconpro1202");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // private constructor để ngăn chặn tạo thêm đối tượng bên ngoài lớp này
     }
 
-    public synchronized static ConnectDB getInstance() {
-        if(instance == null)
-            instance = new ConnectDB();
+    public static ConnectDB getInstance() {
         return instance;
     }
 
-    public static Connection getConnection() {
-        return connection;
+    public static Connection getConnection() throws SQLException {
+        if (con == null || con.isClosed()) {
+            instance.connect(); // Tự động kết nối lại nếu kết nối bị đóng hoặc chưa được khởi tạo
+        }
+        return con;
+    }
+
+    public Connection connect() throws SQLException {
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyDatBan;encrypt=false;trustServerCertificate=true";
+        String user = "sa";
+        String password = "sa1";
+//        if (con == null || con.isClosed()) { // Chỉ tạo kết nối nếu chưa có
+            con = DriverManager.getConnection(url, user, password);
+//        }
+        return con;
+    }
+
+    public void disconnect() {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.close();
+                con = null; // Đặt lại con để kiểm tra trong lần gọi tiếp theo
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

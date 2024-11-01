@@ -12,7 +12,7 @@ import connectDB.ConnectDB;
 public class TaiKhoan_DAO {
     private Connection con;
 
-    public TaiKhoan_DAO() {
+    public TaiKhoan_DAO() throws SQLException {
         con = ConnectDB.getInstance().getConnection();
     }
 
@@ -120,16 +120,17 @@ public class TaiKhoan_DAO {
 
         return false;  // Nếu không tìm thấy kết quả, tài khoản hoặc mật khẩu sai
     }
-    public void dangKy(String hoTen, String taiKhoan, String matKhau) {
+    public void dangKy(String hoTen, String taiKhoan, String matKhau) throws SQLException {
         Connection conn = ConnectDB.getConnection();
         PreparedStatement pst = null;
 
         try {
-            String sql = "INSERT INTO TaiKhoan (maTK, tenTk, matKhau) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO TaiKhoan (maTK, tenTk, chucVu, matKhau) VALUES (?, ?, ?, ?)";
             pst = conn.prepareStatement(sql);
-            pst.setString(1, hoTen);
+            pst.setString(1, "TK000");
             pst.setString(2, taiKhoan);
-            pst.setString(3, matKhau);
+            pst.setString(3, "Nhân viên");
+            pst.setString(4, matKhau);
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,15 +1,19 @@
 package entity;
 
+import java.time.LocalDate;
+
 public class KhachHang {
     private String maKH;
     private String tenKH;
     private String soDienThoai;
+    private String gioiTinh;
     private String diaChi;
   
-    public KhachHang(String maKH, String tenKH, String soDienThoai, String diaChi) {
+    public KhachHang(String maKH, String tenKH, String soDienThoai, String gioiTinh, String diaChi) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.soDienThoai = soDienThoai;
+        this.diaChi = gioiTinh;
         this.diaChi = diaChi;
     }
 
@@ -24,6 +28,15 @@ public class KhachHang {
     public String getTenKH() {
         return tenKH;
     }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+    
 
     public void setTenKH(String tenKH) {
         this.tenKH = tenKH;

@@ -56,6 +56,14 @@ public class NhanVien {
         this.sDT = sDT;
         this.email = email;
     }
+    
+    public NhanVien(String maNV, String tenNV, String sDT, String email, LocalDate ngayVaoLam) {
+    	this.maNV = maNV;
+        this.tenNV = tenNV;
+        this.sDT = sDT;
+        this.email = email;
+        this.ngayVaoLam = ngayVaoLam;
+    }
 
     public NhanVien() {
         this.maNV = "TM0000";

@@ -13,6 +13,12 @@ import java.util.Objects;
 public class Ban {
     private String maBan, viTri;
     private int soGhe;
+    private String trangThaiBan;
+    private LoaiBan loaiBan;
+
+    public String getMaBan() {
+        return maBan;
+    }
 
     public String getViTri() {
         return viTri;
@@ -27,33 +33,29 @@ public class Ban {
     }
 
     public void setSoGhe(int soGhe) {
-        if(soGhe>1){
-            this.soGhe = soGhe;
-        }
-        else{
-            this.soGhe = 2;
-        }
-    }
-
-    public String getMaBan() {
-        return maBan;
-    }
-
-    public Ban(String maBan, String viTri, int soGhe) {
-        if(maBan.equalsIgnoreCase("")){
-            this.maBan = "B000";
-        }
-        else{
-            this.maBan = maBan;
-        }
-        this.viTri = viTri;
         this.soGhe = soGhe;
+    }
+
+    public String getTrangThaiBan() {
+        return trangThaiBan;
+    }
+
+    public void setTrangThaiBan(String trangThaiBan) {
+        this.trangThaiBan = trangThaiBan;
+    }
+
+    public LoaiBan getLoaiBan() {
+        return loaiBan;
+    }
+
+    public void setLoaiBan(LoaiBan loaiBan) {
+        this.loaiBan = loaiBan;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.maBan);
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.maBan);
         return hash;
     }
 
@@ -65,9 +67,30 @@ public class Ban {
         if (obj == null) {
             return false;
         }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         final Ban other = (Ban) obj;
         return Objects.equals(this.maBan, other.maBan);
     }
+    
+    
+    
+    public Ban(String maBan, LoaiBan loaiBan, String trangThaiBan, int soGhe, String viTri) {
+        if(maBan.equalsIgnoreCase("")){
+            this.maBan = "B000";
+        }
+        else{
+            this.maBan = maBan;
+        }
+        this.viTri = viTri;
+        this.soGhe = soGhe;
+        this.trangThaiBan = trangThaiBan;
+        this.loaiBan = loaiBan;
+    }
+    
+    
+    
     
     // contructer khong them vi tri
     public Ban(String maBan, int soGhe) {
