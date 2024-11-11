@@ -5,7 +5,9 @@
 package gui.card;
 
 import entity.Ban;
+import entity.NhanVien;
 import gui.datBan.Frame_DatBan;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Card_Ban extends javax.swing.JPanel {
     private Ban ban;
+    private NhanVien nhanvien;
     /**
      * Creates new form Card_Ban
      */
@@ -56,7 +59,7 @@ public class Card_Ban extends javax.swing.JPanel {
         lbtrangthai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbtrangthai.setText("Value");
 
-        btn_DatBan.setBackground(new java.awt.Color(153, 51, 255));
+        btn_DatBan.setBackground(new java.awt.Color(0, 102, 102));
         btn_DatBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_DatBan.setForeground(new java.awt.Color(255, 255, 255));
         btn_DatBan.setText("Đặt bàn");
@@ -70,7 +73,6 @@ public class Card_Ban extends javax.swing.JPanel {
         card_ban.setLayout(card_banLayout);
         card_banLayout.setHorizontalGroup(
             card_banLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(img, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(card_banLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(card_banLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -79,11 +81,14 @@ public class Card_Ban extends javax.swing.JPanel {
                     .addComponent(lbmaban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbtrangthai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card_banLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         card_banLayout.setVerticalGroup(
             card_banLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card_banLayout.createSequentialGroup()
-                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbmaban, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,7 +116,7 @@ public class Card_Ban extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (ban != null && !ban.getTrangThaiBan().equalsIgnoreCase("Đặt trước")) {
 //            guiHoaDon(ban); // Gọi hàm xử lý khi nhấn "Đặt bàn"
-            Frame_DatBan db = new Frame_DatBan(ban);
+            Frame_DatBan db = new Frame_DatBan(ban, nhanvien);
             db.setVisible(true);
         }else {
             // Nếu điều kiện sai, hiển thị thông báo lỗi
@@ -119,13 +124,26 @@ public class Card_Ban extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_DatBanActionPerformed
     
-    public void setBanData(Ban ban) {
+    public void setBanData(Ban ban, NhanVien nhanVien) {
         // Thiết lập các thuộc tính hiển thị cho Card_Ban từ đối tượng Ban
         this.ban = ban;
+        this.nhanvien = nhanVien;
         lbmaban.setText("Mã bàn: " + ban.getMaBan()); 
         lbsoghe.setText("Số ghế: " + ban.getSoGhe());
         lbtrangthai.setText("Trạng thái: " + ban.getTrangThaiBan());
         
+        String trangThai = ban.getTrangThaiBan().trim();
+        ImageIcon icon = null;
+        if(trangThai.equalsIgnoreCase("Trống")){
+            icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\table_green.png");
+        }
+        else if(trangThai.equalsIgnoreCase("Có Khách")){
+            icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\table_gray.png");
+        }
+        else{
+            icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\table_red.png");
+        }
+        img.setIcon(icon);
         // Tùy chọn, hiển thị trạng thái bàn hoặc vị trí nếu cần:
         // lbStatus.setText(ban.getTrangThaiBan());
         // lbLocation.setText(ban.getViTri());

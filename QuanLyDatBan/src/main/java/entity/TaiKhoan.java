@@ -43,6 +43,10 @@ public class TaiKhoan {
     public void setChucVu(String chucVu) {
         this.chucVu = chucVu;
     }
+    
+    public String getMaTK() {
+        return maTK;
+    }
 
     public TaiKhoan(String maTK, String tenTK, String chucVu, String matKhau) {
         // can kiem tra dieu kien ma phai dung voi TKXXX

@@ -20,12 +20,20 @@ public class LoaiBan {
         return tenLoai;
     }
 
+    public void setTenLoai() {
+        this.tenLoai = tenLoai;
+    }
+    
     public void setTenLoai(String maLoai) {
-        if(tenLoai.equalsIgnoreCase("")){
-            this.tenLoai = "Chưa phân loại";
+        if(maLoai.equalsIgnoreCase("L001")){
+            this.tenLoai = "bàn thường";
         }
+        else if (maLoai.equalsIgnoreCase("L002")){
+            this.tenLoai = "bàn vip";
+        }
+        
         else{
-            this.tenLoai = tenLoai;
+            this.tenLoai = "bàn";
         }
     }
     
@@ -36,16 +44,11 @@ public class LoaiBan {
         else{
             this.maLoai = maLoai;
         }
-        tenLoai = "Chưa phân loại";
+        setTenLoai(this.maLoai);
     }
 
     public LoaiBan(String maLoai, String tenLoai) {
-        if(maLoai.equalsIgnoreCase("")){
-            this.maLoai = "L000";
-        }
-        else{
-            this.maLoai = maLoai;
-        }
-        setTenLoai(tenLoai);
+        this.maLoai = maLoai;
+        setTenLoai();
     }
 }

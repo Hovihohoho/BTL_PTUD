@@ -7,6 +7,7 @@ package dao;
 import connectDB.ConnectDB;
 import entity.Ban;
 import entity.LoaiBan;
+import entity.NhanVien;
 import gui.card.Card_Ban;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +28,7 @@ public class Ban_DAO {
     private static final String INSERT_BAN = "INSERT INTO Ban (maBan, maLoai, trangThaiBan, soLuongGhe, viTri) VALUES (?, ?, ?, ?, ?)";
     private static final String UPDATE_BAN = "UPDATE Ban SET maLoai = ?, trangThaiBan = ?, soLuongGhe = ?, viTri = ? WHERE maBan = ?";
     private static final String DELETE_BAN = "DELETE FROM Ban WHERE maBan = ?";
-    public List<Card_Ban> taoDanhSachTheoMa(String maBan) {
+    public List<Card_Ban> taoDanhSachTheoMa(String maBan, NhanVien nhanvien) {
         List<Card_Ban> danhSachCardBan = new ArrayList<>();
         String sql = "SELECT maBan, maLoai, trangThaiBan, soLuongGhe, viTri FROM Ban WHERE maBan = ?";
 
@@ -51,7 +52,7 @@ public class Ban_DAO {
                     Card_Ban cardBan = new Card_Ban();
 
                     // Thiết lập dữ liệu cho mỗi Card_Ban
-                    cardBan.setBanData(ban);
+                    cardBan.setBanData(ban, nhanvien);
 
                     // Thêm Card_Ban vào danh sách
                     danhSachCardBan.add(cardBan);
@@ -132,7 +133,7 @@ public class Ban_DAO {
 
         return danhSachBanTheoSoLuongGhe;
     }
-    public List<Card_Ban> taoDanhSachTangvaGhe(String tang, int ghe) {
+    public List<Card_Ban> taoDanhSachTangvaGhe(String tang, int ghe, NhanVien nhanvien) {
         List<Card_Ban> danhSachCardBan = new ArrayList<>();
         List<Ban> danhSachBan = layDanhSachBanTheoTangVaSoLuongGhe(tang, ghe); // Lấy dữ liệu từ cơ sở dữ liệu
 
@@ -140,7 +141,7 @@ public class Ban_DAO {
             Card_Ban cardBan = new Card_Ban();
 
             // Thiết lập dữ liệu cho mỗi Card_Ban
-            cardBan.setBanData(ban);
+            cardBan.setBanData(ban, nhanvien);
             
             danhSachCardBan.add(cardBan); // Thêm vào danh sách card
         }
@@ -162,7 +163,7 @@ public class Ban_DAO {
 
         return danhSachBanTheoSoLuongGhe;
     }
-    public List<Card_Ban> taoDanhSachTangvaTrangThai(String tang, String trangthai) {
+    public List<Card_Ban> taoDanhSachTangvaTrangThai(String tang, String trangthai, NhanVien nhanvien) {
         List<Card_Ban> danhSachCardBan = new ArrayList<>();
         List<Ban> danhSachBan = layDanhSachBanTheoTangVaTrangThai(tang, trangthai); // Lấy dữ liệu từ cơ sở dữ liệu
 
@@ -170,7 +171,7 @@ public class Ban_DAO {
             Card_Ban cardBan = new Card_Ban();
 
             // Thiết lập dữ liệu cho mỗi Card_Ban
-            cardBan.setBanData(ban);
+            cardBan.setBanData(ban, nhanvien);
             
             danhSachCardBan.add(cardBan); // Thêm vào danh sách card
         }
@@ -192,7 +193,7 @@ public class Ban_DAO {
 
         return danhSachBan;
     }
-    public List<Card_Ban> taoDanhSachTangGheVaTrangThai(String tang, int ghe, String trangthai) {
+    public List<Card_Ban> taoDanhSachTangGheVaTrangThai(String tang, int ghe, String trangthai, NhanVien nhanvien) {
         List<Card_Ban> danhSachCardBan = new ArrayList<>();
         List<Ban> danhSachBan = layDanhSachBanTheoTangGheVaTrangThai(tang, ghe, trangthai); // Lấy dữ liệu từ cơ sở dữ liệu
 
@@ -200,7 +201,7 @@ public class Ban_DAO {
             Card_Ban cardBan = new Card_Ban();
 
             // Thiết lập dữ liệu cho mỗi Card_Ban
-            cardBan.setBanData(ban);
+            cardBan.setBanData(ban, nhanvien);
             
             danhSachCardBan.add(cardBan); // Thêm vào danh sách card
         }
@@ -208,7 +209,7 @@ public class Ban_DAO {
         return danhSachCardBan;
     }
     
-    public List<Card_Ban> taoDanhSachTang(String tang) {
+    public List<Card_Ban> taoDanhSachTang(String tang, NhanVien nhanvien) {
         List<Card_Ban> danhSachCardBan = new ArrayList<>();
         List<Ban> danhSachBan = layDanhSachBanTheoTang(tang); // Lấy dữ liệu từ cơ sở dữ liệu
 
@@ -216,7 +217,7 @@ public class Ban_DAO {
             Card_Ban cardBan = new Card_Ban();
 
             // Thiết lập dữ liệu cho mỗi Card_Ban
-            cardBan.setBanData(ban);
+            cardBan.setBanData(ban, nhanvien);
             
             danhSachCardBan.add(cardBan); // Thêm vào danh sách card
         }

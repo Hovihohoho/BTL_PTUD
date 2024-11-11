@@ -6,7 +6,9 @@ package gui.datBan;
 
 import gui.card.Card_Ban;
 import dao.Ban_DAO;
+import entity.NhanVien;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -15,14 +17,19 @@ import java.util.List;
 public class ManHinh_DatBan extends javax.swing.JPanel {
     private Ban_DAO banDAO;
     private int t_count = 1;
+    private NhanVien nhanvien;
     /**
      * Creates new form P_DatBan
      */
-    public ManHinh_DatBan() {
+    public ManHinh_DatBan(NhanVien nhanvien) {
         initComponents();
+        this.nhanvien = nhanvien;
         banDAO = new Ban_DAO();
         String str = "Tầng " + t_count;
         tang.setText(str);
+        
+        btn_tim.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\search.png")); // NOI18N
+        
         hienThiDanhSachBan(str);
         btn_truoc.setEnabled(false);
     }
@@ -63,7 +70,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         lb_tim.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lb_tim.setText("Nhập mã bàn");
 
-        btn_tim.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_tim.setBorder(null);
         btn_tim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_timActionPerformed(evt);
@@ -75,7 +82,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Trạng thái");
 
-        combo_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trống", "Có khách", "Đặt trước" }));
+        combo_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn --", "Trống", "Có khách", "Đặt trước" }));
         combo_trangthai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_trangthaiActionPerformed(evt);
@@ -85,7 +92,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Số lượng ghế");
 
-        combo_soghe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "4", "6", "8" }));
+        combo_soghe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn --", "2", "4", "6", "8" }));
         combo_soghe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_sogheActionPerformed(evt);
@@ -121,7 +128,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
 
         jLabel2.getAccessibleContext().setAccessibleDescription("");
 
-        tang.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        tang.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         tang.setForeground(new java.awt.Color(102, 153, 255));
         tang.setText("Tầng");
 
@@ -333,7 +340,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
     private void btn_timActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timActionPerformed
         P_dsB.removeAll(); // Xoá tất cả các phần tử trong P_dsB
         String maBan = t_tim.getText();
-        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTheoMa(maBan);
+        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTheoMa(maBan, nhanvien);
         
         tang.setText(null);
         btn_truoc.setEnabled(false);
@@ -362,7 +369,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         P_dsB.removeAll(); // Xoá tất cả các phần tử trong P_dsB
 
         // Lấy danh sách Card_Ban từ Ban_DAO
-        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTangGheVaTrangThai(tang, ghe, trangthai);
+        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTangGheVaTrangThai(tang, ghe, trangthai, nhanvien);
 
         // Thiết lập layout cho P_dsB
         P_dsB.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
@@ -381,7 +388,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         P_dsB.removeAll(); // Xoá tất cả các phần tử trong P_dsB
 
         // Lấy danh sách Card_Ban từ Ban_DAO
-        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTangvaGhe(tang, ghe);
+        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTangvaGhe(tang, ghe, nhanvien);
 
         // Thiết lập layout cho P_dsB
         P_dsB.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
@@ -400,7 +407,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         P_dsB.removeAll(); // Xoá tất cả các phần tử trong P_dsB
 
         // Lấy danh sách Card_Ban từ Ban_DAO
-        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTangvaTrangThai(tang, trangthai);
+        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTangvaTrangThai(tang, trangthai, nhanvien);
 
         // Thiết lập layout cho P_dsB
         P_dsB.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
@@ -419,7 +426,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         P_dsB.removeAll(); // Xoá tất cả các phần tử trong P_dsB
 
         // Lấy danh sách Card_Ban từ Ban_DAO
-        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTang(tang);
+        List<Card_Ban> danhSachCardBan = banDAO.taoDanhSachTang(tang, nhanvien);
 
         // Thiết lập layout cho P_dsB
         P_dsB.setLayout(new java.awt.GridLayout(0, 5, 10, 10));

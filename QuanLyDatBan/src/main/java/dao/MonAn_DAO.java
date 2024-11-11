@@ -10,9 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MonAn_DAO {
-    
+    Connection conn;
     public String getLastMaMonAn() {
         String sql = "SELECT TOP 1 maMonAn FROM MonAn ORDER BY maMonAn DESC";
         String lastMaMonAn = null;
@@ -246,7 +248,75 @@ public class MonAn_DAO {
 
         return cardMonList; // Trả về danh sách các Card_Mon
     }
+            
+    public List<Card_Mon> createCardLoaiMon(String loaiMon) {
+        List<Card_Mon> cardMonList = new ArrayList<>();
+        List<MonAn> monAnList = getAllMonAn(); // Gọi phương thức để lấy danh sách món ăn
+        
+        for (MonAn monAn : monAnList) {
+            if(monAn.getLoai_mon().getTenLoai().equalsIgnoreCase(loaiMon)){
+                Card_Mon cardMon = new Card_Mon(monAn); // Tạo đối tượng Card_Mon cho mỗi món ăn
+                cardMonList.add(cardMon); // Thêm vào danh sách cardMonList
+            }
+        }
 
+        return cardMonList; // Trả về danh sách các Card_Mon
+    }
+    
+    
+    
+    public List<Card_Mon> createCardLoaiMontheoTrangThai(String trangThai) {
+        List<Card_Mon> cardMonList = new ArrayList<>();
+        List<MonAn> monAnList = getAllMonAn(); // Gọi phương thức để lấy danh sách món ăn
+        
+        for (MonAn monAn : monAnList) {
+            if(monAn.getTrangThaiMon().equalsIgnoreCase(trangThai)){
+                Card_Mon cardMon = new Card_Mon(monAn); // Tạo đối tượng Card_Mon cho mỗi món ăn
+                cardMonList.add(cardMon); // Thêm vào danh sách cardMonList
+            }
+        }
+
+        return cardMonList; // Trả về danh sách các Card_Mon
+    }        
+            
+    public MonAn getMonAnByTen(String tenMonAn) throws SQLException {
+        String sql = "SELECT maMonAn, tenMonAn, thongTinMon, trangThaiMonAn, giaTien, maLoai " +
+                     "FROM MonAn WHERE tenMonAn = ?";  // Câu lệnh SQL tìm kiếm theo tên món ăn
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        
+        ConnectDB connectDB = new ConnectDB();
+        try {
+            con = connectDB.connect();
+        } catch (SQLException ex) {
+            Logger.getLogger(MonAn_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            ps = con.prepareStatement(sql);
+            // Set giá trị cho tham số trong câu truy vấn
+            ps.setString(1, tenMonAn);
+
+            // Thực thi truy vấn và nhận kết quả
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // Tạo đối tượng MonAn và gán các giá trị từ ResultSet
+                String maMonAn = rs.getString("maMonAn");
+                String thongTinMon = rs.getString("thongTinMon");
+                String trangThaiMonAn = rs.getString("trangThaiMonAn");
+                double giaTien = rs.getDouble("giaTien");
+                String maLoai = rs.getString("maLoai");
+                LoaiMon loaiMon = getLoaiMonByMa(maLoai); // Implement to fetch LoaiMon
+                
+                // Trả về đối tượng MonAn
+                return new MonAn(maMonAn, tenMonAn, thongTinMon, trangThaiMonAn, giaTien, loaiMon);
+            }
+
+        // Nếu không tìm thấy món ăn, trả về null
+        return null;
+    }
+    
     private void closeResources(ResultSet rs, PreparedStatement ps, Connection con) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

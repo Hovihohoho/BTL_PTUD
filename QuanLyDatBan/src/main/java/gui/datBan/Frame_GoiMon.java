@@ -33,11 +33,10 @@ public class Frame_GoiMon extends javax.swing.JFrame {
     public Frame_GoiMon(GoiMonListener listener, Ban ban) {
         initComponents();
         monDAO = new MonAn_DAO();
-        setSize(1000, 700);
+        setSize(1200, 800);
         setLocationRelativeTo(null); // Đặt JFrame ở giữa màn hình
         
         lb_ban.setText(ban.getMaBan());
-        System.out.println(ban.getMaBan());
         Card_container.setLayout(new java.awt.GridLayout(0, 3, 10, 10));
         
         this.listener = listener;
@@ -62,9 +61,10 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         combo_trangthai = new javax.swing.JComboBox<>();
         P_btn = new javax.swing.JPanel();
-        Luu = new javax.swing.JButton();
+        them = new javax.swing.JButton();
         Huy = new javax.swing.JButton();
         Sua = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         Scroll_dsMonAn = new javax.swing.JScrollPane();
         Card_container = new javax.swing.JPanel();
         ds_MA = new javax.swing.JPanel();
@@ -84,6 +84,11 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         P_ChonMon.setBackground(new java.awt.Color(255, 255, 255));
 
         combo_loaiMon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn--", "Đồ uống", "Món khô", "Món nước" }));
+        combo_loaiMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_loaiMonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Loại món:");
@@ -92,21 +97,26 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         jLabel8.setText("Trạng thái");
 
         combo_trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn--", "Có sẵn", "Không có sẵn" }));
+        combo_trangthai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_trangthaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout P_locLayout = new javax.swing.GroupLayout(P_loc);
         P_loc.setLayout(P_locLayout);
         P_locLayout.setHorizontalGroup(
             P_locLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_locLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(combo_loaiMon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(combo_trangthai, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         P_locLayout.setVerticalGroup(
             P_locLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,17 +130,16 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        Luu.setBackground(new java.awt.Color(204, 255, 204));
-        Luu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Luu.setText("Lưu");
-        Luu.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Luu.addActionListener(new java.awt.event.ActionListener() {
+        them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/details (1).jpg"))); // NOI18N
+        them.setText("Thêm");
+        them.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LuuActionPerformed(evt);
+                themActionPerformed(evt);
             }
         });
 
-        Huy.setBackground(new java.awt.Color(255, 204, 204));
         Huy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Huy.setText("Hủy");
         Huy.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -140,14 +149,17 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
-        Sua.setBackground(new java.awt.Color(255, 204, 255));
         Sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Sua.setText("Sửa");
+        Sua.setText("Sửa số lượng");
         Sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SuaActionPerformed(evt);
             }
         });
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).jpg"))); // NOI18N
+        jButton1.setText("Xóa món");
 
         javax.swing.GroupLayout P_btnLayout = new javax.swing.GroupLayout(P_btn);
         P_btn.setLayout(P_btnLayout);
@@ -155,22 +167,25 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_btnLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Luu)
-                .addGap(18, 18, 18)
+                .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Huy)
                 .addGap(28, 28, 28)
                 .addComponent(Sua)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         P_btnLayout.setVerticalGroup(
             P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_btnLayout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Sua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Luu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(them, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Huy, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Sua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -207,7 +222,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(P_loc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Scroll_dsMonAn, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addComponent(Scroll_dsMonAn, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(P_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -286,6 +301,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        table_monAn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         table_monAn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -309,7 +325,14 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        table_monAn.setRowHeight(35);
         Scroll_table.setViewportView(table_monAn);
+        if (table_monAn.getColumnModel().getColumnCount() > 0) {
+            table_monAn.getColumnModel().getColumn(0).setMinWidth(35);
+            table_monAn.getColumnModel().getColumn(0).setMaxWidth(35);
+            table_monAn.getColumnModel().getColumn(2).setMaxWidth(60);
+            table_monAn.getColumnModel().getColumn(3).setMaxWidth(300);
+        }
 
         javax.swing.GroupLayout ds_MALayout = new javax.swing.GroupLayout(ds_MA);
         ds_MA.setLayout(ds_MALayout);
@@ -320,7 +343,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addGroup(ds_MALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(P_TongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Scroll_table, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Scroll_table, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ds_MALayout.setVerticalGroup(
@@ -342,7 +365,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(P_ChonMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ds_MA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ds_MA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -354,7 +377,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuActionPerformed
+    private void themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themActionPerformed
 //        Map<String, Object[]> monAnMap = new HashMap<>();
 //        for (int i = 0; i < tableModel.getRowCount(); i++) {
 //            String tenMon = (String) tableModel.getValueAt(i, 1);  // Tên món ăn
@@ -406,7 +429,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
 
             // Đóng Frame_GoiMon sau khi hoàn tất
             this.dispose();
-    }//GEN-LAST:event_LuuActionPerformed
+    }//GEN-LAST:event_themActionPerformed
     
     public interface GoiMonListener {
         void onGoiMonCompleted(List<Object[]> dsMonAn, double thue, double tongTien); // Truyền danh sách món ăn đã chọn
@@ -456,6 +479,62 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         // Tính lại tổng tiền và thuế
         capNhatTongTienSauKhiSua();
     }//GEN-LAST:event_SuaActionPerformed
+
+    private void combo_loaiMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_loaiMonActionPerformed
+        // TODO add your handling code here:
+        String loaiMon = (String) combo_loaiMon.getSelectedItem();
+        hienThiDanhSachMon(loaiMon);
+    }//GEN-LAST:event_combo_loaiMonActionPerformed
+    
+    private void hienThiDanhSachMon(String loaiMon){
+        MonAn_DAO monAnDAO = new MonAn_DAO();
+        List<Card_Mon> cardList = monAnDAO.createCardLoaiMon(loaiMon);
+
+        Card_container.removeAll(); // Xóa tất cả các card cũ
+
+        for (Card_Mon card : cardList) {
+            // Thiết lập listener cho từng Card_Mon
+            card.setCardMonListener(new Card_Mon.CardMonListener() {
+                @Override
+                public void onAddMon(MonAn monAn, int soLuong) {
+                    // Thêm món ăn vào table_monAn
+                    addMonToTable(monAn, soLuong);
+                }
+            });
+            Card_container.add(card);
+        }
+
+        Card_container.revalidate();
+        Card_container.repaint();
+    }
+    
+    private void combo_trangthaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_trangthaiActionPerformed
+        // TODO add your handling code here:
+        String trangthai = (String) combo_trangthai.getSelectedItem();
+        hienThiDanhSachMontheoTrangThai(trangthai);
+    }//GEN-LAST:event_combo_trangthaiActionPerformed
+    
+    private void hienThiDanhSachMontheoTrangThai(String trangThai){
+        MonAn_DAO monAnDAO = new MonAn_DAO();
+        List<Card_Mon> cardList = monAnDAO.createCardLoaiMontheoTrangThai(trangThai);
+
+        Card_container.removeAll(); // Xóa tất cả các card cũ
+
+        for (Card_Mon card : cardList) {
+            // Thiết lập listener cho từng Card_Mon
+            card.setCardMonListener(new Card_Mon.CardMonListener() {
+                @Override
+                public void onAddMon(MonAn monAn, int soLuong) {
+                    // Thêm món ăn vào table_monAn
+                    addMonToTable(monAn, soLuong);
+                }
+            });
+            Card_container.add(card);
+        }
+
+        Card_container.revalidate();
+        Card_container.repaint();
+    }
     
     private void capNhatTongTienSauKhiSua() {
         DecimalFormat df = new DecimalFormat("#,###");
@@ -546,7 +625,6 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 }
             });
             Card_container.add(card);
-            System.out.println("Added card: " + card.getMonAn().getTenMonAn());
         }
 
         Card_container.revalidate();
@@ -556,7 +634,6 @@ public class Frame_GoiMon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Card_container;
     private javax.swing.JButton Huy;
-    private javax.swing.JButton Luu;
     private javax.swing.JPanel P_ChonMon;
     private javax.swing.JPanel P_TongTien;
     private javax.swing.JPanel P_btn;
@@ -567,6 +644,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo_loaiMon;
     private javax.swing.JComboBox<String> combo_trangthai;
     private javax.swing.JPanel ds_MA;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -577,5 +655,6 @@ public class Frame_GoiMon extends javax.swing.JFrame {
     private javax.swing.JLabel lb_ban;
     private javax.swing.JLabel lb_thue;
     private javax.swing.JTable table_monAn;
+    private javax.swing.JButton them;
     // End of variables declaration//GEN-END:variables
 }

@@ -53,15 +53,19 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         combo_loaiMon = new javax.swing.JComboBox<>();
         t_giaTien = new javax.swing.JTextField();
         t_thongtin = new javax.swing.JTextArea();
-        xacnhan_huy = new javax.swing.JPanel();
         P_button = new javax.swing.JPanel();
-        them = new javax.swing.JButton();
         xoa = new javax.swing.JButton();
         sua = new javax.swing.JButton();
         tim = new javax.swing.JButton();
         load = new javax.swing.JButton();
+        luuThayDoi = new javax.swing.JButton();
+        them = new javax.swing.JButton();
         Scroll_table_Mon = new javax.swing.JScrollPane();
         table_monAn = new javax.swing.JTable();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        P_ThemMon.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Tên món ăn");
@@ -78,8 +82,8 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         jLabel5.setText("Thông tin món");
 
         jlabel_anhMonAn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlabel_anhMonAn.setText("Chưa có ảnh");
-        jlabel_anhMonAn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jlabel_anhMonAn.setText("         Chưa có ảnh");
+        jlabel_anhMonAn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jlabel_anhMonAn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlabel_anhMonAn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -114,31 +118,10 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
 
         t_thongtin.setColumns(20);
         t_thongtin.setRows(5);
-
-        xacnhan_huy.setBackground(new java.awt.Color(204, 255, 255));
-
-        javax.swing.GroupLayout xacnhan_huyLayout = new javax.swing.GroupLayout(xacnhan_huy);
-        xacnhan_huy.setLayout(xacnhan_huyLayout);
-        xacnhan_huyLayout.setHorizontalGroup(
-            xacnhan_huyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        xacnhan_huyLayout.setVerticalGroup(
-            xacnhan_huyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        P_button.setBackground(new java.awt.Color(255, 255, 255));
-
-        them.setBackground(new java.awt.Color(204, 255, 204));
-        them.setText("Thêm");
-        them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                themActionPerformed(evt);
-            }
-        });
+        t_thongtin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         xoa.setBackground(new java.awt.Color(255, 204, 204));
+        xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         xoa.setText("Xóa");
         xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +130,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         });
 
         sua.setBackground(new java.awt.Color(255, 204, 255));
+        sua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         sua.setText("Sửa");
         sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +138,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
             }
         });
 
+        tim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tim.setText("Tìm");
         tim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,11 +147,31 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         });
 
         load.setBackground(new java.awt.Color(0, 153, 153));
+        load.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         load.setForeground(new java.awt.Color(255, 255, 204));
-        load.setText("UpdateTable");
+        load.setText("Cập nhật");
         load.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadActionPerformed(evt);
+            }
+        });
+
+        luuThayDoi.setBackground(new java.awt.Color(0, 102, 0));
+        luuThayDoi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        luuThayDoi.setForeground(new java.awt.Color(255, 255, 204));
+        luuThayDoi.setText("Lưu thay đổi");
+        luuThayDoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luuThayDoiActionPerformed(evt);
+            }
+        });
+
+        them.setBackground(new java.awt.Color(204, 255, 204));
+        them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        them.setText("Thêm");
+        them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themActionPerformed(evt);
             }
         });
 
@@ -175,31 +180,32 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         P_buttonLayout.setHorizontalGroup(
             P_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_buttonLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(P_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(P_buttonLayout.createSequentialGroup()
-                        .addGroup(P_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_buttonLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sua, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tim, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(load, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(luuThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         P_buttonLayout.setVerticalGroup(
             P_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_buttonLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(xoa, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sua, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tim, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(luuThayDoi, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout P_ThemMonLayout = new javax.swing.GroupLayout(P_ThemMon);
@@ -207,10 +213,10 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         P_ThemMonLayout.setHorizontalGroup(
             P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_ThemMonLayout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(P_ThemMonLayout.createSequentialGroup()
-                        .addGap(0, 42, Short.MAX_VALUE)
+                        .addGap(0, 87, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(t_thongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,17 +244,16 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
                                     .addGroup(P_ThemMonLayout.createSequentialGroup()
                                         .addComponent(t_giaTien, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(P_button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(xacnhan_huy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(P_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         P_ThemMonLayout.setVerticalGroup(
             P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_ThemMonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(P_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(P_ThemMonLayout.createSequentialGroup()
                         .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(P_ThemMonLayout.createSequentialGroup()
@@ -274,12 +279,8 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t_thongtin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(P_ThemMonLayout.createSequentialGroup()
-                        .addComponent(P_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(xacnhan_huy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(t_thongtin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         Scroll_table_Mon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -315,15 +316,19 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Scroll_table_Mon)
             .addComponent(P_ThemMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(Scroll_table_Mon)
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(P_ThemMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Scroll_table_Mon, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                .addComponent(Scroll_table_Mon, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -424,7 +429,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
             combo_trangThai.setSelectedIndex(0);
             combo_loaiMon.setSelectedIndex(-1); // Reset loại món
             jlabel_anhMonAn.setIcon(null);
-            jlabel_anhMonAn.setText("Chưa có ảnh");
+            jlabel_anhMonAn.setText("         Chưa có ảnh");
         } else {
             JOptionPane.showMessageDialog(this, "Thêm món ăn thất bại.");
         }
@@ -501,7 +506,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
             t_giaTien.setText("");
             combo_trangThai.setSelectedIndex(0);
             jlabel_anhMonAn.setIcon(null);
-            jlabel_anhMonAn.setText("Chưa có ảnh");
+            jlabel_anhMonAn.setText("         Chưa có ảnh");
     }
     
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
@@ -533,99 +538,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
     }//GEN-LAST:event_timActionPerformed
 
     private void suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaActionPerformed
-        int selectedRow = table_monAn.getSelectedRow();
-
-        if (selectedRow != -1) { // Kiểm tra có món ăn nào được chọn không
-            String maMonAn = (String) table_monAn.getValueAt(selectedRow, 0);
-            MonAn_DAO maDAO = new MonAn_DAO();
-            MonAn monAn = maDAO.findMonAnByMaMonAn(maMonAn);
-
-            // Hiển thị thông tin lên các trường nhập liệu
-            if (monAn != null) {
-                t_tenMon.setText(monAn.getTenMonAn());
-                t_thongtin.setText(monAn.getThongTinMon());
-                t_giaTien.setText(String.valueOf(monAn.getGiaTien()));
-                combo_trangThai.setSelectedItem(monAn.getTrangThaiMon());
-
-                // err 
-                
-//                String maLoaiMonAn = monAn.getLoai_mon().getMaLoai();
-//                for (int i = 0; i < combo_loaiMon.getItemCount(); i++) {
-//                    LoaiMon loaiMon = (LoaiMon) combo_loaiMon.getItemAt(i);
-//                    if (loaiMon.getMaLoai().equals(maLoaiMonAn)) {
-//                        combo_loaiMon.setSelectedItem(loaiMon);
-//                        break;
-//                    }
-//                }
-
-                // Tạo và hiển thị nút Xác nhận và Hủy
-                JButton btnXacNhan = new JButton("Xác nhận");
-                JButton btnHuy = new JButton("Hủy");
-
-                btnXacNhan.addActionListener(e -> {
-                    // Cập nhật món ăn
-                    String tenMonAn = t_tenMon.getText().trim();
-                    String thongTinMon = t_thongtin.getText().trim();
-                    String trangThaiMonAn = (String) combo_trangThai.getSelectedItem();
-                    LoaiMon selectedLoaiMon = (LoaiMon) combo_loaiMon.getSelectedItem(); // Lấy loại món đã chọn
-                    String maLoai = selectedLoaiMon != null ? selectedLoaiMon.getMaLoai() : null; // Lấy mã loại
-                    double giaTien;
-
-                    try {
-                        giaTien = Double.parseDouble(t_giaTien.getText().trim());
-                    } catch (NumberFormatException e1) {
-                        JOptionPane.showMessageDialog(this, "Giá tiền không hợp lệ.");
-                        return;
-                    }
-
-                    // Kiểm tra đầu vào
-                    if (tenMonAn.isEmpty() || thongTinMon.isEmpty() || trangThaiMonAn.isEmpty() || maLoai == null) {
-                        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.");
-                        return;
-                    }
-
-                    // Tạo đối tượng MonAn mới
-                    MonAn updatedMonAn = new MonAn(maMonAn, tenMonAn, thongTinMon, trangThaiMonAn, giaTien, selectedLoaiMon); // Cập nhật loại món
-
-                    // Cập nhật món ăn vào cơ sở dữ liệu
-                    if (maDAO.updateMonAn(updatedMonAn)) {
-                        JOptionPane.showMessageDialog(this, "Cập nhật món ăn thành công.");
-
-                        // Cập nhật lại bảng sau khi sửa
-                        table_monAn.setValueAt(tenMonAn, selectedRow, 1);
-                        table_monAn.setValueAt(giaTien, selectedRow, 2);
-                        table_monAn.setValueAt(thongTinMon, selectedRow, 3);
-                        table_monAn.setValueAt(trangThaiMonAn, selectedRow, 4);
-                        table_monAn.setValueAt(maLoai, selectedRow, 5); // Cập nhật mã loại nếu có cột mã loại
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Cập nhật món ăn thất bại.");
-                    }
-
-                    // Ẩn nút Xác nhận và Hủy
-                    xacnhan_huy.remove(btnXacNhan);
-                    xacnhan_huy.remove(btnHuy);
-                    xacnhan_huy.revalidate();
-                    xacnhan_huy.repaint();
-                });
-
-                btnHuy.addActionListener(e -> {
-                    // Ẩn nút Xác nhận và Hủy
-                    xacnhan_huy.remove(btnXacNhan);
-                    xacnhan_huy.remove(btnHuy);
-                    xacnhan_huy.revalidate();
-                    xacnhan_huy.repaint();
-                });
-
-                // Xóa các nút cũ (nếu có) trước khi thêm mới
-                xacnhan_huy.removeAll(); 
-                xacnhan_huy.add(btnXacNhan);
-                xacnhan_huy.add(btnHuy);
-                xacnhan_huy.revalidate(); // Cập nhật lại giao diện
-                xacnhan_huy.repaint();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn món ăn để sửa.");
-        }
+        
     }//GEN-LAST:event_suaActionPerformed
 
     private void t_giaTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_giaTienActionPerformed
@@ -635,6 +548,11 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
     private void combo_trangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_trangThaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_trangThaiActionPerformed
+
+    private void luuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuThayDoiActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_luuThayDoiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -654,6 +572,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jlabel_anhMonAn;
     private javax.swing.JButton load;
+    private javax.swing.JButton luuThayDoi;
     private javax.swing.JButton sua;
     private javax.swing.JTextField t_giaTien;
     private javax.swing.JTextField t_tenMon;
@@ -661,7 +580,6 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
     private javax.swing.JTable table_monAn;
     private javax.swing.JButton them;
     private javax.swing.JButton tim;
-    private javax.swing.JPanel xacnhan_huy;
     private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables
 

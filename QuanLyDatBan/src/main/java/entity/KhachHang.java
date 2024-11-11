@@ -1,22 +1,32 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package entity;
 
-import java.time.LocalDate;
-
+/**
+ *
+ * @author Thanh Phuong
+ */
 public class KhachHang {
     private String maKH;
     private String tenKH;
-    private String soDienThoai;
-    private String gioiTinh;
+    private String sDT;
     private String diaChi;
-  
-    public KhachHang(String maKH, String tenKH, String soDienThoai, String gioiTinh, String diaChi) {
+    private String gioiTinh;
+
+    // Constructors
+    public KhachHang() {}
+
+    public KhachHang(String maKH, String tenKH, String sDT, String diaChi, String gioiTinh) {
         this.maKH = maKH;
         this.tenKH = tenKH;
-        this.soDienThoai = soDienThoai;
-        this.diaChi = gioiTinh;
+        this.sDT = sDT;
         this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;
     }
 
+    // Getters and Setters
     public String getMaKH() {
         return maKH;
     }
@@ -29,25 +39,16 @@ public class KhachHang {
         return tenKH;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-    
-
     public void setTenKH(String tenKH) {
         this.tenKH = tenKH;
     }
 
-    public String getSoDienThoai() {
-        return soDienThoai;
+    public String getSDT() {
+        return sDT;
     }
 
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
+    public void setSDT(String sDT) {
+        this.sDT = sDT;
     }
 
     public String getDiaChi() {
@@ -58,9 +59,22 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
     @Override
     public String toString() {
-        return String.format("KhachHang [maKH=%s, tenKH=%s, soDienThoai=%s, diaChi=%s]", 
-            maKH, tenKH, soDienThoai, diaChi);
+        return "KhachHang{" +
+                "maKH='" + maKH + '\'' +
+                ", tenKH='" + tenKH + '\'' +
+                ", sDT='" + sDT + '\'' +
+                ", diaChi='" + diaChi + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                '}';
     }
 }

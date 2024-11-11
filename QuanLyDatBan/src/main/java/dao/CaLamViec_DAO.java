@@ -20,7 +20,7 @@ public class CaLamViec_DAO {
             connection = ConnectDB.getConnection();
             statement = connection.prepareStatement(sql);
             statement.setString(1, caLamViec.getMaCa());
-            statement.setString(2, caLamViec.getTenCa());
+//            statement.setString(2, caLamViec.getTenCa());
             statement.setString(3, caLamViec.getGioBatDau());
             statement.setString(4, caLamViec.getGioKetThuc());
             return statement.executeUpdate() > 0; // Trả về true nếu thêm thành công
@@ -42,7 +42,7 @@ public class CaLamViec_DAO {
             ConnectDB.getInstance().connect();  // Establish the connection
             connection = ConnectDB.getConnection();
             statement = connection.prepareStatement(sql);
-            statement.setString(1, caLamViec.getTenCa());
+//            statement.setString(1, caLamViec.getTenCa());
             statement.setString(2, caLamViec.getGioBatDau());
             statement.setString(3, caLamViec.getGioKetThuc());
             statement.setString(4, caLamViec.getMaCa());
@@ -93,7 +93,7 @@ public class CaLamViec_DAO {
                 String tenCa = resultSet.getString("tenCa");
                 String gioBatDau = resultSet.getString("gioBatDau");
                 String gioKetThuc = resultSet.getString("gioKetThuc");
-                list.add(new CaLamViec(maCa, tenCa, gioBatDau, gioKetThuc));
+//                list.add(new CaLamViec(maCa, tenCa, gioBatDau, gioKetThuc));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -118,10 +118,9 @@ public class CaLamViec_DAO {
             statement.setString(1, maCa);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String tenCa = resultSet.getString("tenCa");
                 String gioBatDau = resultSet.getString("gioBatDau");
                 String gioKetThuc = resultSet.getString("gioKetThuc");
-                return new CaLamViec(maCa, tenCa, gioBatDau, gioKetThuc);
+                return new CaLamViec(maCa, gioBatDau, gioKetThuc);
             }
         } catch (SQLException e) {
             e.printStackTrace();

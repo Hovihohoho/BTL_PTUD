@@ -4,229 +4,126 @@ import java.sql.*;
 
 import java.util.*;
 import connectDB.ConnectDB;
+import entity.CaLamViec;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import java.time.LocalDate;
 
 public class NhanVien_DAO {
-    public List<NhanVien> getAllNhanVien() {
-        List<NhanVien> listNhanVien = new ArrayList<>();
+    private Connection con;
+
+    public NhanVien_DAO() throws SQLException {
+        con = ConnectDB.getInstance().getConnection();
+    }
+    public NhanVien getNhanVienByMa(String maNV) {
+        // Câu lệnh SQL để truy vấn thông tin nhân viên từ bảng NhanVien
+        String sql = "SELECT maNV, maTK, maCa, tenNV, sdt, email, ngayVaoLam FROM NhanVien WHERE maNV = ?";
         
-        try {
-            // Kết nối đến SQL Server qua file connectDB
-            Connection conn = ConnectDB.getConnection();
+        // Kết nối cơ sở dữ liệu và truy vấn
+        try (Connection conn = ConnectDB.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             
+            pstmt.setString(1, maNV); // Thiết lập giá trị cho tham số trong câu lệnh SQL
             
-            // Tạo câu truy vấn
-            String sql = "SELECT maNV, maTK, tenNV, sdt, email, ngayVaoLam FROM NhanVien";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            
-            // Thực thi câu truy vấn
-            ResultSet rs = ps.executeQuery();
-            
-            // Xử lý kết quả
-            while (rs.next()) {
-                String maNV = rs.getString("maNV");
-              
-                String tenNV = rs.getString("tenNV");
-                String sdt = rs.getString("sdt");
-                String email = rs.getString("email");
-                LocalDate ngayVaoLam = rs.getDate("ngayVaoLam").toLocalDate();
-                
-                // Thêm nhân viên vào danh sách
-                listNhanVien.add(new NhanVien(maNV, tenNV, sdt, email, ngayVaoLam));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // Đọc dữ liệu từ ResultSet
+                    String tenNV = rs.getString("tenNV");
+                    String sDT = rs.getString("sdt");
+                    String maCa = rs.getString("maCa");
+                    String email = rs.getString("email");
+                    LocalDate ngayVaoLam = rs.getDate("ngayVaoLam").toLocalDate();
+                    String maTK = rs.getString("maTK"); // Lấy mã tài khoản
+                    
+                    // Tạo đối tượng TaiKhoan từ mã tài khoản (maTK)
+                    TaiKhoan maTaiKhoan = getTaiKhoanByMa(maTK);
+                    
+                    // Tạo đối tượng CaLamViec từ mã ca làm việc (nếu có)
+                    CaLamViec maCaLamViec = getCaLamViecByMa(maCa);
+                    
+                    // Tạo đối tượng NhanVien với constructor đầy đủ
+                    NhanVien nhanVien = new NhanVien(maNV, maTaiKhoan, maCaLamViec, tenNV, sDT, email, ngayVaoLam);
+                    
+                    // Trả về đối tượng NhanVien
+                    return nhanVien;
+                }
             }
-            
-            // Đóng kết nối và tài nguyên
-            rs.close();
-            ps.close();
-            conn.close();
-            
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return listNhanVien;
+        // Nếu không tìm thấy nhân viên, trả về null
+        return null;
+    }
+
+    // Phương thức lấy thông tin tài khoản từ bảng TaiKhoan
+    private TaiKhoan getTaiKhoanByMa(String maTK) {
+        String sql = "SELECT * FROM TaiKhoan WHERE maTK = ?";
+        
+        try (Connection conn = ConnectDB.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             
+            pstmt.setString(1, maTK); // Thiết lập giá trị cho tham số trong câu lệnh SQL
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // Tạo đối tượng TaiKhoan từ kết quả truy vấn
+                    String tenTK = rs.getString("tenTK");
+                    String chucVu = rs.getString("chucVu");
+                    String matKhau = rs.getString("matKhau");
+                    // Khởi tạo đối tượng TaiKhoan (giả sử constructor có tên tài khoản và mật khẩu)
+                    return new TaiKhoan(maTK, tenTK, chucVu, matKhau);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+
+    // Phương thức lấy thông tin ca làm việc từ bảng CaLamViec
+    private CaLamViec getCaLamViecByMa(String maCa) {
+        CaLamViec_DAO calamviecDAO = new CaLamViec_DAO();
+        CaLamViec calam = calamviecDAO.getCaLamViecByMa(maCa);
+        return calam;
+    }
+
+    public List<NhanVien> getAllNhanVien() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-	public ArrayList<NhanVien> getalltbNhanVien(){
-		ArrayList<NhanVien> dsnv = new ArrayList<NhanVien>();
-		try {
-		
-			Connection con = ConnectDB.getConnection();
-			
-			String sql = "Select * from NhanVien";
-			Statement statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(sql);
-			
-			while (rs.next()) {
-				String maNV = rs.getString(1);
-				String tenNV = rs.getString(2);
-				String sDT = rs.getString(3);
-				String email = rs.getString(4);
-				NhanVien nv = new NhanVien( maNV,  tenNV, sDT, email );
-				dsnv.add(nv);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return dsnv;
-	}
-	
-	public ArrayList<NhanVien> getNhanVienTheoMaNV(int maNhanVien) throws SQLException{
-		ArrayList<NhanVien> dsnv = new ArrayList<NhanVien>();
-	
-		Connection con = ConnectDB.getConnection();
-		PreparedStatement statement = null;
-		try {
-			String sql = "Select * from NhanVien where maNV = ? ";
-			statement = con.prepareStatement(sql);
-			statement.setInt(1, maNhanVien);
-			
-			ResultSet rs = statement.executeQuery(sql);
-			
-			while (rs.next()) {
-				String maNV = rs.getString(1);
-				String tenNV = rs.getString(2);
-				String sDT = rs.getString(3);
-				String email = rs.getString(4);
-				NhanVien nv = new NhanVien( maNV,  tenNV, sDT, email );
-				dsnv.add(nv);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return dsnv;
-	}
-	
-	
-	public boolean create(NhanVien nv) throws SQLException {
-	
-		Connection con = ConnectDB.getConnection();
-		PreparedStatement statement = null;
-		
-		int n =0;
-		try {
-			String sql = "Insert into NhanVien values (?, ?, ?, ?) ";
-			statement=con.prepareStatement(sql);
-			statement.setString(1, nv.getMaNV());
-			statement.setString(2, nv.getTenNV());
-			statement.setString(3, nv.getsDT());
-			statement.setString(4, nv.getEmail());
-			n = statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return n > 0; 
-	}
-	
-	public boolean update(NhanVien nv) throws SQLException {
-		
-		Connection con = ConnectDB.getConnection();
-		PreparedStatement statement = null;
-		
-		int n =0;
-		try {
-			String sql = "Update NhanVien set ten = ?, tuoi = ?  where maNV = ? ";
-			statement=con.prepareStatement(sql);
-			statement.setString(1, nv.getMaNV());
-			statement.setString(2, nv.getTenNV());
-			statement.setString(3, nv.getsDT());
-			statement.setString(4, nv.getEmail());
-			n = statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return n > 0; 
-	}
-	
-	public boolean delete(int maNV) throws SQLException {
+    public NhanVien findNhanVienByTaiKhoan(TaiKhoan taiKhoan) {
+        String sql = "SELECT maNV, tenNV, sDT, email, ngayVaoLam, maCa FROM NhanVien WHERE maTK = ?";
+        try {
+            if (con == null || con.isClosed()) {
+                // Nếu kết nối đã bị đóng, hãy mở lại hoặc lấy kết nối mới
+                con = ConnectDB.getInstance().connect();
+            }
+                try (PreparedStatement ps = con.prepareStatement(sql)) {
+                    ps.setString(1, taiKhoan.getMaTK()); // Thiết lập giá trị cho tham số truy vấn
 
-	    Connection con = ConnectDB.getConnection();
-	    PreparedStatement statement = null;
-	    int n = 0;
-	    try {
-	        String sql = "Delete from NhanVien where maNV = ?";
-	        statement = con.prepareStatement(sql);
-	        statement.setInt(1, maNV);
-	        n = statement.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        try {
-	            statement.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return n > 0;
-	}
-	 public boolean register(TaiKhoan user) {
-	        String sql = "INSERT INTO Users (username, password) VALUES (?, ?)";
-	        try (Connection con = ConnectDB.getConnection();
-	             PreparedStatement statement = con.prepareStatement(sql)) {
-	             
-	            statement.setString(1, user.gettenTK());
-	            statement.setString(2, user.getmatKhau()); 
-	            return statement.executeUpdate() > 0;
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	        return false;
-	    }
+                    ResultSet rs = ps.executeQuery();
 
-	  
-	 public boolean login(String tenTK, String matKhau) {
-		    String sql = "SELECT * FROM TaiKhoan WHERE tenTK = ? AND matKhau = ?";
-		    Connection con = null;
-		    PreparedStatement statement = null;
-		    
-		    try {
-		        con = ConnectDB.getConnection();
-		        if (con == null) {
-		            ConnectDB.getInstance().connect(); // Thiết lập lại kết nối nếu nó null
-		            con = ConnectDB.getConnection();
-		        }
-		        
-		        statement = con.prepareStatement(sql);
-		        statement.setString(1, tenTK);
-		        statement.setString(2, matKhau);
-		        
-		        ResultSet rs = statement.executeQuery();
-		        return rs.next();
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    } finally {
-		        try {
-		            if (statement != null) statement.close();
-		            if (con != null) con.close();
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        }
-		    }
-		    return false;
-		}
+                    if (rs.next()) {
+                        String maNV = rs.getString("maNV");
+                        String tenNV = rs.getString("tenNV");
+                        String sDT = rs.getString("sDT");
+                        String email = rs.getString("email");
+                        LocalDate ngayVaoLam = rs.getDate("ngayVaoLam").toLocalDate();
+                        String maCa = rs.getString("maCa");
+                        CaLamViec_DAO caDAO = new CaLamViec_DAO();
+                        CaLamViec Calv = caDAO.getCaLamViecByMa(maCa); // giả sử CaLamViec là Enum
 
-	
+                        // Trả về đối tượng NhanVien
+                        return new NhanVien(maNV, taiKhoan, Calv, tenNV, sDT, email, ngayVaoLam);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();  // In lỗi nếu kết nối không hợp lệ
+        }
+        return null; // Trả về null nếu không tìm thấy nhân viên
+    }
 }

@@ -3,13 +3,29 @@ package gui.dangNhap;
 
 import gui.dangNhap.SignUp;
 import dao.NhanVien_DAO;
+import dao.TaiKhoan_DAO;
+import entity.NhanVien;
+import entity.TaiKhoan;
 import gui.manHinhChinh.ManHinhChinh;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 public class Login extends javax.swing.JFrame {
-
+    private NhanVien nhanVien;
+    private TaiKhoan taiKhoan;
+    private TaiKhoan_DAO taiKhoanDAO;
+    private NhanVien_DAO nhanVienDAO;
  
     public Login() {
-        initComponents();
+        try {
+            initComponents();
+            taiKhoanDAO = new TaiKhoan_DAO();
+            nhanVienDAO = new NhanVien_DAO();
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
    
@@ -20,6 +36,7 @@ public class Login extends javax.swing.JFrame {
         DangNhap = new javax.swing.JPanel();
         Logo = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         P_DangNhap = new javax.swing.JPanel();
         L_DangNhap = new javax.swing.JLabel();
         L_TaiKhoan = new javax.swing.JLabel();
@@ -44,21 +61,29 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Thai Restaurant");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/6214510_elephant_evernote_logo_icon (1).png"))); // NOI18N
+
         javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
         Logo.setLayout(LogoLayout);
         LogoLayout.setHorizontalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(LogoLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addContainerGap())
         );
         LogoLayout.setVerticalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LogoLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel6)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         DangNhap.add(Logo);
@@ -171,13 +196,21 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_T_TaiKhoanActionPerformed
 
     private void Btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_dangNhapActionPerformed
-    	String tenTK = T_TaiKhoan.getText();
+        String tenTK = T_TaiKhoan.getText();
         String matKhau = new String(Password_f.getPassword());
-
-        NhanVien_DAO nhanVienDAO = new NhanVien_DAO();
-        if (nhanVienDAO.login(tenTK, matKhau)) {
+        if (!Pattern.matches("^[a-zA-Z0-9]{5,20}$", tenTK)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Tên tài khoản phải từ 5-20 ký tự và chỉ chứa chữ cái hoặc số.", "Lỗi định dạng", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", matKhau)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Mật khẩu phải từ 8-20 ký tự, bao gồm ít nhất một chữ cái in hoa, một chữ cái thường và một số.", "Lỗi định dạng", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (taiKhoanDAO.login(tenTK, matKhau)) {
             // Nếu đăng nhập thành công, mở Menu
-            ManHinhChinh mn = new ManHinhChinh();
+            taiKhoan = taiKhoanDAO.findTaiKhoanByTenTK(tenTK);
+            nhanVien = nhanVienDAO.findNhanVienByTaiKhoan(taiKhoan);
+            ManHinhChinh mn = new ManHinhChinh(nhanVien);
             mn.setVisible(true);
             this.dispose(); // Đóng cửa sổ đăng nhập
         } else {
@@ -185,7 +218,7 @@ public class Login extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng!", "Lỗi đăng nhập", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_Btn_dangNhapActionPerformed
-
+    
     private void Btn_DangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DangKyActionPerformed
         SignUp SignUpFrame = new SignUp();
         SignUpFrame.setVisible(true);
@@ -193,7 +226,7 @@ public class Login extends javax.swing.JFrame {
         SignUpFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_Btn_DangKyActionPerformed
-
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -208,6 +241,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel P_DangNhap;
     private javax.swing.JPasswordField Password_f;
     private javax.swing.JTextField T_TaiKhoan;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

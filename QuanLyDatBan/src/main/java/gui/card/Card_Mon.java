@@ -6,7 +6,9 @@ package gui.card;
 
 import dao.MonAn_DAO;
 import entity.MonAn;
+import java.io.File;
 import java.text.DecimalFormat;
+import javax.swing.ImageIcon;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -38,6 +40,24 @@ public class Card_Mon extends javax.swing.JPanel {
         this.monAn = monAn;
         lbTenMon.setText("Tên món: " + monAn.getTenMonAn()); 
         lb_Gia.setText("Giá: " + df.format(monAn.getGiaTien()));
+        
+        // Xử lý ảnh cho món ăn
+        String maMonAn = monAn.getMaMonAn().trim(); // Lấy mã món ăn
+        String fileName = "mon_" + maMonAn.substring(1) + ".png"; // Tạo tên tệp ảnh (e.g., mon_01.png)
+
+        // Tạo đường dẫn đầy đủ tới ảnh
+        String imagePath = "C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\monAn\\" + fileName;
+
+        // Kiểm tra và gán ảnh cho JLabel
+        File imageFile = new File(imagePath);
+        if(imageFile.exists()) {
+            ImageIcon icon = new ImageIcon(imagePath);
+            img.setIcon(icon); // Gán ảnh vào JLabel
+        } else {
+            // Nếu không tìm thấy ảnh, có thể gán ảnh mặc định
+            ImageIcon defaultIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\monAn\\no_image_icon.png");
+            img.setIcon(defaultIcon);
+        }
     }
     
     private void setupSpinner() {
@@ -62,14 +82,15 @@ public class Card_Mon extends javax.swing.JPanel {
         spinner_soluong = new javax.swing.JSpinner();
         lb_sl = new javax.swing.JLabel();
 
+        card_Mon.setBackground(new java.awt.Color(255, 255, 255));
         card_Mon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        img.setBackground(new java.awt.Color(204, 255, 204));
+        img.setBackground(new java.awt.Color(255, 255, 255));
         img.setOpaque(true);
 
-        btn_ThemMon.setBackground(new java.awt.Color(204, 255, 204));
+        btn_ThemMon.setBackground(new java.awt.Color(0, 153, 153));
         btn_ThemMon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_ThemMon.setForeground(new java.awt.Color(51, 153, 0));
+        btn_ThemMon.setForeground(new java.awt.Color(255, 255, 255));
         btn_ThemMon.setText("Thêm");
         btn_ThemMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,12 +98,12 @@ public class Card_Mon extends javax.swing.JPanel {
             }
         });
 
-        lb_Gia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lb_Gia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lb_Gia.setForeground(new java.awt.Color(51, 153, 0));
         lb_Gia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_Gia.setText("Value");
 
-        lbTenMon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbTenMon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbTenMon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTenMon.setText("Title");
 
@@ -93,15 +114,10 @@ public class Card_Mon extends javax.swing.JPanel {
         card_Mon.setLayout(card_MonLayout);
         card_MonLayout.setHorizontalGroup(
             card_MonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(card_MonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(card_MonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(card_MonLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_ThemMon)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(lb_Gia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, card_MonLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -110,11 +126,13 @@ public class Card_Mon extends javax.swing.JPanel {
                         .addComponent(spinner_soluong, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)))
                 .addContainerGap())
+            .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_ThemMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         card_MonLayout.setVerticalGroup(
             card_MonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(card_MonLayout.createSequentialGroup()
-                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbTenMon, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

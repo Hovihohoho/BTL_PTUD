@@ -5,6 +5,7 @@ import dao.TaiKhoan_DAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 
@@ -27,6 +28,7 @@ public class SignUp extends javax.swing.JFrame {
         DangKy = new javax.swing.JPanel();
         Logo = new javax.swing.JPanel();
         label_logo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         P_DangKy = new javax.swing.JPanel();
         L_DangKy = new javax.swing.JLabel();
         L_hoTen = new javax.swing.JLabel();
@@ -52,21 +54,27 @@ public class SignUp extends javax.swing.JFrame {
         label_logo.setForeground(new java.awt.Color(255, 255, 255));
         label_logo.setText("Thai Restaurant");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/6214510_elephant_evernote_logo_icon (1).png"))); // NOI18N
+
         javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
         Logo.setLayout(LogoLayout);
         LogoLayout.setHorizontalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(label_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         LogoLayout.setVerticalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LogoLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoLayout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(label_logo)
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addGap(109, 109, 109))
         );
 
         DangKy.add(Logo);
@@ -192,23 +200,39 @@ public class SignUp extends javax.swing.JFrame {
             String hoTen = T_hoTen.getText();
             String taiKhoan = T_TaiKhoan.getText();
             String matKhau = T_MatKhau.getText();
+if (hoTen.isEmpty() || taiKhoan.isEmpty() || matKhau.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
+        return;
+    }
 
-            // Kiểm tra dữ liệu đầu vào nếu cần
-            if (hoTen.isEmpty() || taiKhoan.isEmpty() || matKhau.isEmpty()) {
-                // Thông báo lỗi nếu có trường nào đó trống
-                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
-                return;
-            }
+    // Kiểm tra định dạng của họ tên
+    if (!Pattern.matches("^[\\p{L}][\\p{L}\\s]{1,49}$", hoTen)) {
+    JOptionPane.showMessageDialog(this, "Họ và tên chỉ nên chứa chữ cái và khoảng trắng, từ 2 đến 50 ký tự.");
+    return;
+}
 
-            TaiKhoan_DAO taiKhoanDAO;
-            try {
-                taiKhoanDAO = new TaiKhoan_DAO();
-                taiKhoanDAO.dangKy(hoTen, taiKhoan, matKhau);
-            } catch (SQLException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            // Xử lý sau khi đăng ký thành công (nếu cần)
-            JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
+
+    // Kiểm tra định dạng của tài khoản
+    if (!Pattern.matches("^[a-zA-Z0-9]{5,20}$", taiKhoan)) {
+        JOptionPane.showMessageDialog(this, "Tài khoản phải từ 5-20 ký tự và chỉ chứa chữ cái hoặc số.");
+        return;
+    }
+
+    // Kiểm tra định dạng của mật khẩu
+    if (!Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", matKhau)) {
+        JOptionPane.showMessageDialog(this, "Mật khẩu phải từ 8-20 ký tự, bao gồm ít nhất một chữ cái in hoa, một chữ cái thường và một số.");
+        return;
+    }
+
+    TaiKhoan_DAO taiKhoanDAO;
+    try {
+        taiKhoanDAO = new TaiKhoan_DAO();
+        taiKhoanDAO.dangKy(hoTen, taiKhoan, matKhau);
+        JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
+    } catch (SQLException ex) {
+        Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi đăng ký.");
+    }
     }//GEN-LAST:event_Btn_DangKyActionPerformed
 
     private void Btn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DangNhapActionPerformed
@@ -235,6 +259,7 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField T_MatKhau;
     private javax.swing.JTextField T_TaiKhoan;
     private javax.swing.JTextField T_hoTen;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel label_logo;
     // End of variables declaration//GEN-END:variables
 }

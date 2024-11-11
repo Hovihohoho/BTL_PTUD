@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 public class QuanLyNhanVien extends JFrame {
     private JTextField txtCustomerID, txtCustomerName, txtPhoneNumber, txtEmail;
     private JTextArea txtReservationHistory;
-    private JButton btnAdd, btnEdit, btnDelete, btnSearch, btnFilter;
+    private JButton btnAdd, btnEdit, btnDelete, btnSearch, btnFilter, btnThoat;
     private JTable customerTable;
     private DefaultTableModel tableModel;
     private JLabel lblAvatar; 
@@ -24,7 +25,7 @@ public class QuanLyNhanVien extends JFrame {
     private JTextArea txtStats, txtNote;
     private JComboBox<String> filterCombo;
 
-    public QuanLyNhanVien() {
+    public QuanLyNhanVien() throws SQLException {
         setTitle("QUẢN LÝ NHÂN VIÊN");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,6 +106,7 @@ public class QuanLyNhanVien extends JFrame {
         btnEdit = new JButton("Sửa");
         btnDelete = new JButton("Xóa");
         btnSearch = new JButton("Tìm kiếm");
+        btnThoat = new JButton("Thoat");
 
         // Thêm nút vào buttonPanel, mỗi nút nằm trên một dòng riêng
         buttonPanel.add(btnAdd);
@@ -114,6 +116,8 @@ public class QuanLyNhanVien extends JFrame {
         buttonPanel.add(btnDelete);
         buttonPanel.add(Box.createVerticalStrut(10));
         buttonPanel.add(btnSearch);
+        buttonPanel.add(Box.createVerticalStrut(10));
+        buttonPanel.add(btnThoat);
 
         JLabel lblStats = new JLabel("Tổng số nhân viên:");
         lblStats.setBounds(950, 250, 200, 30);
@@ -296,8 +300,8 @@ private void displayCustomerStatistics() {
         txtEmail.setText("");
         txtReservationHistory.setText("");
     }
-    
-   private void loadNhanVienData() {
+   
+    private void loadNhanVienData() throws SQLException {
         NhanVien_DAO nhanVienDAO = new NhanVien_DAO();
         List<NhanVien> listNhanVien = nhanVienDAO.getAllNhanVien();
         
@@ -312,7 +316,7 @@ private void displayCustomerStatistics() {
             });
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         QuanLyNhanVien qlnv = new QuanLyNhanVien();
         qlnv.setVisible(true);
     }

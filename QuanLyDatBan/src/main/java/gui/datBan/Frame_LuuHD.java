@@ -58,14 +58,13 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Frame_LuuHD(Ban ban, String gio, String ngay, List<Object[]> dsMonAn) throws SQLException {
-        String manv = "NV001";
+    public Frame_LuuHD(Ban ban, String gio, String ngay, List<Object[]> dsMonAn, NhanVien nhanvien) throws SQLException {
         
         nhanVienDAO = new NhanVien_DAO();
         chiTietYeuCauDAO = new ChiTietYeuCau_DAO();
         khachhang_dao = new KhachHang_DAO();
         khachhang = khachhang_dao.getKhachHangByMa("KH000");
-        nhanvien = nhanVienDAO.getNhanVienByMa(manv);
+        this.nhanvien = nhanvien;
         monDAO = new MonAn_DAO();
         this.dsMonAn = dsMonAn;
         this.ban = ban;
@@ -494,7 +493,6 @@ public class Frame_LuuHD extends javax.swing.JFrame {
     
     private void LuuHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuHDActionPerformed
         // TODO add your handling code here:
-        String maNV = "NV001";
         
         try {
             yeucauDAO.luuYeuCau(yeucau.getMaYeuCau(), khachhang);
@@ -524,9 +522,9 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         
         // Gọi phương thức lưu hóa đơn
         hoaDonDAO = new HoaDon_DAO();
-        String maHD = hoaDonDAO.getMaHDMoi(nhanvien);
+        String maHD = hoaDonDAO.getMaHDMoi(this.nhanvien);
         try {
-            boolean success = hoaDonDAO.luuHoaDon(maHD, yeucau.getMaYeuCau(), maNV, maBan, soLuongKhach, thoiGianTao, ngayDatBan);
+            boolean success = hoaDonDAO.luuHoaDon(maHD, yeucau.getMaYeuCau(), nhanvien.getMaNV(), maBan, soLuongKhach, thoiGianTao, ngayDatBan);
 
             if (success) {
                 JOptionPane.showMessageDialog(this, "Đặt bàn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -546,7 +544,7 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         khachhang = khachhang_dao.findKhachHangBySDT(sdt);
         
         if(khachhang == null){
-            lb_tenKH.setText("Khách mới");
+            lb_tenKH.setText("Không tồn tại");
             khachhang = khachhang_dao.getKhachHangByMa("KH000");
         }
         else{
