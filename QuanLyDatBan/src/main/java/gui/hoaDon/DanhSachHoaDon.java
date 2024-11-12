@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DanhSachHoaDon extends javax.swing.JPanel {
     private HoaDon_DAO hoadonDAO;
-    Panel_HoaDon hoaDon;
     private DefaultTableModel model;
     /**
      * Creates new form DanhSachHoaDon
@@ -304,8 +304,18 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_chiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chiTietActionPerformed
-        Frame_HoaDon frame_hoadon = new Frame_HoaDon();
-        frame_hoadon.setVisible(true);
+        int selectedRow = table_dsHoaDon.getSelectedRow();
+        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn hay không
+            // Lấy mã Hóa Đơn từ bảng
+            String maHD = (String) model.getValueAt(selectedRow, 1); // Cột thứ 2 (index 1) là "Mã HĐ"
+
+            // Mở Frame_HoaDon và truyền mã hóa đơn
+            Frame_HoaDon frame_hoadon = new Frame_HoaDon(maHD); // Truyền mã hóa đơn vào constructor
+            frame_hoadon.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame_hoadon.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một hóa đơn từ bảng!");
+        }
     }//GEN-LAST:event_btn_chiTietActionPerformed
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed

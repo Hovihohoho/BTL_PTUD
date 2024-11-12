@@ -19,6 +19,12 @@ public class HoaDon_DAO {
     PreparedStatement pstmt = null;
     private TaoMaHoaDon tmhd = new TaoMaHoaDon();
     
+    NhanVien nhanVien;
+    YeuCauKhachHang_DAO yeuCauKhachHang_DAO;
+    YeuCauKhachHang yeuCau;
+    Ban_DAO banDAO;
+    Ban ban;
+    
     public String getMaHDMoi(NhanVien nhanvien){
         return tmhd.generateMaHoaDon(nhanvien);
     }
@@ -113,53 +119,106 @@ public class HoaDon_DAO {
     }
     
     public List<HoaDon> timHoaDonTheoSdt(String sdt) throws SQLException {
-    List<HoaDon> dsHoaDon = new ArrayList<>();
-    
-    // SQL truy vấn hóa đơn theo số điện thoại của khách hàng
-    String sql = "SELECT hd.maHD, hd.thoiGianTao, hd.ngayDatBan, hd.soLuongKhach, " +
-                 "nv.tenNV, kh.tenKH, hd.maYeuCau, b.maBan, " +
-                 "(SELECT SUM(ctyc.soLuong * ma.giaTien) FROM ChiTietYeuCau ctyc " +
-                 "JOIN MonAn ma ON ctyc.maMonAn = ma.maMonAn WHERE ctyc.maYeuCau = hd.maYeuCau) AS tongTien " +
-                 "FROM HoaDon hd " +
-                 "JOIN NhanVien nv ON hd.maNV = nv.maNV " +
-                 "JOIN YeuCauKhachHang yckh ON hd.maYeuCau = yckh.maYeuCau " +
-                 "JOIN KhachHang kh ON yckh.maKH = kh.maKH " +
-                 "JOIN Ban b ON hd.maBan = b.maBan " +
-                 "WHERE kh.sDT = ?";  // Điều kiện tìm kiếm theo số điện thoại của khách hàng
-    
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setString(1, sdt);  // Set số điện thoại vào câu truy vấn
-        
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                String maHD = rs.getString("maHD");
-                String tenNV = rs.getString("tenNV");
-                String tenKH = rs.getString("tenKH");
-                String maYeuCau = rs.getString("maYeuCau");
-                LocalDate thoiGianTao = rs.getDate("thoiGianTao").toLocalDate();
-                LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
-                int soLuongKhach = rs.getInt("soLuongKhach");
-                double tongTien = rs.getDouble("tongTien");
+        List<HoaDon> dsHoaDon = new ArrayList<>();
 
-                // Khởi tạo các đối tượng liên quan
-                NhanVien nhanVien = new NhanVien();
-                nhanVien.setTenNV(tenNV);
-                
-                YeuCauKhachHang_DAO yeuCau_DAO = new YeuCauKhachHang_DAO();
-                YeuCauKhachHang yeucau = yeuCau_DAO.getYeuCauByMaYeuCau(maYeuCau);
-                
-                Ban_DAO banDAO = new Ban_DAO();
-                Ban ban = banDAO.getBanByMaBan("maBan");
+        // SQL truy vấn hóa đơn theo số điện thoại của khách hàng
+        String sql = "SELECT hd.maHD, hd.thoiGianTao, hd.ngayDatBan, hd.soLuongKhach, " +
+                     "nv.tenNV, kh.tenKH, hd.maYeuCau, b.maBan, " +
+                     "(SELECT SUM(ctyc.soLuong * ma.giaTien) FROM ChiTietYeuCau ctyc " +
+                     "JOIN MonAn ma ON ctyc.maMonAn = ma.maMonAn WHERE ctyc.maYeuCau = hd.maYeuCau) AS tongTien " +
+                     "FROM HoaDon hd " +
+                     "JOIN NhanVien nv ON hd.maNV = nv.maNV " +
+                     "JOIN YeuCauKhachHang yckh ON hd.maYeuCau = yckh.maYeuCau " +
+                     "JOIN KhachHang kh ON yckh.maKH = kh.maKH " +
+                     "JOIN Ban b ON hd.maBan = b.maBan " +
+                     "WHERE kh.sDT = ?";  // Điều kiện tìm kiếm theo số điện thoại của khách hàng
 
-                // Tạo đối tượng HoaDon
-                HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan);
-                hoaDon.setTongTien(tongTien); // Gán tổng tiền vào hóa đơn
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, sdt);  // Set số điện thoại vào câu truy vấn
 
-                dsHoaDon.add(hoaDon);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String maHD = rs.getString("maHD");
+                    String tenNV = rs.getString("tenNV");
+                    String tenKH = rs.getString("tenKH");
+                    String maYeuCau = rs.getString("maYeuCau");
+                    LocalDate thoiGianTao = rs.getDate("thoiGianTao").toLocalDate();
+                    LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
+                    int soLuongKhach = rs.getInt("soLuongKhach");
+                    double tongTien = rs.getDouble("tongTien");
+
+                    // Khởi tạo các đối tượng liên quan
+                    NhanVien nhanVien = new NhanVien();
+                    nhanVien.setTenNV(tenNV);
+
+                    YeuCauKhachHang_DAO yeuCau_DAO = new YeuCauKhachHang_DAO();
+                    YeuCauKhachHang yeucau = yeuCau_DAO.getYeuCauByMaYeuCau(maYeuCau);
+
+                    Ban_DAO banDAO = new Ban_DAO();
+                    Ban ban = banDAO.getBanByMaBan("maBan");
+
+                    // Tạo đối tượng HoaDon
+                    HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan);
+                    hoaDon.setTongTien(tongTien); // Gán tổng tiền vào hóa đơn
+
+                    dsHoaDon.add(hoaDon);
+                }
             }
         }
+
+        return dsHoaDon;
     }
     
-    return dsHoaDon;
-}
+    public HoaDon getHoaDonByMaHD(String maHD) {
+        HoaDon hoaDon = null;
+        String sql = "SELECT hd.maHD, hd.maYeuCau, hd.maNV, hd.maBan, hd.soLuongKhach, hd.thoiGianTao, hd.ngayDatBan, " +
+                     "nv.tenNV, kh.tenKH " +
+                     "FROM HoaDon hd " +
+                     "JOIN YeuCauKhachHang yckh ON hd.maYeuCau = yckh.maYeuCau " +
+                     "JOIN KhachHang kh ON yckh.maKH = kh.maKH " +
+                     "JOIN NhanVien nv ON hd.maNV = nv.maNV " +
+                     "JOIN Ban b ON hd.maBan = b.maBan " +
+                     "WHERE hd.maHD = ?";
+        try {
+            if (conn == null || conn.isClosed()) {
+                // Nếu kết nối đã bị đóng, hãy mở lại hoặc lấy kết nối mới
+                conn = ConnectDB.getInstance().connect();
+            }
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, maHD);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        // Lấy dữ liệu từ ResultSet
+                        String maYeuCau = rs.getString("maYeuCau").trim();
+                        String maNV = rs.getString("maNV").trim();
+                        String maBan = rs.getString("maBan").trim();
+                        int soLuongKhach = rs.getInt("soLuongKhach");
+                        LocalDate thoiGianTao = rs.getDate("thoiGianTao").toLocalDate();
+                        LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
+
+                        // Tạo đối tượng NhanVien
+                        NhanVien_DAO nhanvienDAO = new NhanVien_DAO();
+                        nhanVien = nhanvienDAO.getNhanVienByMa(maNV);
+
+                        // Tạo đối tượng KhachHang thông qua YeuCauKhachHang
+                        yeuCauKhachHang_DAO = new YeuCauKhachHang_DAO();
+                        yeuCau = yeuCauKhachHang_DAO.getYeuCauByMaYeuCau(maYeuCau);
+
+                        // Tạo đối tượng Ban
+                        banDAO = new Ban_DAO();
+                        ban = banDAO.getBanByMaBan(maBan);
+
+                        // Tạo đối tượng HoaDon
+                        hoaDon = new HoaDon(maHD, yeuCau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            } catch (SQLException e) {
+            e.printStackTrace();  // In lỗi nếu kết nối không hợp lệ
+        }
+        return hoaDon;
+    }
+
 }
