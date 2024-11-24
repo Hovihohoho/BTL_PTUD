@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.swing.JFrame;
 
 public class Login extends javax.swing.JFrame {
     private NhanVien nhanVien;
@@ -224,6 +225,7 @@ public class Login extends javax.swing.JFrame {
         SignUpFrame.setVisible(true);
         SignUpFrame.pack();
         SignUpFrame.setLocationRelativeTo(null);
+        SignUpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_Btn_DangKyActionPerformed
     

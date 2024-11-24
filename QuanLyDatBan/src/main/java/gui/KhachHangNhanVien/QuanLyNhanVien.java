@@ -88,7 +88,7 @@ public class QuanLyNhanVien extends JFrame {
         JScrollPane tableScrollPane = new JScrollPane(customerTable);
         tableScrollPane.setBounds(300, 20, 600, 400);
         add(tableScrollPane);
-        loadNhanVienData();
+//        loadNhanVienData();
         customerTable.getSelectionModel().addListSelectionListener(e -> displayAvatar());
 
         lblAvatar = new JLabel();

@@ -368,6 +368,8 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        P_ChucNang.setBackground(new java.awt.Color(255, 255, 255));
+
         LuuHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/details (1).jpg"))); // NOI18N
         LuuHD.setText("Lưu HD");
         LuuHD.addActionListener(new java.awt.event.ActionListener() {

@@ -120,8 +120,10 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         t_thongtin.setRows(5);
         t_thongtin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        P_button.setBackground(new java.awt.Color(255, 255, 255));
+
         xoa.setBackground(new java.awt.Color(255, 204, 204));
-        xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         xoa.setText("Xóa");
         xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +132,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         });
 
         sua.setBackground(new java.awt.Color(255, 204, 255));
-        sua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         sua.setText("Sửa");
         sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +140,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
             }
         });
 
-        tim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tim.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tim.setText("Tìm");
         tim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +149,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         });
 
         load.setBackground(new java.awt.Color(0, 153, 153));
-        load.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        load.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         load.setForeground(new java.awt.Color(255, 255, 204));
         load.setText("Cập nhật");
         load.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +169,7 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         });
 
         them.setBackground(new java.awt.Color(204, 255, 204));
-        them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         them.setText("Thêm");
         them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

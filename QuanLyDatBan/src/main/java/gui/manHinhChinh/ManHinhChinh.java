@@ -5,6 +5,7 @@
 package gui.manHinhChinh;
 
 import entity.NhanVien;
+import gui.KhachHangNhanVien.Panel_QuanLyNhanVien;
 import gui.KhachHangNhanVien.QuanLyKhachHang;
 import gui.KhachHangNhanVien.QuanLyNhanVien;
 import gui.ban.Form_QuanLyBan;
@@ -15,10 +16,12 @@ import gui.thongKe.ThongKeDoanhThu;
 import gui.thongKe.ThongKeKhachHang;
 import gui.thongKe.ThongKeNhanVien;
 import gui.thongKe.ThongKeSanPham;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
 /**
@@ -38,6 +41,19 @@ public class ManHinhChinh extends javax.swing.JFrame {
 //        anhManHinhChinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Thai_restaurant_resized_900x600.png")));
         anhManHinhChinh.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\Thai_restaurant_resized_900x600.png"));
         logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\5519105_achievement_awards_badge_chef_cook_icon (1).png"));
+        
+        btn_TrangChu.setBackground(Color.darkGray);
+        btn_TrangChu.setForeground(Color.GREEN);
+        
+        btn_qly_ban.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_ban.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
     }
 
     /**
@@ -56,9 +72,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
         btn_qly_mon = new javax.swing.JButton();
         btn_DatBan = new javax.swing.JButton();
         btn_qlyKhachHang = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btn_qlyNhanVien = new javax.swing.JButton();
         btn_ThongKe = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_hdsd = new javax.swing.JButton();
         tenNhanVien = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -110,11 +126,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setText("Quản lý nhân viên");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_qlyNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_qlyNhanVien.setText("Quản lý nhân viên");
+        btn_qlyNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_qlyNhanVienActionPerformed(evt);
             }
         });
 
@@ -126,11 +142,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("About us");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_hdsd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_hdsd.setText("About us");
+        btn_hdsd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_hdsdActionPerformed(evt);
             }
         });
 
@@ -150,9 +166,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
                     .addComponent(btn_qly_mon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                     .addComponent(btn_DatBan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_qlyKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_qlyNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_ThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_hdsd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(tenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,11 +197,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(btn_qlyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_qlyNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(btn_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_hdsd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -213,6 +229,8 @@ public class ManHinhChinh extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        P_chucNang.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout P_chucNangLayout = new javax.swing.GroupLayout(P_chucNang);
         P_chucNang.setLayout(P_chucNangLayout);
@@ -275,6 +293,25 @@ public class ManHinhChinh extends javax.swing.JFrame {
         P_chucNang.add(tabqlBan);
         P_chucNang.validate();
         P_chucNang.repaint();
+        
+        btn_qly_ban.setBackground(Color.darkGray);
+        btn_qly_ban.setForeground(Color.GREEN);
+        
+        btn_TrangChu.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
+        btn_TrangChu.setForeground(Color.black);
+        btn_DatBan.setForeground(Color.black);
+        btn_ThongKe.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_qlyNhanVien.setForeground(Color.black);
+        btn_qly_mon.setForeground(Color.black);
+        btn_hdsd.setForeground(Color.black);
     }//GEN-LAST:event_btn_qly_banActionPerformed
 
     private void btn_qly_monActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_qly_monActionPerformed
@@ -294,15 +331,57 @@ public class ManHinhChinh extends javax.swing.JFrame {
         P_chucNang.add(tabQlyMon);
         P_chucNang.validate();
         P_chucNang.repaint();
+        
+        btn_qly_mon.setBackground(Color.darkGray);
+        btn_qly_mon.setForeground(Color.GREEN);
+        
+        btn_TrangChu.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_ban.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
+        btn_TrangChu.setForeground(Color.black);
+        btn_DatBan.setForeground(Color.black);
+        btn_ThongKe.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_qlyNhanVien.setForeground(Color.black);
+        btn_qly_ban.setForeground(Color.black);
+        btn_hdsd.setForeground(Color.black);
     }//GEN-LAST:event_btn_qly_monActionPerformed
 
     private void btn_TrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TrangChuActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         P_chucNang.removeAll();
         P_chucNang.setLayout(new java.awt.BorderLayout());
-//        anhManHinhChinh.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\Thai_restaurant_resized_900x600.png"));
+        
+        anhManHinhChinh = new javax.swing.JLabel();
+        P_chucNang.add(anhManHinhChinh);
+        anhManHinhChinh.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\Thai_restaurant_resized_900x600.png"));
+        
         P_chucNang.validate();
         P_chucNang.repaint();
+        
+        btn_TrangChu.setBackground(Color.darkGray);
+        btn_TrangChu.setForeground(Color.GREEN);
+        
+        btn_qly_ban.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
+        btn_DatBan.setForeground(Color.black);
+        btn_qly_ban.setForeground(Color.black);
+        btn_ThongKe.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_qlyNhanVien.setForeground(Color.black);
+        btn_qly_mon.setForeground(Color.black);
+        btn_hdsd.setForeground(Color.black);
     }//GEN-LAST:event_btn_TrangChuActionPerformed
 
     private void btn_DatBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DatBanActionPerformed
@@ -317,6 +396,26 @@ public class ManHinhChinh extends javax.swing.JFrame {
         P_chucNang.add(tabDatBan);
         P_chucNang.validate();
         P_chucNang.repaint();
+        
+        
+        btn_DatBan.setBackground(Color.darkGray);
+        btn_DatBan.setForeground(Color.GREEN);
+        
+        btn_TrangChu.setBackground(Color.white);
+        btn_qly_ban.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
+        btn_TrangChu.setForeground(Color.black);
+        btn_qly_ban.setForeground(Color.black);
+        btn_ThongKe.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_qlyNhanVien.setForeground(Color.black);
+        btn_qly_mon.setForeground(Color.black);
+        btn_hdsd.setForeground(Color.black);
     }//GEN-LAST:event_btn_DatBanActionPerformed
 
     private void btn_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThongKeActionPerformed
@@ -339,6 +438,25 @@ public class ManHinhChinh extends javax.swing.JFrame {
         P_chucNang.add(tabThongKe);
         P_chucNang.validate();
         P_chucNang.repaint();
+        
+        btn_ThongKe.setBackground(Color.darkGray);
+        btn_ThongKe.setForeground(Color.GREEN);
+        
+        btn_TrangChu.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_ban.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
+        btn_TrangChu.setForeground(Color.black);
+        btn_DatBan.setForeground(Color.black);
+        btn_qly_mon.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_qlyNhanVien.setForeground(Color.black);
+        btn_qly_ban.setForeground(Color.black);
+        btn_hdsd.setForeground(Color.black);
     }//GEN-LAST:event_btn_ThongKeActionPerformed
 
     private void btn_qlyKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_qlyKhachHangActionPerformed
@@ -354,24 +472,83 @@ public class ManHinhChinh extends javax.swing.JFrame {
             P_chucNang.add(tabKhachHang);
             P_chucNang.validate();
             P_chucNang.repaint();
+            
+            btn_qlyKhachHang.setBackground(Color.darkGray);
+            btn_qlyKhachHang.setForeground(Color.GREEN);
+
+            btn_TrangChu.setBackground(Color.white);
+            btn_DatBan.setBackground(Color.white);
+            btn_qly_mon.setBackground(Color.white);
+            btn_ThongKe.setBackground(Color.white);
+            btn_qly_ban.setBackground(Color.white);
+            btn_qlyNhanVien.setBackground(Color.white);
+            btn_hdsd.setBackground(Color.white);
+
+            btn_TrangChu.setForeground(Color.black);
+            btn_DatBan.setForeground(Color.black);
+            btn_qly_mon.setForeground(Color.black);
+            btn_ThongKe.setForeground(Color.black);
+            btn_qlyNhanVien.setForeground(Color.black);
+            btn_qly_ban.setForeground(Color.black);
+            btn_hdsd.setForeground(Color.black);
         } catch (SQLException ex) {
             Logger.getLogger(ManHinhChinh.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_qlyKhachHangActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
-            // TODO add your handling code here:
-            QuanLyNhanVien qlnv = new QuanLyNhanVien();
-            qlnv.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManHinhChinh.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_qlyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_qlyNhanVienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Panel_QuanLyNhanVien qlnv = new Panel_QuanLyNhanVien();
+        JTabbedPane tabNhanVien = new JTabbedPane();
+        tabNhanVien.add("Quản lý nhân viên", qlnv);
+        P_chucNang.removeAll();
+        P_chucNang.setLayout(new java.awt.BorderLayout());
+        P_chucNang.add(tabNhanVien);
+        P_chucNang.validate();
+        P_chucNang.repaint();
+        
+        btn_qlyNhanVien.setBackground(Color.darkGray);
+        btn_qlyNhanVien.setForeground(Color.GREEN);
+        
+        btn_TrangChu.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_ban.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
+        btn_TrangChu.setForeground(Color.black);
+        btn_DatBan.setForeground(Color.black);
+        btn_qly_mon.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_ThongKe.setForeground(Color.black);
+        btn_qly_ban.setForeground(Color.black);
+        btn_hdsd.setForeground(Color.black);
+    }//GEN-LAST:event_btn_qlyNhanVienActionPerformed
+
+    private void btn_hdsdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hdsdActionPerformed
+        // TODO add your handling code here:
+        
+        btn_hdsd.setBackground(Color.darkGray);
+        btn_hdsd.setForeground(Color.GREEN);
+        
+        btn_TrangChu.setBackground(Color.white);
+        btn_DatBan.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_ban.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        
+        btn_TrangChu.setForeground(Color.black);
+        btn_DatBan.setForeground(Color.black);
+        btn_qly_mon.setForeground(Color.black);
+        btn_qlyKhachHang.setForeground(Color.black);
+        btn_ThongKe.setForeground(Color.black);
+        btn_qly_ban.setForeground(Color.black);
+        btn_qlyNhanVien.setForeground(Color.black);
+    }//GEN-LAST:event_btn_hdsdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,11 +591,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
     private javax.swing.JButton btn_DatBan;
     private javax.swing.JButton btn_ThongKe;
     private javax.swing.JButton btn_TrangChu;
+    private javax.swing.JButton btn_hdsd;
     private javax.swing.JButton btn_qlyKhachHang;
+    private javax.swing.JButton btn_qlyNhanVien;
     private javax.swing.JButton btn_qly_ban;
     private javax.swing.JButton btn_qly_mon;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

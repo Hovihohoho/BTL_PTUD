@@ -200,39 +200,39 @@ public class SignUp extends javax.swing.JFrame {
             String hoTen = T_hoTen.getText();
             String taiKhoan = T_TaiKhoan.getText();
             String matKhau = T_MatKhau.getText();
-if (hoTen.isEmpty() || taiKhoan.isEmpty() || matKhau.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
-        return;
-    }
+        if (hoTen.isEmpty() || taiKhoan.isEmpty() || matKhau.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
+                return;
+        }
 
     // Kiểm tra định dạng của họ tên
-    if (!Pattern.matches("^[\\p{L}][\\p{L}\\s]{1,49}$", hoTen)) {
-    JOptionPane.showMessageDialog(this, "Họ và tên chỉ nên chứa chữ cái và khoảng trắng, từ 2 đến 50 ký tự.");
-    return;
-}
-
-
-    // Kiểm tra định dạng của tài khoản
-    if (!Pattern.matches("^[a-zA-Z0-9]{5,20}$", taiKhoan)) {
-        JOptionPane.showMessageDialog(this, "Tài khoản phải từ 5-20 ký tự và chỉ chứa chữ cái hoặc số.");
+        if (!Pattern.matches("^[\\p{L}][\\p{L}\\s]{1,49}$", hoTen)) {
+            JOptionPane.showMessageDialog(this, "Họ và tên chỉ nên chứa chữ cái và khoảng trắng, từ 2 đến 50 ký tự.");
         return;
-    }
+        }
 
-    // Kiểm tra định dạng của mật khẩu
-    if (!Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", matKhau)) {
-        JOptionPane.showMessageDialog(this, "Mật khẩu phải từ 8-20 ký tự, bao gồm ít nhất một chữ cái in hoa, một chữ cái thường và một số.");
-        return;
-    }
 
-    TaiKhoan_DAO taiKhoanDAO;
-    try {
-        taiKhoanDAO = new TaiKhoan_DAO();
-        taiKhoanDAO.dangKy(hoTen, taiKhoan, matKhau);
-        JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
-    } catch (SQLException ex) {
-        Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi đăng ký.");
-    }
+        // Kiểm tra định dạng của tài khoản
+        if (!Pattern.matches("^[a-zA-Z0-9]{5,20}$", taiKhoan)) {
+            JOptionPane.showMessageDialog(this, "Tài khoản phải từ 5-20 ký tự và chỉ chứa chữ cái hoặc số.");
+            return;
+        }
+
+        // Kiểm tra định dạng của mật khẩu
+        if (!Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", matKhau)) {
+            JOptionPane.showMessageDialog(this, "Mật khẩu phải từ 8-20 ký tự, bao gồm ít nhất một chữ cái in hoa, một chữ cái thường và một số.");
+            return;
+        }
+
+        TaiKhoan_DAO taiKhoanDAO;
+        try {
+            taiKhoanDAO = new TaiKhoan_DAO();
+            taiKhoanDAO.dangKy(hoTen, taiKhoan, matKhau);
+            JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi đăng ký.");
+        }
     }//GEN-LAST:event_Btn_DangKyActionPerformed
 
     private void Btn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DangNhapActionPerformed

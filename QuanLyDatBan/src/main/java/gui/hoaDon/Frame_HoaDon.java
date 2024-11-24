@@ -86,7 +86,6 @@ public class Frame_HoaDon extends javax.swing.JFrame {
             tongTien += yeuCau.getSoLuong() * monAn.getGiaTien();
             tableModel.addRow(new Object[]{
                 stt++,
-                monAn.getMaMonAn(),
                 monAn.getTenMonAn(),
                 yeuCau.getSoLuong(),
                 monAn.getGiaTien(),
@@ -278,6 +277,8 @@ public class Frame_HoaDon extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
         table_thongtinMon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -296,7 +297,7 @@ public class Frame_HoaDon extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table_thongtinMon);
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Danh sách món ăn: ");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -375,7 +376,7 @@ public class Frame_HoaDon extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)

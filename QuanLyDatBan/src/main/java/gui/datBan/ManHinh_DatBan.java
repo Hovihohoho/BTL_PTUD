@@ -176,6 +176,8 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        footer.setBackground(new java.awt.Color(255, 255, 255));
+
         btn_truoc.setText("Trang trước");
         btn_truoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,6 +240,7 @@ public class ManHinh_DatBan extends javax.swing.JPanel {
         P_Scroll.setBackground(new java.awt.Color(255, 255, 255));
         P_Scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         P_Scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        P_Scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         P_dsB.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

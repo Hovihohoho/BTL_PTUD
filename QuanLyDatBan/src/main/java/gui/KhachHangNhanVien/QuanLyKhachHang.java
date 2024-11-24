@@ -89,9 +89,17 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         table_thongTinKH = new javax.swing.JTable();
         thongTinKH_label = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         tieuDe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         tieuDe.setForeground(new java.awt.Color(0, 102, 102));
         tieuDe.setText("QUẢN LÝ KHÁCH HÀNG");
+
+        khachHang_2.setBackground(new java.awt.Color(255, 255, 255));
+
+        lablel_1.setBackground(new java.awt.Color(255, 255, 255));
 
         maKH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         maKH.setText("Mã khách hàng:");
@@ -189,6 +197,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                     .addComponent(rbtnNu))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        button_cn.setBackground(new java.awt.Color(255, 255, 255));
 
         them.setBackground(new java.awt.Color(0, 255, 255));
         them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -300,6 +310,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                     .addComponent(button_cn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         table_thongTinKH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table_thongTinKH.setModel(new javax.swing.table.DefaultTableModel(
