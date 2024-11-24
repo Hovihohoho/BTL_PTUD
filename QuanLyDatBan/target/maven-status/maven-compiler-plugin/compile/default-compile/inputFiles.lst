@@ -12,7 +12,6 @@ C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\dao\YeuCauKh
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\Ban.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\CaLamViec.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\ChiTietYeuCau.java
-C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\DonDatBan.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\HoaDon.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\KhachHang.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\entity\LoaiBan.java
@@ -32,6 +31,7 @@ C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\datBan\F
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\datBan\ManHinh_DatBan.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\hoaDon\DanhSachHoaDon.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\hoaDon\Frame_HoaDon.java
+C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\KhachHangNhanVien\Panel_QuanLyNhanVien.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\KhachHangNhanVien\PhanCaNhanVien.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\KhachHangNhanVien\QuanLyKhachHang.java
 C:\Users\Admin\Documents\GitHub\BTL_PTUD\QuanLyDatBan\src\main\java\gui\KhachHangNhanVien\QuanLyNhanVien.java

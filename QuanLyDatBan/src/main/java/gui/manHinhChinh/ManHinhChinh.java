@@ -6,8 +6,8 @@ package gui.manHinhChinh;
 
 import entity.NhanVien;
 import gui.KhachHangNhanVien.Panel_QuanLyNhanVien;
+import gui.KhachHangNhanVien.PhanCaNhanVien;
 import gui.KhachHangNhanVien.QuanLyKhachHang;
-import gui.KhachHangNhanVien.QuanLyNhanVien;
 import gui.ban.Form_QuanLyBan;
 import gui.datBan.ManHinh_DatBan;
 import gui.hoaDon.DanhSachHoaDon;
@@ -499,8 +499,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
     private void btn_qlyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_qlyNhanVienActionPerformed
         // TODO add your handling code here:
         Panel_QuanLyNhanVien qlnv = new Panel_QuanLyNhanVien();
+        PhanCaNhanVien pcnv = new PhanCaNhanVien();
         JTabbedPane tabNhanVien = new JTabbedPane();
         tabNhanVien.add("Quản lý nhân viên", qlnv);
+        tabNhanVien.add("Phân ca nhân viên", pcnv);
+        
         P_chucNang.removeAll();
         P_chucNang.setLayout(new java.awt.BorderLayout());
         P_chucNang.add(tabNhanVien);

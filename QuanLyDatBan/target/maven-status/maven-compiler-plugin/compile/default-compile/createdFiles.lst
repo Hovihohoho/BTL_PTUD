@@ -58,7 +58,6 @@ gui\KhachHangNhanVien\QuanLyKhachHang$2.class
 gui\hoaDon\DanhSachHoaDon$4.class
 dao\MonAn_DAO.class
 gui\datBan\Frame_DatBan$4.class
-entity\DonDatBan.class
 gui\datBan\ManHinh_DatBan$7.class
 gui\KhachHangNhanVien\QuanLyNhanVien.class
 gui\monAn\Form_MonAn$13.class
@@ -152,6 +151,7 @@ gui\monAn\Form_MonAn$10.class
 gui\monAn\Form_QuanLyMon$7.class
 gui\datBan\Frame_GoiMon$9.class
 entity\TaiKhoan.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien.class
 gui\manHinhChinh\ManHinhChinh$9.class
 gui\dangNhap\Login.class
 gui\monAn\Form_QuanLyMon$6.class
@@ -165,3 +165,4 @@ gui\ban\Form_QuanLyBan$15.class
 gui\datBan\ManHinh_DatBan$3.class
 gui\ban\Form_QuanLyBan$20.class
 gui\KhachHangNhanVien\QuanLyKhachHang$6.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$1.class
