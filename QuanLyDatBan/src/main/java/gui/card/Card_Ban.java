@@ -7,6 +7,7 @@ package gui.card;
 import entity.Ban;
 import entity.NhanVien;
 import gui.datBan.Frame_DatBan;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -133,20 +134,25 @@ public class Card_Ban extends javax.swing.JPanel {
         lbtrangthai.setText("Trạng thái: " + ban.getTrangThaiBan());
         
         String trangThai = ban.getTrangThaiBan().trim();
-        ImageIcon icon = null;
-        if(trangThai.equalsIgnoreCase("Trống")){
-            icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\table_green.png");
+        
+        String iconPath = null;
+        if (trangThai.equalsIgnoreCase("Trống")) {
+            iconPath = "icon/table_green.png";
+        } else if (trangThai.equalsIgnoreCase("Có Khách")) {
+            iconPath = "icon/table_gray.png";
+        } else {
+            iconPath = "icon/table_red.png";
         }
-        else if(trangThai.equalsIgnoreCase("Có Khách")){
-            icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\table_gray.png");
+        
+        URL iconUrl = getClass().getClassLoader().getResource(iconPath);
+        if (iconUrl != null) {
+            ImageIcon icon = new ImageIcon(iconUrl);
+            img.setIcon(icon);
+        } else {
+            // Xử lý trường hợp không tìm thấy tệp hình ảnh
+            System.err.println("Không tìm thấy tệp biểu tượng: " + iconPath);
+            img.setIcon(null); // Hoặc gán biểu tượng mặc định
         }
-        else{
-            icon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\table_red.png");
-        }
-        img.setIcon(icon);
-        // Tùy chọn, hiển thị trạng thái bàn hoặc vị trí nếu cần:
-        // lbStatus.setText(ban.getTrangThaiBan());
-        // lbLocation.setText(ban.getViTri());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

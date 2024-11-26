@@ -8,12 +8,14 @@ import gui.card.Card_Mon;
 import dao.MonAn_DAO;
 import entity.Ban;
 import entity.MonAn;
+import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,6 +40,15 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         
         lb_ban.setText(ban.getMaBan());
         Card_container.setLayout(new java.awt.GridLayout(0, 3, 10, 10));
+        // set font va co chu cho table
+        table_monAn.setFont(new Font("Arial", Font.PLAIN, 16));
+        table_monAn.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+        table_monAn.setRowHeight(30);
+        // can giua cho 2 cot stt va sl
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+        table_monAn.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        table_monAn.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         this.listener = listener;
         tableModel = (DefaultTableModel) table_monAn.getModel();
@@ -172,11 +183,11 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_btnLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Huy)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Sua)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -185,10 +196,10 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             .addGroup(P_btnLayout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(them, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(Huy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Huy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(them, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -227,7 +238,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(P_loc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Scroll_dsMonAn, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addComponent(Scroll_dsMonAn, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(P_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -314,7 +325,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Tên món ăn", "Số lượng", "Đơn giá", "Thành tiền"
+                "STT", "Tên món ăn", "S.L", "Đơn giá", "Thành tiền"
             }
         ) {
             Class[] types = new Class [] {

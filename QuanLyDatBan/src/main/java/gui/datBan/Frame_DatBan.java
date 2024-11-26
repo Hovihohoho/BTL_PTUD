@@ -9,6 +9,7 @@ import entity.Ban;
 import entity.NhanVien;
 import entity.YeuCauKhachHang;
 import gui.datBan.Frame_GoiMon.GoiMonListener;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,6 +40,10 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
+        
+        T_dsMon.setFont(new Font("Arial", Font.PLAIN, 18));
+        T_dsMon.getTableHeader().setFont(new Font("Arial", Font.BOLD, 20));
+        T_dsMon.setRowHeight(30);
         dsMonModel = (DefaultTableModel) T_dsMon.getModel();
         
         
@@ -58,6 +64,16 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.ban = ban;
         this.nhanvien = nhanvien;
+        
+        T_dsMon.setFont(new Font("Arial", Font.PLAIN, 20));
+        T_dsMon.getTableHeader().setFont(new Font("Arial", Font.BOLD, 20));
+        T_dsMon.setRowHeight(30);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+        T_dsMon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        T_dsMon.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        
         dsMonModel = (DefaultTableModel) T_dsMon.getModel();
         l_tenNV.setText(this.nhanvien.getTenNV());
         l_maban.setText(this.ban.getMaBan());
@@ -312,9 +328,9 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(L_ban)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(l_maban, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(L_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(l_tenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,29 +343,25 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(l_ngay, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(l_gio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(L_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(l_maban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(L_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap()
+                .addComponent(l_ngay, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(l_gio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(l_tenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_tenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L_nv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(l_maban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(L_ban))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         button_bar.setBackground(new java.awt.Color(255, 255, 255));
 
         Btn_HuyBang.setBackground(new java.awt.Color(255, 102, 51));
+        Btn_HuyBang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_HuyBang.setForeground(new java.awt.Color(255, 255, 255));
         Btn_HuyBang.setText("Hủy");
         Btn_HuyBang.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -360,6 +372,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         });
 
         Btn_DatBan.setBackground(new java.awt.Color(153, 255, 153));
+        Btn_DatBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_DatBan.setText("Đặt Bàn");
         Btn_DatBan.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         Btn_DatBan.addActionListener(new java.awt.event.ActionListener() {
@@ -374,6 +387,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         });
 
         Btn_ChuyenBan.setBackground(new java.awt.Color(255, 204, 255));
+        Btn_ChuyenBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_ChuyenBan.setText("Chuyển Bàn");
         Btn_ChuyenBan.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         Btn_ChuyenBan.addActionListener(new java.awt.event.ActionListener() {
@@ -383,6 +397,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         });
 
         Btn_ThemMon.setBackground(new java.awt.Color(255, 255, 204));
+        Btn_ThemMon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_ThemMon.setText("Thêm Món");
         Btn_ThemMon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         Btn_ThemMon.addActionListener(new java.awt.event.ActionListener() {
@@ -396,14 +411,14 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
         button_barLayout.setHorizontalGroup(
             button_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(button_barLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(Btn_ThemMon)
                 .addGap(18, 18, 18)
-                .addComponent(Btn_ChuyenBan, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Btn_ChuyenBan)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_HuyBang, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Btn_DatBan, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Btn_DatBan)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         button_barLayout.setVerticalGroup(
@@ -449,7 +464,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(P_DonDatLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(85, 85, 85)
                 .addComponent(button_bar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jSeparator2)
@@ -512,7 +527,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
 
         // Truyền danh sách món ăn sang Frame_LuuHD
         try {
-            Frame_LuuHD flhd = new Frame_LuuHD(ban, gio, ngay, dsMonAn, nhanvien);
+            Frame_LuuHD flhd = new Frame_LuuHD(ban, gio, ngay, dsMonAn, nhanvien, this.tongTien-this.thue);
             flhd.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {

@@ -7,6 +7,7 @@ package gui.card;
 import dao.MonAn_DAO;
 import entity.MonAn;
 import java.io.File;
+import java.net.URL;
 import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.SpinnerNumberModel;
@@ -38,24 +39,23 @@ public class Card_Mon extends javax.swing.JPanel {
     public void setDataMon(MonAn monAn){
         DecimalFormat df = new DecimalFormat("#,### VND");
         this.monAn = monAn;
-        lbTenMon.setText("Tên món: " + monAn.getTenMonAn()); 
+        lbTenMon.setText("Tên món: " + monAn.getTenMonAn());
         lb_Gia.setText("Giá: " + df.format(monAn.getGiaTien()));
-        
+
         // Xử lý ảnh cho món ăn
         String maMonAn = monAn.getMaMonAn().trim(); // Lấy mã món ăn
-        String fileName = "mon_" + maMonAn.substring(1) + ".png"; // Tạo tên tệp ảnh (e.g., mon_01.png)
+        String fileName = "icon/monAn/mon_" + maMonAn.substring(1) + ".png"; // Tạo tên tệp ảnh
 
-        // Tạo đường dẫn đầy đủ tới ảnh
-        String imagePath = "C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\monAn\\" + fileName;
+        // Lấy đường dẫn ảnh từ tài nguyên
+        URL imageUrl = getClass().getClassLoader().getResource(fileName);
 
-        // Kiểm tra và gán ảnh cho JLabel
-        File imageFile = new File(imagePath);
-        if(imageFile.exists()) {
-            ImageIcon icon = new ImageIcon(imagePath);
-            img.setIcon(icon); // Gán ảnh vào JLabel
+        if (imageUrl != null) {
+            // Nếu ảnh tồn tại, gán ảnh vào JLabel
+            ImageIcon icon = new ImageIcon(imageUrl);
+            img.setIcon(icon);
         } else {
-            // Nếu không tìm thấy ảnh, có thể gán ảnh mặc định
-            ImageIcon defaultIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\monAn\\no_image_icon.png");
+            // Nếu không tìm thấy ảnh, gán ảnh mặc định
+            ImageIcon defaultIcon = new ImageIcon(getClass().getClassLoader().getResource("icon/monAn/no_image_icon.png"));
             img.setIcon(defaultIcon);
         }
     }

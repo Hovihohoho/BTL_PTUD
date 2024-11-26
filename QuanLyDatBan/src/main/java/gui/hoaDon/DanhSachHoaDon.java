@@ -5,14 +5,18 @@
 package gui.hoaDon;
 
 import dao.HoaDon_DAO;
+import entity.HoaDon;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,8 +35,19 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
             hoadonDAO = new HoaDon_DAO();
             model = new DefaultTableModel(new String[] {"STT", "Mã hóa đơn", "Nhân viên", "Khách hàng", "Ngày lập hóa đơn", "Tổng tiền"}, 0);
             table_dsHoaDon = new JTable(model);  // Khởi tạo JTable và kết nối với model
+            
+            table_dsHoaDon.setFont(new Font("Arial", Font.PLAIN, 16));
+            table_dsHoaDon.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+            table_dsHoaDon.setRowHeight(30);
+
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+            table_dsHoaDon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            
             jScrollPane2.setViewportView(table_dsHoaDon);  // Nếu chưa gán bảng vào JScrollPane
+            
             loadHoaDonToTable();  // Gọi load dữ liệu vào bảng
+            
         } catch (SQLException ex) {
             Logger.getLogger(DanhSachHoaDon.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,19 +65,38 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         int stt = 1;
         for (entity.HoaDon hd : dsHoaDon) {
             String tenKH = (hd.getYeucau() != null && hd.getYeucau().getKh() != null) ? hd.getYeucau().getKh().getTenKH() : "Không xác định";
-            double tongTien = hd.getTongTien();  // Lấy tổng tiền từ đối tượng Panel_HoaDon
-            String tt = df.format(tongTien);
+            double tongTien = hd.getTongTien() + hd.getTongTien()*0.1;  // Lấy tổng tiền từ đối tượng Panel_HoaDon
             model.addRow(new Object[] {
                 stt++, // STT
                 hd.getMaHD(), // Mã Hóa Đơn
                 hd.getNhanVien().getTenNV(), // Tên Nhân Viên
                 tenKH, // Tên Khách Hàng
                 hd.getThoiGianTao(), // Ngày Lập
-                tt
+                df.format(tongTien)
             });
         }
     }
-
+        
+    private void updateTable(List<HoaDon> dsHoaDon) {
+        // Xóa dữ liệu cũ trên bảng
+        model.setRowCount(0);
+        DecimalFormat df = new DecimalFormat("#,###");
+        // Thêm dữ liệu mới sau khi sắp xếp
+        int stt = 1;
+        for (HoaDon hd : dsHoaDon) {
+            String tenKH = (hd.getYeucau() != null && hd.getYeucau().getKh() != null) ? hd.getYeucau().getKh().getTenKH() : "Không xác định";
+            double tongTien = hd.getTongTien() + hd.getTongTien()*0.1;
+            model.addRow(new Object[] {
+                stt++,
+                hd.getMaHD(),
+                hd.getNhanVien().getTenNV(),
+                tenKH,
+                hd.getThoiGianTao(),
+                df.format(tongTien) // Hiển thị tổng tiền
+            });
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,8 +122,8 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        sapXepTheoTongTien = new javax.swing.JComboBox<>();
+        sapXepTheoNgayLap = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -118,6 +152,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
             }
         });
         table_dsHoaDon.setRowHeight(40);
+        table_dsHoaDon.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(table_dsHoaDon);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -217,9 +252,19 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Theo ngày lập");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn --", "Tăng", "Giảm" }));
+        sapXepTheoTongTien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mặc định", "Tăng dần", "Giảm dần" }));
+        sapXepTheoTongTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sapXepTheoTongTienActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn --", "Tăng", "Giảm" }));
+        sapXepTheoNgayLap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mặc định", "Cũ nhất", "Mới nhất" }));
+        sapXepTheoNgayLap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sapXepTheoNgayLapActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -229,11 +274,11 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sapXepTheoTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sapXepTheoNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
         jPanel4Layout.setVerticalGroup(
@@ -245,8 +290,8 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1))
+                    .addComponent(sapXepTheoNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sapXepTheoTongTien))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -339,25 +384,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         try {
             // Gọi phương thức tìm kiếm hóa đơn theo số điện thoại của khách hàng
             List<entity.HoaDon> dsHoaDon = hoadonDAO.timHoaDonTheoSdt(sdtTimKiem);
-
-            // Clear bảng trước khi load dữ liệu mới
-            model.setRowCount(0);
-
-            // Thêm dữ liệu vào bảng
-            int stt = 1;
-            for (entity.HoaDon hd : dsHoaDon) {
-                String tenKH = (hd.getYeucau() != null && hd.getYeucau().getKh() != null) ? hd.getYeucau().getKh().getTenKH() : "Không xác định";
-                double tongTien = hd.getTongTien();  // Lấy tổng tiền từ đối tượng Panel_HoaDon
-
-                model.addRow(new Object[] {
-                    stt++, // STT
-                    hd.getMaHD(), // Mã Hóa Đơn
-                    hd.getNhanVien().getTenNV(), // Tên Nhân Viên
-                    tenKH, // Tên Khách Hàng
-                    hd.getThoiGianTao(), // Ngày Lập
-                    tongTien // Tổng Tiền
-                });
-            }
+            updateTable(dsHoaDon);
 
         } catch (SQLException ex) {
             Logger.getLogger(DanhSachHoaDon.class.getName()).log(Level.SEVERE, null, ex);
@@ -365,12 +392,56 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_timActionPerformed
 
+    private void sapXepTheoTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sapXepTheoTongTienActionPerformed
+        try {
+            // TODO add your handling code here:
+            // Lấy tùy chọn người dùng đã chọn
+            String luaChon = sapXepTheoTongTien.getSelectedItem().toString();
+            
+            // Lấy danh sách hóa đơn từ DAO hoặc từ biến lưu danh sách hiện tại
+            List<HoaDon> dsHoaDon = hoadonDAO.getAllHoaDon();
+            
+            // Kiểm tra và thực hiện sắp xếp
+            if ("Tăng dần".equals(luaChon)) {
+                dsHoaDon.sort(Comparator.comparingDouble(HoaDon::getTongTien));
+            } else if ("Giảm dần".equals(luaChon)) {
+                dsHoaDon.sort(Comparator.comparingDouble(HoaDon::getTongTien).reversed());
+            }
+            
+            // Cập nhật dữ liệu vào bảng
+            updateTable(dsHoaDon);
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_sapXepTheoTongTienActionPerformed
+
+    private void sapXepTheoNgayLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sapXepTheoNgayLapActionPerformed
+        try {
+            // TODO add your handling code here:
+            // Lấy tùy chọn người dùng đã chọn
+            String luaChon = sapXepTheoNgayLap.getSelectedItem().toString();
+            
+            // Lấy danh sách hóa đơn từ DAO hoặc biến lưu trữ hiện tại
+            List<HoaDon> dsHoaDon = hoadonDAO.getAllHoaDon();
+            
+            // Kiểm tra và thực hiện sắp xếp
+            if ("Cũ nhất".equals(luaChon)) {
+                dsHoaDon.sort(Comparator.comparing(HoaDon::getThoiGianTao));
+            } else if ("Mới nhất".equals(luaChon)) {
+                dsHoaDon.sort(Comparator.comparing(HoaDon::getThoiGianTao).reversed());
+            }
+            
+            // Cập nhật lại dữ liệu trong bảng
+            updateTable(dsHoaDon);
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_sapXepTheoNgayLapActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_chiTiet;
     private javax.swing.JButton btn_tim;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -382,6 +453,8 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton load;
+    private javax.swing.JComboBox<String> sapXepTheoNgayLap;
+    private javax.swing.JComboBox<String> sapXepTheoTongTien;
     private javax.swing.JTextField t_tim;
     private javax.swing.JTable table_dsHoaDon;
     // End of variables declaration//GEN-END:variables

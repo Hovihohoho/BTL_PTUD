@@ -39,8 +39,8 @@ public class ManHinhChinh extends javax.swing.JFrame {
         tenNhanVien.setText(this.nhanvien.getTenNV());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        anhManHinhChinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Thai_restaurant_resized_900x600.png")));
-        anhManHinhChinh.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\Thai_restaurant_resized_900x600.png"));
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\5519105_achievement_awards_badge_chef_cook_icon (1).png"));
+        anhManHinhChinh.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/Thai_restaurant_resized_900x600.png")));
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/5519105_achievement_awards_badge_chef_cook_icon (1).png")));
         
         btn_TrangChu.setBackground(Color.darkGray);
         btn_TrangChu.setForeground(Color.GREEN);
@@ -359,7 +359,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         
         anhManHinhChinh = new javax.swing.JLabel();
         P_chucNang.add(anhManHinhChinh);
-        anhManHinhChinh.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\netbeans_tutor\\QuanLyDatBan\\src\\main\\java\\icon\\Thai_restaurant_resized_900x600.png"));
+        anhManHinhChinh.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/Thai_restaurant_resized_900x600.png")));
         
         P_chucNang.validate();
         P_chucNang.repaint();

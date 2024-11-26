@@ -66,7 +66,7 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="P_loc" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="Scroll_dsMonAn" pref="311" max="32767" attributes="0"/>
+                  <Component id="Scroll_dsMonAn" pref="309" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="P_btn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -180,11 +180,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="them" min="-2" pref="104" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Huy" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Huy" min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Sua" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -195,10 +195,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="them" pref="32" max="32767" attributes="0"/>
-                          <Component id="Huy" alignment="0" pref="32" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
                           <Component id="Sua" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Huy" alignment="0" max="32767" attributes="0"/>
+                          <Component id="them" alignment="0" pref="34" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
@@ -478,7 +478,7 @@
                   <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="STT" type="java.lang.Integer"/>
                     <Column editable="false" title="T&#xea;n m&#xf3;n &#x103;n" type="java.lang.String"/>
-                    <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
+                    <Column editable="false" title="S.L" type="java.lang.Integer"/>
                     <Column editable="false" title="&#x110;&#x1a1;n gi&#xe1;" type="java.lang.Double"/>
                     <Column editable="false" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Double"/>
                   </Table>

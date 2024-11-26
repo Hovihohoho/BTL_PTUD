@@ -139,6 +139,9 @@
                   </TableColumnModel>
                 </Property>
                 <Property name="rowHeight" type="int" value="40"/>
+                <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -316,12 +319,12 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="sapXepTheoTongTien" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="95" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="jComboBox2" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="sapXepTheoNgayLap" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
@@ -337,8 +340,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jComboBox2" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                          <Component id="sapXepTheoNgayLap" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="sapXepTheoTongTien" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="27" max="32767" attributes="0"/>
                   </Group>
@@ -362,30 +365,36 @@
                 <Property name="text" type="java.lang.String" value="Theo ng&#xe0;y l&#x1ead;p"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="sapXepTheoTongTien">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="-- Ch&#x1ecd;n --"/>
-                    <StringItem index="1" value="T&#x103;ng"/>
-                    <StringItem index="2" value="Gi&#x1ea3;m"/>
+                    <StringItem index="0" value="M&#x1eb7;c &#x111;&#x1ecb;nh"/>
+                    <StringItem index="1" value="T&#x103;ng d&#x1ea7;n"/>
+                    <StringItem index="2" value="Gi&#x1ea3;m d&#x1ea7;n"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sapXepTheoTongTienActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox2">
+            <Component class="javax.swing.JComboBox" name="sapXepTheoNgayLap">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="-- Ch&#x1ecd;n --"/>
-                    <StringItem index="1" value="T&#x103;ng"/>
-                    <StringItem index="2" value="Gi&#x1ea3;m"/>
+                    <StringItem index="0" value="M&#x1eb7;c &#x111;&#x1ecb;nh"/>
+                    <StringItem index="1" value="C&#x169; nh&#x1ea5;t"/>
+                    <StringItem index="2" value="M&#x1edb;i nh&#x1ea5;t"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sapXepTheoNgayLapActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
