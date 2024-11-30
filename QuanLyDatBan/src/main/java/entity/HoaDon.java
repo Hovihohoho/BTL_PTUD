@@ -11,7 +11,16 @@ public class HoaDon {
     private Ban ban;
     private YeuCauKhachHang yeucau;
     private double tongTien;
+    private String trangThaiHoaDon;
 
+    public String getTrangThaiHoaDon() {
+        return trangThaiHoaDon;
+    }
+
+    public void setTrangThaiHoaDon(String trangThaiHoaDon) {
+        this.trangThaiHoaDon = trangThaiHoaDon;
+    }
+    
     public String getMaHD() {
         return maHD;
     }
@@ -68,7 +77,7 @@ public class HoaDon {
         this.yeucau = yeucau;
     }
 
-    public HoaDon(String maHD, YeuCauKhachHang yeucau, NhanVien nhanVien, Ban ban, int soLuongKhach, LocalDate thoiGianTao, LocalDate ngayDatBan) {
+    public HoaDon(String maHD, YeuCauKhachHang yeucau, NhanVien nhanVien, Ban ban, int soLuongKhach, LocalDate thoiGianTao, LocalDate ngayDatBan, String trangThaiHoaDon) {
         this.maHD = maHD;
         this.thoiGianTao = thoiGianTao;
         this.ngayDatBan = ngayDatBan;
@@ -76,6 +85,7 @@ public class HoaDon {
         this.nhanVien = nhanVien;
         this.ban = ban;
         this.yeucau = yeucau;
+        this.trangThaiHoaDon = trangThaiHoaDon;
     }
 
     public double getTongTien() {

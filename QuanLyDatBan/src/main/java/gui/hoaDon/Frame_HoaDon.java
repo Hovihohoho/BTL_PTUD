@@ -85,7 +85,7 @@ public class Frame_HoaDon extends javax.swing.JFrame {
     
     private void loadThongTinMonAn() {
         
-        DecimalFormat df = new DecimalFormat("#,### VND");
+        DecimalFormat df = new DecimalFormat("#,### VNĐ");
         DecimalFormat df0 = new DecimalFormat("#,###");
         yeuCauKhachHang = hoaDon.getYeucau();
         List<ChiTietYeuCau> dsYeuCau = chiTietYeuCauDAO.getChiTietYeuCauByMaYeuCau(yeuCauKhachHang.getMaYeuCau());

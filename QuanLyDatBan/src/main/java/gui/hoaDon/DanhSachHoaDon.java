@@ -42,7 +42,11 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
 
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-            table_dsHoaDon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            table_dsHoaDon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); // Căn giữa cho cột đầu tiên
+
+            DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+            rightRenderer.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT); // Sử dụng rightRenderer để căn phải
+            table_dsHoaDon.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
             
             jScrollPane2.setViewportView(table_dsHoaDon);  // Nếu chưa gán bảng vào JScrollPane
             
@@ -57,7 +61,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         // Lấy danh sách hóa đơn từ DAO
         List<entity.HoaDon> dsHoaDon = hoadonDAO.getAllHoaDon();
         
-        DecimalFormat df = new DecimalFormat("#,###");
+        DecimalFormat df = new DecimalFormat("#,### VNĐ");
         // Clear bảng trước khi load dữ liệu mới
         model.setRowCount(0);
 
@@ -80,7 +84,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
     private void updateTable(List<HoaDon> dsHoaDon) {
         // Xóa dữ liệu cũ trên bảng
         model.setRowCount(0);
-        DecimalFormat df = new DecimalFormat("#,###");
+        DecimalFormat df = new DecimalFormat("#,### VNĐ");
         // Thêm dữ liệu mới sau khi sắp xếp
         int stt = 1;
         for (HoaDon hd : dsHoaDon) {

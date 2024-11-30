@@ -653,8 +653,9 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         // Gọi phương thức lưu hóa đơn
         hoaDonDAO = new HoaDon_DAO();
         String maHD = hoaDonDAO.getMaHDMoi(this.nhanvien);
+        String trangThaiHoaDon = "Chờ xử lý";
         try {
-            boolean success = hoaDonDAO.luuHoaDon(maHD, yeucau.getMaYeuCau(), nhanvien.getMaNV(), maBan, soLuongKhach, thoiGianTao, ngayDatBan);
+            boolean success = hoaDonDAO.luuHoaDon(maHD, yeucau.getMaYeuCau(), nhanvien.getMaNV(), maBan, soLuongKhach, thoiGianTao, ngayDatBan, trangThaiHoaDon);
 
             if (success) {
                 this.ban.setTrangThaiBan("Đặt trước");

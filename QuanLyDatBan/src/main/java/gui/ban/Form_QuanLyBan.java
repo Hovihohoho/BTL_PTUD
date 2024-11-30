@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package gui.ban;
 
 import dao.Ban_DAO;
 import entity.Ban;
+import entity.LoaiBan;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Hoviihohoho
  */
-public class Form_QuanLyBan extends javax.swing.JFrame {
+public class Form_QuanLyBan extends javax.swing.JPanel {
 
     /**
      * Creates new form Form_QuanLyBan
@@ -38,9 +39,9 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
 
         if (ban != null) {
             String message = "Mã Bàn: " + ban.getMaBan() + "\n"
-                    + "Loại: " + ban.getMaLoai() + "\n"
+                    + "Loại: " + ban.getLoaiBan().getTenLoai()+ "\n"
                     + "Trạng Thái: " + ban.getTrangThaiBan() + "\n"
-                    + "Số Lượng Ghế: " + ban.getSoLuongGhe() + "\n"
+                    + "Số Lượng Ghế: " + ban.getSoGhe()+ "\n"
                     + "Vị Trí: " + ban.getViTri();
             JOptionPane.showMessageDialog(this, message, "Thông Tin Bàn", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -56,9 +57,9 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
         for (Ban ban : bans) {
             model.addRow(new Object[]{
                 ban.getMaBan(),
-                ban.getMaLoai(),
+                ban.getLoaiBan().getTenLoai(),
                 ban.getTrangThaiBan(),
-                ban.getSoLuongGhe(),
+                ban.getSoGhe(),
                 ban.getViTri()
             });
         }
@@ -141,8 +142,6 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -153,28 +152,24 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
 
         jLabel3.setText("Tầng 2");
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -189,42 +184,36 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
 
         jLabel7.setText(" B04");
 
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -330,29 +319,25 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+       jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
 
-        jButton12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
-        jButton13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
 
-        jButton14.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+       jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
@@ -617,28 +602,25 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jButton28.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
             }
         });
 
-        jButton29.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
+        
         jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton29ActionPerformed(evt);
             }
         });
 
-        jButton30.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
-        jButton30.addActionListener(new java.awt.event.ActionListener() {
+         jButton30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton30ActionPerformed(evt);
             }
         });
 
-        jButton31.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hoviihohoho\\Desktop\\DatBan\\QuanLyDatBan\\src\\main\\java\\icon\\round-table (3).png")); // NOI18N
         jButton31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton31ActionPerformed(evt);
@@ -745,8 +727,8 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -755,8 +737,6 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        pack();
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -829,7 +809,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A02");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -837,7 +817,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A03");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -845,7 +825,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A04");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -853,7 +833,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A05");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -861,7 +841,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A06");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -869,7 +849,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A08");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -877,7 +857,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A09");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                        
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -885,7 +865,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("A10");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                         
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -896,12 +876,13 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
 
     // Tạo một đối tượng Ban mới từ dữ liệu nhập vào
     String maBan = jTextField2.getText();
-   String maLoai = (String) jComboBox1.getSelectedItem(); 
+    String maLoai = (String) jComboBox1.getSelectedItem(); 
+    LoaiBan loaiBan = new LoaiBan(maLoai.trim());
     String trangThai = (String) jComboBox2.getSelectedItem();
     int soLuongGhe = Integer.parseInt(jTextField3.getText());
     String viTri = jTextField4.getText();
 
-    Ban ban = new Ban(maBan, maLoai, trangThai, soLuongGhe, viTri);
+    Ban ban = new Ban(maBan, loaiBan, trangThai, soLuongGhe, viTri);
 
     try {
         Ban_DAO.addBan(ban);
@@ -917,11 +898,12 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
     // Lấy thông tin từ các trường nhập liệu
     String maBan = jTextField2.getText();
     String maLoai = (String) jComboBox1.getSelectedItem(); // jComboBox1 là JComboBox cho maLoai
+    LoaiBan loaiBan = new LoaiBan(maLoai.trim());
     String trangThai = (String) jComboBox2.getSelectedItem(); // jComboBox2 là JComboBox cho trangThai
     int soLuongGhe = Integer.parseInt(jTextField3.getText()); // jTextFieldSoLuongGhe là JTextField cho số lượng ghế
     String viTri = jTextField4.getText(); // jTextFieldViTri là JTextField cho vị trí
 
-    Ban ban = new Ban(maBan, maLoai, trangThai, soLuongGhe, viTri);
+    Ban ban = new Ban(maBan, loaiBan, trangThai, soLuongGhe, viTri);
 
     try {
         Ban_DAO.updateBan(ban); // Cập nhật bàn
@@ -954,7 +936,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("B05");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                         
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -962,7 +944,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("B06");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                         
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -970,7 +952,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("B04");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                         
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -978,7 +960,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("B03");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                         
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -986,7 +968,7 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("B02");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:        // TODO add your handling code here:
     }                                         
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -994,43 +976,8 @@ public class Form_QuanLyBan extends javax.swing.JFrame {
             showBanInfo("B01");
         } catch (SQLException ex) {
             Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }// TODO add your handling code here:
+        }// TODO add your handling code here:// TODO add your handling code here:// TODO add your handling code here:// TODO add your handling code here:
     }                                         
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Form_QuanLyBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Form_QuanLyBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Form_QuanLyBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Form_QuanLyBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form_QuanLyBan().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;

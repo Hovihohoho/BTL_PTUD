@@ -31,7 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HoaDon_DAO {
-    private static final String INSERT_HOA_DON_SQL = "INSERT INTO HoaDon (maHD, maYeuCau, maNV, maBan, soLuongKhach, thoiGianTao, ngayDatBan) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_HOA_DON_SQL = "INSERT INTO HoaDon (maHD, maYeuCau, maNV, maBan, soLuongKhach, thoiGianTao, ngayDatBan, trangThaiHoaDon) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     Connection conn = null;
     PreparedStatement pstmt = null;
     private TaoMaHoaDon tmhd = new TaoMaHoaDon();
@@ -46,7 +46,7 @@ public class HoaDon_DAO {
         return tmhd.generateMaHoaDon(nhanvien);
     }
     
-    public boolean luuHoaDon(String maHD, String maYeuCau, String maNV, String maBan, int soLuongKhach, Date thoiGianTao, Date ngayDatBan) throws SQLException {
+    public boolean luuHoaDon(String maHD, String maYeuCau, String maNV, String maBan, int soLuongKhach, Date thoiGianTao, Date ngayDatBan, String trangThaiHoaDon) throws SQLException {
         
         try {
             conn = ConnectDB.getInstance().connect();
@@ -59,6 +59,7 @@ public class HoaDon_DAO {
             pstmt.setInt(5, soLuongKhach);
             pstmt.setDate(6, thoiGianTao);
             pstmt.setDate(7, ngayDatBan);
+            pstmt.setString(8, trangThaiHoaDon);
 
             int rowsInserted = pstmt.executeUpdate();
             return rowsInserted > 0;
@@ -123,7 +124,7 @@ public class HoaDon_DAO {
     public List<HoaDon> getAllHoaDon() throws SQLException {
         conn = ConnectDB.getInstance().connect();
         List<HoaDon> dsHoaDon = new ArrayList<>();
-        String sql =    "SELECT hd.maHD, hd.thoiGianTao, hd.ngayDatBan, hd.soLuongKhach, " +
+        String sql =    "SELECT hd.maHD, hd.thoiGianTao, hd.ngayDatBan, hd.soLuongKhach, hd.trangThaiHoaDon, " +
                         "nv.tenNV, kh.tenKH, hd.maYeuCau, b.maBan, " +
                         "(SELECT SUM(ctyc.soLuong * ma.giaTien) FROM ChiTietYeuCau ctyc " +
                         "JOIN MonAn ma ON ctyc.maMonAn = ma.maMonAn WHERE ctyc.maYeuCau = hd.maYeuCau) AS tongTien " +
@@ -145,6 +146,7 @@ public class HoaDon_DAO {
                 LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
                 int soLuongKhach = rs.getInt("soLuongKhach");
                 double tongTien = rs.getDouble("tongTien");
+                String trangThai = rs.getString("trangThaiHoaDon");
 
                 // Khởi tạo các đối tượng liên quan
                 NhanVien nhanVien = new NhanVien();
@@ -157,7 +159,7 @@ public class HoaDon_DAO {
                 Ban ban = banDAO.getBanByMaBan("maBan");
 
                 // Tạo đối tượng HoaDon
-                HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan);
+                HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan, trangThai);
                 hoaDon.setTongTien(tongTien);
 
                 dsHoaDon.add(hoaDon);
@@ -172,7 +174,7 @@ public class HoaDon_DAO {
         List<HoaDon> dsHoaDon = new ArrayList<>();
 
         // SQL truy vấn hóa đơn theo số điện thoại của khách hàng
-        String sql = "SELECT hd.maHD, hd.thoiGianTao, hd.ngayDatBan, hd.soLuongKhach, " +
+        String sql = "SELECT hd.maHD, hd.thoiGianTao, hd.ngayDatBan, hd.soLuongKhach, hd.trangThaiHoaDon, " +
                      "nv.tenNV, kh.tenKH, hd.maYeuCau, b.maBan, " +
                      "(SELECT SUM(ctyc.soLuong * ma.giaTien) FROM ChiTietYeuCau ctyc " +
                      "JOIN MonAn ma ON ctyc.maMonAn = ma.maMonAn WHERE ctyc.maYeuCau = hd.maYeuCau) AS tongTien " +
@@ -196,6 +198,7 @@ public class HoaDon_DAO {
                     LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
                     int soLuongKhach = rs.getInt("soLuongKhach");
                     double tongTien = rs.getDouble("tongTien");
+                    String trangThai = rs.getString("trangThaiHoaDon");
 
                     // Khởi tạo các đối tượng liên quan
                     NhanVien nhanVien = new NhanVien();
@@ -208,7 +211,7 @@ public class HoaDon_DAO {
                     Ban ban = banDAO.getBanByMaBan("maBan");
 
                     // Tạo đối tượng HoaDon
-                    HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan);
+                    HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan, trangThai);
                     hoaDon.setTongTien(tongTien); // Gán tổng tiền vào hóa đơn
 
                     dsHoaDon.add(hoaDon);
@@ -221,7 +224,7 @@ public class HoaDon_DAO {
     
     public HoaDon getHoaDonByMaHD(String maHD) {
         HoaDon hoaDon = null;
-        String sql = "SELECT hd.maHD, hd.maYeuCau, hd.maNV, hd.maBan, hd.soLuongKhach, hd.thoiGianTao, hd.ngayDatBan, " +
+        String sql = "SELECT hd.maHD, hd.maYeuCau, hd.maNV, hd.maBan, hd.soLuongKhach, hd.thoiGianTao, hd.ngayDatBan, hd.trangThaiHoaDon, " +
                      "nv.tenNV, kh.tenKH " +
                      "FROM HoaDon hd " +
                      "JOIN YeuCauKhachHang yckh ON hd.maYeuCau = yckh.maYeuCau " +
@@ -245,6 +248,7 @@ public class HoaDon_DAO {
                         int soLuongKhach = rs.getInt("soLuongKhach");
                         LocalDate thoiGianTao = rs.getDate("thoiGianTao").toLocalDate();
                         LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
+                        String trangThai = rs.getString("trangThaiHoaDon");
 
                         // Tạo đối tượng NhanVien
                         NhanVien_DAO nhanvienDAO = new NhanVien_DAO();
@@ -259,7 +263,7 @@ public class HoaDon_DAO {
                         ban = banDAO.getBanByMaBan(maBan);
 
                         // Tạo đối tượng HoaDon
-                        hoaDon = new HoaDon(maHD, yeuCau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan);
+                        hoaDon = new HoaDon(maHD, yeuCau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan, trangThai);
                     }
                 }
             } catch (SQLException e) {
@@ -338,7 +342,7 @@ public class HoaDon_DAO {
             
             DecimalFormat df = new DecimalFormat("#,###");
             Paragraph infoTongTien = new Paragraph(
-                "Tổng tiền: " + df.format(tongTien))
+                "\n Tổng tiền: " + df.format(tongTien))
                 .setFont(font)
                 .setBold()
                 .setFontSize(16)
@@ -347,7 +351,6 @@ public class HoaDon_DAO {
             
             // Đóng document
             document.close();
-            System.out.println("Hóa đơn đã được xuất ra file PDF: " + filePath);
         
         }catch (Exception e) {
             e.printStackTrace();
