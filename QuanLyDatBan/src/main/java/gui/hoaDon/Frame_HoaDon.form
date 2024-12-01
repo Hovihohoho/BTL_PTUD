@@ -113,12 +113,12 @@
                           <Component id="jPanel7" max="32767" attributes="0"/>
                           <Component id="P_ttHoaDon" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="P_ttHoaDon1" max="32767" attributes="0"/>
+                      <Component id="P_ttHoaDon1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="227" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="285" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel18" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -577,7 +577,7 @@
                           <Component id="jLabel14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="t_ngayNhan" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

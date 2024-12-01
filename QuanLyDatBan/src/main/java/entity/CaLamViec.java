@@ -1,16 +1,22 @@
 package entity;
 
+import java.time.LocalTime;
+
 public class CaLamViec {
     private String maCa;
-    private String gioBatDau;
-    private String gioKetThuc;
+    private String buoiLam;
+    private LocalTime gioBatDau;
+    private LocalTime gioKetThuc;
 
-    public CaLamViec(String maCa, String gioBatDau, String gioKetThuc) {
+    // Constructor
+    public CaLamViec(String maCa, String buoiLam, LocalTime gioBatDau, LocalTime gioKetThuc) {
         this.maCa = maCa;
+        this.buoiLam = buoiLam;
         this.gioBatDau = gioBatDau;
         this.gioKetThuc = gioKetThuc;
     }
 
+    // Getters and Setters
     public String getMaCa() {
         return maCa;
     }
@@ -19,25 +25,27 @@ public class CaLamViec {
         this.maCa = maCa;
     }
 
-    public String getGioBatDau() {
+    public String getBuoiLam() {
+        return buoiLam;
+    }
+
+    public void setBuoiLam(String buoiLam) {
+        this.buoiLam = buoiLam;
+    }
+
+    public LocalTime getGioBatDau() {
         return gioBatDau;
     }
 
-    public void setGioBatDau(String gioBatDau) {
+    public void setGioBatDau(LocalTime gioBatDau) {
         this.gioBatDau = gioBatDau;
     }
 
-    public String getGioKetThuc() {
+    public LocalTime getGioKetThuc() {
         return gioKetThuc;
     }
 
-    public void setGioKetThuc(String gioKetThuc) {
+    public void setGioKetThuc(LocalTime gioKetThuc) {
         this.gioKetThuc = gioKetThuc;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("CaLamViec [maCa=%s, tenCa=%s, gioBatDau=%s, gioKetThuc=%s]", 
-            maCa, gioBatDau, gioKetThuc);
     }
 }

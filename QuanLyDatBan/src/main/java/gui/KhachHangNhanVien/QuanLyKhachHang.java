@@ -63,6 +63,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         tieuDe = new javax.swing.JLabel();
         khachHang_2 = new javax.swing.JPanel();
@@ -116,6 +117,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         gioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         gioiTinh.setText("Giới tính:");
 
+        buttonGroup1.add(rbtnNam);
         rbtnNam.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rbtnNam.setText("Nam");
         rbtnNam.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +126,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(rbtnNu);
         rbtnNu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rbtnNu.setText("Nữ");
 
@@ -561,6 +564,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel button_cn;
     private javax.swing.JLabel diaChi;
     private javax.swing.JLabel gioiTinh;

@@ -202,4 +202,33 @@ public class TaiKhoan_DAO {
         
         return null; // Trả về null nếu không tìm thấy tài khoản
     }
+    
+    public TaiKhoan findTaiKhoanByMaTK(String maTK) {
+        String sql = "SELECT maTK, tenTK, chucVu, matKhau FROM TaiKhoan WHERE maTK = ?";
+        try {
+            if (con == null || con.isClosed()) {
+                // Nếu kết nối đã bị đóng, hãy mở lại hoặc lấy kết nối mới
+                con = ConnectDB.getInstance().connect();
+            }
+                try (PreparedStatement ps = con.prepareStatement(sql)) {
+                    ps.setString(1, maTK); // Thiết lập giá trị cho tham số truy vấn
+                    ResultSet rs = ps.executeQuery();
+
+                    if (rs.next()) {
+                        String tenTaiKhoan = rs.getString("tenTK");
+                        String chucVu = rs.getString("chucVu");
+                        String matKhau = rs.getString("matKhau");
+
+                        // Tạo và trả về đối tượng TaiKhoan
+                        return new TaiKhoan(maTK, tenTaiKhoan, chucVu, matKhau);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } catch (SQLException e) {
+            e.printStackTrace();  // In lỗi nếu kết nối không hợp lệ
+        }
+        
+        return null; // Trả về null nếu không tìm thấy tài khoản
+    }
 }
