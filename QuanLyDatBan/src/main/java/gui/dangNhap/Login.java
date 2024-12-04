@@ -28,10 +28,19 @@ public class Login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+ private static String loggedInMaTK;
 
+    public static void setLoggedInMaTK(String maTK) {
+        loggedInMaTK = maTK;
+    }
+
+    public static String getLoggedInMaTK() {
+        return loggedInMaTK;
+    }
+    
    
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         DangNhap = new javax.swing.JPanel();
@@ -190,13 +199,13 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void T_TaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T_TaiKhoanActionPerformed
+    private void T_TaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_T_TaiKhoanActionPerformed
+    }                                          
 
-    private void Btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_dangNhapActionPerformed
+    private void Btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {                                             
         String tenTK = T_TaiKhoan.getText();
         String matKhau = new String(Password_f.getPassword());
         if (!Pattern.matches("^[a-zA-Z0-9]{5,20}$", tenTK)) {
@@ -211,6 +220,7 @@ public class Login extends javax.swing.JFrame {
             // Nếu đăng nhập thành công, mở Menu
             taiKhoan = taiKhoanDAO.findTaiKhoanByTenTK(tenTK);
             nhanVien = nhanVienDAO.findNhanVienByTaiKhoan(taiKhoan);
+            Login.setLoggedInMaTK(taiKhoan.getMaTK());
             ManHinhChinh mn = new ManHinhChinh(nhanVien);
             mn.setVisible(true);
             this.dispose(); // Đóng cửa sổ đăng nhập
@@ -218,20 +228,20 @@ public class Login extends javax.swing.JFrame {
             // Nếu đăng nhập thất bại, hiển thị thông báo lỗi
             javax.swing.JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng!", "Lỗi đăng nhập", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_Btn_dangNhapActionPerformed
+    }                                            
     
-    private void Btn_DangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DangKyActionPerformed
+    private void Btn_DangKyActionPerformed(java.awt.event.ActionEvent evt) {                                           
         SignUp SignUpFrame = new SignUp();
         SignUpFrame.setVisible(true);
         SignUpFrame.pack();
         SignUpFrame.setLocationRelativeTo(null);
         SignUpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.dispose();
-    }//GEN-LAST:event_Btn_DangKyActionPerformed
-    
+    }                                          
+
     
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton Btn_DangKy;
     private javax.swing.JButton Btn_dangNhap;
     private javax.swing.JPanel DangNhap;
@@ -245,5 +255,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField T_TaiKhoan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
