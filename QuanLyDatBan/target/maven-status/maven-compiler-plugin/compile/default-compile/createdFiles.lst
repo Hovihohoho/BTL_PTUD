@@ -74,10 +74,12 @@ entity\LoaiBan.class
 gui\thongKe\ThongKeNhanVien$2.class
 gui\thongKe\ThongKeDoanhThu$2.class
 gui\hoaDon\DanhSachHoaDon$3.class
+gui\KhachHangNhanVien\NhanVienTableForm.class
 gui\monAn\Form_QuanLyMon$11.class
 gui\manHinhChinh\ManHinhChinh$2.class
 gui\datBan\Frame_GoiMon$2.class
 entity\YeuCauKhachHang.class
+gui\KhachHangNhanVien\NhanVienTableForm$1.class
 gui\datBan\Frame_LuuHD$2.class
 gui\datBan\Frame_DatBan$7.class
 gui\ban\Form_QuanLyBan$5.class
@@ -94,7 +96,6 @@ dao\YeuCauKhachHang_DAO.class
 gui\monAn\Form_QuanLyMon$5.class
 gui\datBan\Frame_DatBan$2.class
 entity\Ban.class
-gui\KhachHangNhanVien\XemThongTinNhanVien$1.class
 gui\KhachHangNhanVien\PhanCaNhanVien$5.class
 main\appRun.class
 gui\dangNhap\SignUp$2.class
@@ -103,6 +104,7 @@ gui\ban\Form_QuanLyBan$16.class
 gui\thongKe\ThongKeNhanVien$1.class
 gui\datBan\Frame_GoiMon.class
 gui\datBan\Frame_GoiMon$6.class
+gui\KhachHangNhanVien\Frame_XemThongTinNhanVien.class
 gui\ban\Form_QuanLyBan$10.class
 gui\manHinhChinh\ManHinhChinh$8.class
 gui\ban\Form_QuanLyBan$9.class
@@ -145,7 +147,6 @@ gui\datBan\Frame_DatBan$1.class
 gui\hoaDon\DanhSachHoaDon$6.class
 gui\ban\Form_QuanLyBan$21.class
 gui\KhachHangNhanVien\QuanLyKhachHang$8.class
-gui\KhachHangNhanVien\XemThongTinNhanVien$2.class
 gui\monAn\Form_QuanLyMon$7.class
 gui\KhachHangNhanVien\PhanCaNhanVien$6.class
 gui\datBan\Frame_GoiMon$9.class
