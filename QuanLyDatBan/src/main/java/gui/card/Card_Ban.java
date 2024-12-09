@@ -47,15 +47,17 @@ public class Card_Ban extends javax.swing.JPanel {
         img.setBackground(new java.awt.Color(233, 228, 240));
         img.setOpaque(true);
 
-        lbmaban.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbmaban.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbmaban.setForeground(new java.awt.Color(108, 91, 123));
         lbmaban.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbmaban.setText("Title");
 
+        lbsoghe.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbsoghe.setForeground(new java.awt.Color(108, 91, 123));
         lbsoghe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbsoghe.setText("Value");
 
+        lbtrangthai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbtrangthai.setForeground(new java.awt.Color(108, 91, 123));
         lbtrangthai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbtrangthai.setText("Value");

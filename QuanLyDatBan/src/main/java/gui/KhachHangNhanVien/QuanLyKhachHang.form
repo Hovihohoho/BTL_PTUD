@@ -25,7 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="947" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="959" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
@@ -37,7 +37,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="723" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="850" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
@@ -60,60 +60,35 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="thongTinKH_label" min="-2" pref="202" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="thongTinKH_label" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="742" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="khachHang_2" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="tieuDe" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="table" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="khachHang_2" max="32767" attributes="0"/>
+                      <Component id="table" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="tieuDe" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="khachHang_2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="thongTinKH_label" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="table" min="-2" pref="408" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="thongTinKH_label" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="table" min="-2" pref="556" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="tieuDe">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="24" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; KH&#xc1;CH H&#xc0;NG"/>
-          </Properties>
-        </Component>
         <Container class="javax.swing.JPanel" name="khachHang_2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -127,7 +102,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="lablel_1" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="button_cn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
@@ -137,11 +112,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lablel_1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="button_cn" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="button_cn" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
+                              <Component id="lablel_1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -152,42 +130,22 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Qu&#x1ea3;n l&#xfd; kh&#xe1;ch h&#xe0;ng">
+                      <Font PropertyName="font" name="Segoe UI" size="16" style="0"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="sdt" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="txtSDT" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="maKH" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtMaKH" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="tenKH" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtTenKH" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="diaChi" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                          <Component id="txtDiaChi" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="gioiTinh" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rbtnNam" min="-2" max="-2" attributes="0"/>
@@ -195,8 +153,33 @@
                                   <Component id="rbtnNu" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="maKH" min="-2" max="-2" attributes="0"/>
+                                      <Component id="sdt" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtMaKH" max="32767" attributes="0"/>
+                                      <Component id="txtSDT" pref="183" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="tenKH" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtTenKH" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="diaChi" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtDiaChi" pref="239" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -204,18 +187,24 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="maKH" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tenKH" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTenKH" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtMaKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tenKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTenKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtMaKH" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="maKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sdt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="diaChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtSDT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtDiaChi" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="sdt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="diaChi" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtSDT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -223,7 +212,7 @@
                               <Component id="rbtnNam" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rbtnNu" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -232,7 +221,7 @@
                 <Component class="javax.swing.JLabel" name="maKH">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="M&#xe3; kh&#xe1;ch h&#xe0;ng:"/>
                   </Properties>
@@ -240,7 +229,7 @@
                 <Component class="javax.swing.JLabel" name="tenKH">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="T&#xea;n kh&#xe1;ch h&#xe0;ng:"/>
                   </Properties>
@@ -248,7 +237,7 @@
                 <Component class="javax.swing.JLabel" name="diaChi">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9;:"/>
                   </Properties>
@@ -256,7 +245,7 @@
                 <Component class="javax.swing.JLabel" name="sdt">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i:"/>
                   </Properties>
@@ -264,7 +253,7 @@
                 <Component class="javax.swing.JLabel" name="gioiTinh">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh:"/>
                   </Properties>
@@ -275,7 +264,7 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nam"/>
                   </Properties>
@@ -289,7 +278,7 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
                   </Properties>
@@ -297,7 +286,7 @@
                 <Component class="javax.swing.JTextField" name="txtSDT">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value=" "/>
                   </Properties>
@@ -305,7 +294,7 @@
                 <Component class="javax.swing.JTextField" name="txtMaKH">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value=" "/>
                   </Properties>
@@ -313,7 +302,7 @@
                 <Component class="javax.swing.JTextField" name="txtTenKH">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value=" "/>
                   </Properties>
@@ -321,7 +310,7 @@
                 <Component class="javax.swing.JTextField" name="txtDiaChi">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/>
+                      <Font name="Segoe UI" size="16" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value=" "/>
                   </Properties>
@@ -339,21 +328,21 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="xoa" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
-                              <Component id="them" alignment="1" min="-2" pref="116" max="-2" attributes="0"/>
-                              <Component id="sua" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="timKiem" alignment="1" min="-2" pref="106" max="-2" attributes="0"/>
-                                  <Component id="luu" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="sua" min="-2" pref="118" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="xoa" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="them" alignment="1" pref="118" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="lamMoi" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lamMoi" alignment="0" max="32767" attributes="0"/>
+                              <Component id="luu" alignment="1" max="32767" attributes="0"/>
+                              <Component id="timKiem" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -362,18 +351,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="them" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="timKiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="them" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="timKiem" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="xoa" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lamMoi" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lamMoi" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="xoa" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="luu" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="sua" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="luu" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="sua" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -384,10 +373,13 @@
                 <Component class="javax.swing.JButton" name="them">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="0" type="rgb"/>
+                      <Color blue="33" green="33" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon/plus (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                   </Properties>
@@ -398,10 +390,13 @@
                 <Component class="javax.swing.JButton" name="sua">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="0" type="rgb"/>
+                      <Color blue="33" green="33" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon/tools (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                   </Properties>
@@ -412,10 +407,13 @@
                 <Component class="javax.swing.JButton" name="xoa">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="0" type="rgb"/>
+                      <Color blue="33" green="33" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon/delete (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                   </Properties>
@@ -429,7 +427,10 @@
                       <Color blue="33" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon/sync (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                   </Properties>
@@ -443,7 +444,10 @@
                       <Color blue="33" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon/search-interface-symbol (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
                   </Properties>
@@ -457,7 +461,10 @@
                       <Color blue="33" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon/bookmark (2).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
                   </Properties>
@@ -483,8 +490,10 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="table_thongTinKH">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
@@ -494,6 +503,35 @@
                     <Column editable="true" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.String"/>
                     <Column editable="true" title="Gi&#x1edb;i t&#xed;nh" type="java.lang.String"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

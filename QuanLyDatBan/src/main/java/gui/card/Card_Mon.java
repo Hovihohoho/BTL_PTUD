@@ -89,7 +89,7 @@ public class Card_Mon extends javax.swing.JPanel {
         img.setOpaque(true);
 
         btn_ThemMon.setBackground(new java.awt.Color(0, 153, 153));
-        btn_ThemMon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_ThemMon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_ThemMon.setForeground(new java.awt.Color(255, 255, 255));
         btn_ThemMon.setText("Thêm");
         btn_ThemMon.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +103,7 @@ public class Card_Mon extends javax.swing.JPanel {
         lb_Gia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_Gia.setText("Value");
 
-        lbTenMon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbTenMon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbTenMon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTenMon.setText("Title");
 

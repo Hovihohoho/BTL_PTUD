@@ -131,7 +131,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        table_dsHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        table_dsHoaDon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table_dsHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -165,17 +165,19 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Nhập số điện thoại để tìm kiếm: ");
 
+        btn_tim.setBackground(new java.awt.Color(0, 204, 0));
         btn_tim.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search (1).jpg"))); // NOI18N
-        btn_tim.setText("Tìm");
+        btn_tim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search-interface-symbol (1).png"))); // NOI18N
+        btn_tim.setText("Tìm kiếm");
         btn_tim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_timActionPerformed(evt);
             }
         });
 
+        btn_chiTiet.setBackground(new java.awt.Color(255, 255, 0));
         btn_chiTiet.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_chiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/details (1).jpg"))); // NOI18N
+        btn_chiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/invoice (1).png"))); // NOI18N
         btn_chiTiet.setText("Chi tiết hóa đơn");
         btn_chiTiet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +185,9 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
             }
         });
 
+        load.setBackground(new java.awt.Color(255, 51, 51));
         load.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        load.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sync (1).png"))); // NOI18N
         load.setText("Tải lại");
         load.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,16 +201,16 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btn_chiTiet)
-                        .addGap(18, 18, 18)
-                        .addComponent(load))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(load, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
-                    .addComponent(t_tim))
-                .addGap(26, 26, 26)
-                .addComponent(btn_tim, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                    .addComponent(t_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btn_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,13 +218,13 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_tim, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(t_tim))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_chiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(load))
+                    .addComponent(t_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_chiTiet, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(load, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -245,6 +249,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         );
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 102, 102));
         jLabel7.setText("Danh sách hóa đơn bán hàng:");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -308,20 +313,15 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jScrollPane2)
-                .addGap(135, 135, 135))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(115, 115, 115))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,11 +329,11 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );

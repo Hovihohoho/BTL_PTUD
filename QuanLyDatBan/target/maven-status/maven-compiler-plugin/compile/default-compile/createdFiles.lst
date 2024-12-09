@@ -74,12 +74,10 @@ entity\LoaiBan.class
 gui\thongKe\ThongKeNhanVien$2.class
 gui\thongKe\ThongKeDoanhThu$2.class
 gui\hoaDon\DanhSachHoaDon$3.class
-gui\KhachHangNhanVien\NhanVienTableForm.class
 gui\monAn\Form_QuanLyMon$11.class
 gui\manHinhChinh\ManHinhChinh$2.class
 gui\datBan\Frame_GoiMon$2.class
 entity\YeuCauKhachHang.class
-gui\KhachHangNhanVien\NhanVienTableForm$1.class
 gui\datBan\Frame_LuuHD$2.class
 gui\datBan\Frame_DatBan$7.class
 gui\ban\Form_QuanLyBan$5.class

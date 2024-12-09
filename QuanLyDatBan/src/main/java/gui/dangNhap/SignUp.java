@@ -51,7 +51,7 @@ public class SignUp extends javax.swing.JFrame {
         Logo.setBackground(new java.awt.Color(0, 102, 102));
 
         label_logo.setFont(new java.awt.Font("Segoe Script", 3, 36)); // NOI18N
-        label_logo.setForeground(new java.awt.Color(255, 255, 255));
+        label_logo.setForeground(new java.awt.Color(255, 255, 0));
         label_logo.setText("Thai Restaurant");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/6214510_elephant_evernote_logo_icon (1).png"))); // NOI18N
@@ -102,6 +102,7 @@ public class SignUp extends javax.swing.JFrame {
         L_MatKhau.setText("Mật Khẩu");
 
         Btn_DangKy.setBackground(new java.awt.Color(0, 102, 102));
+        Btn_DangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_DangKy.setForeground(new java.awt.Color(255, 255, 255));
         Btn_DangKy.setText("Đăng Ký");
         Btn_DangKy.addActionListener(new java.awt.event.ActionListener() {
@@ -110,9 +111,11 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        L_toDangNhap.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         L_toDangNhap.setText("Tôi đã có tài khoản.");
 
-        Btn_DangNhap.setForeground(new java.awt.Color(255, 51, 51));
+        Btn_DangNhap.setBackground(new java.awt.Color(255, 255, 0));
+        Btn_DangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_DangNhap.setText("Đăng Nhập");
         Btn_DangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,11 +141,11 @@ public class SignUp extends javax.swing.JFrame {
                                 .addComponent(T_TaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                                 .addComponent(L_MatKhau)
                                 .addComponent(T_MatKhau))
-                            .addComponent(Btn_DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(P_DangKyLayout.createSequentialGroup()
                                 .addComponent(L_toDangNhap)
-                                .addGap(18, 18, 18)
-                                .addComponent(Btn_DangNhap))))
+                                .addGap(30, 30, 30)
+                                .addComponent(Btn_DangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Btn_DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(P_DangKyLayout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addComponent(L_DangKy)))
@@ -165,12 +168,12 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(L_MatKhau)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(T_MatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Btn_DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(P_DangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_toDangNhap)
-                    .addComponent(Btn_DangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Btn_DangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -187,9 +190,7 @@ public class SignUp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

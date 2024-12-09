@@ -248,7 +248,7 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         lb_ngayDat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin Bàn"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Bàn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Loại Bàn");
@@ -336,6 +336,7 @@ public class Frame_LuuHD extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Số lượng khách:");
 
+        LuuVaXuatHD.setBackground(new java.awt.Color(255, 255, 0));
         LuuVaXuatHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LuuVaXuatHD.setText("Lưu và xuất HD");
         LuuVaXuatHD.addActionListener(new java.awt.event.ActionListener() {
@@ -344,8 +345,9 @@ public class Frame_LuuHD extends javax.swing.JFrame {
             }
         });
 
+        LuuHD.setBackground(new java.awt.Color(255, 0, 0));
         LuuHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        LuuHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/details (1).jpg"))); // NOI18N
+        LuuHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bookmark (2).png"))); // NOI18N
         LuuHD.setText("Lưu HD");
         LuuHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,8 +355,9 @@ public class Frame_LuuHD extends javax.swing.JFrame {
             }
         });
 
+        Huy.setBackground(new java.awt.Color(153, 153, 153));
         Huy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Huy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).jpg"))); // NOI18N
+        Huy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).png"))); // NOI18N
         Huy.setText("Hủy");
         Huy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

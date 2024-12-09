@@ -68,7 +68,7 @@ public class Login extends javax.swing.JFrame {
         Logo.setPreferredSize(new java.awt.Dimension(400, 500));
 
         jLabel6.setFont(new java.awt.Font("Segoe Script", 3, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 0));
         jLabel6.setText("Thai Restaurant");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/6214510_elephant_evernote_logo_icon (1).png"))); // NOI18N
@@ -78,22 +78,23 @@ public class Login extends javax.swing.JFrame {
         LogoLayout.setHorizontalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(LogoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LogoLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LogoLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         LogoLayout.setVerticalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel6)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         DangNhap.add(Logo);
@@ -106,6 +107,7 @@ public class Login extends javax.swing.JFrame {
         L_DangNhap.setForeground(new java.awt.Color(0, 102, 102));
         L_DangNhap.setText("Đăng Nhập");
 
+        L_TaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         L_TaiKhoan.setText("Tài Khoản");
 
         T_TaiKhoan.addActionListener(new java.awt.event.ActionListener() {
@@ -114,9 +116,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        L_MatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         L_MatKhau.setText("Mật Khẩu");
 
         Btn_dangNhap.setBackground(new java.awt.Color(0, 102, 102));
+        Btn_dangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_dangNhap.setForeground(new java.awt.Color(255, 255, 255));
         Btn_dangNhap.setText("Đăng Nhập");
         Btn_dangNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -125,9 +129,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        L_toDangKy.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         L_toDangKy.setText("Chưa có tài khoản ?");
 
-        Btn_DangKy.setForeground(new java.awt.Color(255, 51, 51));
+        Btn_DangKy.setBackground(new java.awt.Color(255, 255, 0));
+        Btn_DangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_DangKy.setText("Đăng Ký");
         Btn_DangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,24 +145,24 @@ public class Login extends javax.swing.JFrame {
         P_DangNhap.setLayout(P_DangNhapLayout);
         P_DangNhapLayout.setHorizontalGroup(
             P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_DangNhapLayout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(L_DangNhap)
+                .addGap(99, 99, 99))
             .addGroup(P_DangNhapLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Btn_dangNhap)
                     .addGroup(P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(T_TaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                        .addComponent(L_MatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Password_f)
-                        .addComponent(L_TaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(L_TaiKhoan)
+                        .addComponent(L_MatKhau))
                     .addGroup(P_DangNhapLayout.createSequentialGroup()
                         .addComponent(L_toDangKy)
-                        .addGap(33, 33, 33)
-                        .addComponent(Btn_DangKy)))
+                        .addGap(18, 18, 18)
+                        .addComponent(Btn_DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_DangNhapLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(L_DangNhap)
-                .addGap(99, 99, 99))
         );
         P_DangNhapLayout.setVerticalGroup(
             P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,12 +178,14 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Password_f, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Btn_dangNhap)
-                .addGap(56, 56, 56)
-                .addGroup(P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(L_toDangKy)
-                    .addComponent(Btn_DangKy))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGroup(P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(P_DangNhapLayout.createSequentialGroup()
+                        .addComponent(Btn_dangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75))
+                    .addGroup(P_DangNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Btn_DangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L_toDangKy)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         DangNhap.add(P_DangNhap);

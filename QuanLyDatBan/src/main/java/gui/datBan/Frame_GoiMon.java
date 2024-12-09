@@ -145,8 +145,9 @@ public class Frame_GoiMon extends javax.swing.JFrame {
 
         P_btn.setBackground(new java.awt.Color(255, 255, 255));
 
+        them.setBackground(new java.awt.Color(255, 51, 51));
         them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/details (1).jpg"))); // NOI18N
+        them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus (1).png"))); // NOI18N
         them.setText("Thêm");
         them.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         them.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +156,9 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
+        Huy.setBackground(new java.awt.Color(255, 51, 51));
         Huy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Huy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancel (3) (1).png"))); // NOI18N
         Huy.setText("Hủy");
         Huy.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         Huy.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +167,9 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
+        Sua.setBackground(new java.awt.Color(255, 51, 51));
         Sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tools (1).png"))); // NOI18N
         Sua.setText("Sửa số lượng");
         Sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,8 +177,9 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).jpg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).png"))); // NOI18N
         jButton1.setText("Xóa món");
 
         javax.swing.GroupLayout P_btnLayout = new javax.swing.GroupLayout(P_btn);
@@ -181,26 +187,26 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         P_btnLayout.setHorizontalGroup(
             P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_btnLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(them, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Huy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Sua)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         P_btnLayout.setVerticalGroup(
             P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_btnLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(25, 25, 25)
+                .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Huy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(them, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(Huy, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         Scroll_dsMonAn.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

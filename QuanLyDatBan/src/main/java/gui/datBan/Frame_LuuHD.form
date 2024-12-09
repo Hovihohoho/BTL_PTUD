@@ -224,7 +224,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Th&#xf4;ng Tin B&#xe0;n"/>
+                <TitledBorder title="Th&#xf4;ng Tin B&#xe0;n">
+                  <Font PropertyName="font" name="Segoe UI" size="14" style="0"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -405,6 +407,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="LuuVaXuatHD">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
@@ -416,11 +421,14 @@
         </Component>
         <Component class="javax.swing.JButton" name="LuuHD">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/details (1).jpg"/>
+              <Image iconType="3" name="/icon/bookmark (2).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#x1b0;u HD"/>
           </Properties>
@@ -430,11 +438,14 @@
         </Component>
         <Component class="javax.swing.JButton" name="Huy">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/delete (1).jpg"/>
+              <Image iconType="3" name="/icon/delete (1).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
           </Properties>
