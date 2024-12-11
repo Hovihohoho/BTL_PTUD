@@ -11,6 +11,7 @@ import gui.KhachHangNhanVien.PhanCaNhanVien;
 import gui.KhachHangNhanVien.QuanLyKhachHang;
 import gui.KhachHangNhanVien.XemThongTinNhanVien;
 import gui.ban.Form_QuanLyBan;
+import gui.ban.LichSuDatBan;
 import gui.dangNhap.Login;
 import gui.datBan.ManHinh_DatBan;
 import gui.hoaDon.DanhSachHoaDon;
@@ -53,8 +54,17 @@ public class ManHinhChinh extends javax.swing.JFrame {
 //        anhManHinhChinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Thai_restaurant_resized_900x600.png")));
      //   anh.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/nha-hang-2-tang-dep-phong-cach-tan-co-dien (1).jpg")));
      //   logo.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/LogonhànàngThái__3_-removebg-prevoew (4).png")));
-         anh.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/nha-hang-2-tang-dep-phong-cach-tan-co-dien (1).jpg")));
+        anh.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("icon/nha-hang-2-tang-dep-phong-cach-tan-co-dien (1).jpg")));
 
+        btn_qly_ban.setBackground(Color.white);
+        btn_TrangChu.setBackground(Color.YELLOW);
+        btn_DatBan.setBackground(Color.white);
+        btn_ThongKe.setBackground(Color.white);
+        btn_qlyKhachHang.setBackground(Color.white);
+        btn_qly_mon.setBackground(Color.white);
+        btn_qlyNhanVien.setBackground(Color.white);
+        btn_hdsd.setBackground(Color.white);
+        
         btn_TrangChu.setBorder(new LineBorder(Color.YELLOW, 2));
         btn_qly_ban.setBorder(new LineBorder(Color.YELLOW, 2));
         btn_DatBan.setBorder(new LineBorder(Color.YELLOW, 2));
@@ -126,7 +136,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_TrangChu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_TrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/home (1).png"))); // NOI18N
+        btn_TrangChu.setMnemonic('1');
         btn_TrangChu.setText("Trang chủ");
+        btn_TrangChu.setToolTipText("ALT+1");
         btn_TrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_TrangChuActionPerformed(evt);
@@ -138,7 +150,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_qly_ban.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_qly_ban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user-gear (1).png"))); // NOI18N
+        btn_qly_ban.setMnemonic('2');
         btn_qly_ban.setText("Quản lý bàn");
+        btn_qly_ban.setToolTipText("ALT+2");
         btn_qly_ban.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_qly_banActionPerformed(evt);
@@ -147,7 +161,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_qly_mon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_qly_mon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/dinner (1).png"))); // NOI18N
+        btn_qly_mon.setMnemonic('3');
         btn_qly_mon.setText("Quản lý món ăn");
+        btn_qly_mon.setToolTipText("ALT+3");
         btn_qly_mon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_qly_monActionPerformed(evt);
@@ -156,7 +172,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_DatBan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_DatBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/computer-set-on-a-table (1).png"))); // NOI18N
+        btn_DatBan.setMnemonic('4');
         btn_DatBan.setText("Đặt bàn");
+        btn_DatBan.setToolTipText("ALT+4");
         btn_DatBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_DatBanActionPerformed(evt);
@@ -165,7 +183,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_qlyKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_qlyKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hr-group (1).png"))); // NOI18N
+        btn_qlyKhachHang.setMnemonic('5');
         btn_qlyKhachHang.setText("Quản lý khách hàng");
+        btn_qlyKhachHang.setToolTipText("ALT+5");
         btn_qlyKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_qlyKhachHangActionPerformed(evt);
@@ -174,7 +194,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_qlyNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_qlyNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user-bag (1).png"))); // NOI18N
+        btn_qlyNhanVien.setMnemonic('6');
         btn_qlyNhanVien.setText("Quản lý nhân viên");
+        btn_qlyNhanVien.setToolTipText("ALT+6");
         btn_qlyNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_qlyNhanVienActionPerformed(evt);
@@ -183,7 +205,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_ThongKe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_ThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/graph (1).png"))); // NOI18N
+        btn_ThongKe.setMnemonic('7');
         btn_ThongKe.setText("Thống kê");
+        btn_ThongKe.setToolTipText("ALT+7");
         btn_ThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ThongKeActionPerformed(evt);
@@ -192,7 +216,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         btn_hdsd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_hdsd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/information-button (1).png"))); // NOI18N
+        btn_hdsd.setMnemonic('I');
         btn_hdsd.setText("About us");
+        btn_hdsd.setToolTipText("ALT+I");
         btn_hdsd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hdsdActionPerformed(evt);
@@ -223,19 +249,19 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(btn_TrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_qly_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_qly_mon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_DatBan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_qlyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_qlyNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(btn_hdsd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -294,7 +320,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         );
         P_chucNangLayout.setVerticalGroup(
             P_chucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(anh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 607, Short.MAX_VALUE)
+            .addComponent(anh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -305,9 +331,9 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(P_chucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(P_chucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,8 +351,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
         // TODO add your handling code here:
         Form_QuanLyBan qlBan = new Form_QuanLyBan();
         
+        LichSuDatBan lsdb = new LichSuDatBan();
+        
         JTabbedPane tabqlBan = new JTabbedPane();
         tabqlBan.addTab("Quản lý bàn", qlBan);
+        tabqlBan.addTab("Lịch sử đặt bàn", lsdb);
         
         P_chucNang.removeAll();
         P_chucNang.setLayout(new java.awt.BorderLayout());

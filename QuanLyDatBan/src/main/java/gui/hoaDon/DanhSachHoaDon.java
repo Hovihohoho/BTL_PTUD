@@ -9,6 +9,7 @@ import entity.HoaDon;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
@@ -62,6 +63,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         List<entity.HoaDon> dsHoaDon = hoadonDAO.getAllHoaDon();
         
         DecimalFormat df = new DecimalFormat("#,### VNĐ");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         // Clear bảng trước khi load dữ liệu mới
         model.setRowCount(0);
 
@@ -75,7 +77,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 hd.getMaHD(), // Mã Hóa Đơn
                 hd.getNhanVien().getTenNV(), // Tên Nhân Viên
                 tenKH, // Tên Khách Hàng
-                hd.getThoiGianTao(), // Ngày Lập
+                dtf.format(hd.getThoiGianTao()), // Ngày Lập
                 df.format(tongTien)
             });
         }
@@ -85,6 +87,8 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
         // Xóa dữ liệu cũ trên bảng
         model.setRowCount(0);
         DecimalFormat df = new DecimalFormat("#,### VNĐ");
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         // Thêm dữ liệu mới sau khi sắp xếp
         int stt = 1;
         for (HoaDon hd : dsHoaDon) {
@@ -95,7 +99,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 hd.getMaHD(),
                 hd.getNhanVien().getTenNV(),
                 tenKH,
-                hd.getThoiGianTao(),
+                dtf.format(hd.getThoiGianTao()),
                 df.format(tongTien) // Hiển thị tổng tiền
             });
         }
@@ -208,7 +212,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                         .addComponent(load, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addComponent(t_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -284,7 +288,7 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sapXepTheoTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sapXepTheoNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -315,13 +319,15 @@ public class DanhSachHoaDon extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(56, 56, 56)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(115, 115, 115))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

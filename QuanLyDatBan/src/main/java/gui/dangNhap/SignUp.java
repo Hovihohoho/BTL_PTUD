@@ -104,7 +104,9 @@ public class SignUp extends javax.swing.JFrame {
         Btn_DangKy.setBackground(new java.awt.Color(0, 102, 102));
         Btn_DangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_DangKy.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_DangKy.setMnemonic('d');
         Btn_DangKy.setText("Đăng Ký");
+        Btn_DangKy.setToolTipText("Nhấn ALT+d để đăng ký");
         Btn_DangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_DangKyActionPerformed(evt);
@@ -116,7 +118,9 @@ public class SignUp extends javax.swing.JFrame {
 
         Btn_DangNhap.setBackground(new java.awt.Color(255, 255, 0));
         Btn_DangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_DangNhap.setMnemonic('a');
         Btn_DangNhap.setText("Đăng Nhập");
+        Btn_DangNhap.setToolTipText("Nhấn ALT+a để đăng nhập");
         Btn_DangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_DangNhapActionPerformed(evt);

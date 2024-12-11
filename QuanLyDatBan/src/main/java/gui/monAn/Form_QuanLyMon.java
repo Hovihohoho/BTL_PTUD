@@ -553,8 +553,10 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) table_monAn.getModel();
             model.setRowCount(0); // Xóa các dòng hiện tại trong bảng
 
+            DecimalFormat df = new DecimalFormat("#,###");
+            
             for (MonAn monAn : foundMonAnList) {
-                model.addRow(new Object[]{monAn.getMaMonAn(), monAn.getTenMonAn(), monAn.getGiaTien(), monAn.getThongTinMon(), monAn.getTrangThaiMon(), monAn.getLoai_mon().getTenLoai()});
+                model.addRow(new Object[]{monAn.getMaMonAn(), monAn.getTenMonAn(), df.format(monAn.getGiaTien()), monAn.getThongTinMon(), monAn.getTrangThaiMon(), monAn.getLoai_mon().getTenLoai()});
             }
 
             if (foundMonAnList.isEmpty()) {

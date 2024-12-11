@@ -140,7 +140,7 @@ public class Card_Ban extends javax.swing.JPanel {
         String iconPath = null;
         if (trangThai.equalsIgnoreCase("Trống")) {
             iconPath = "icon/table_green.png";
-        } else if (trangThai.equalsIgnoreCase("Có Khách")) {
+        } else if (trangThai.equalsIgnoreCase("Đang sử dụng")) {
             iconPath = "icon/table_gray.png";
         } else {
             iconPath = "icon/table_red.png";

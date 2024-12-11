@@ -75,7 +75,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         them = new javax.swing.JButton();
         Huy = new javax.swing.JButton();
         Sua = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        xoa = new javax.swing.JButton();
         Scroll_dsMonAn = new javax.swing.JScrollPane();
         Card_container = new javax.swing.JPanel();
         ds_MA = new javax.swing.JPanel();
@@ -177,10 +177,15 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).png"))); // NOI18N
-        jButton1.setText("Xóa món");
+        xoa.setBackground(new java.awt.Color(255, 255, 0));
+        xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).png"))); // NOI18N
+        xoa.setText("Xóa món");
+        xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout P_btnLayout = new javax.swing.GroupLayout(P_btn);
         P_btn.setLayout(P_btnLayout);
@@ -194,7 +199,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Sua)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(xoa)
                 .addContainerGap())
         );
         P_btnLayout.setVerticalGroup(
@@ -203,7 +208,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(P_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Huy, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
@@ -537,6 +542,17 @@ public class Frame_GoiMon extends javax.swing.JFrame {
         String trangthai = (String) combo_trangthai.getSelectedItem();
         hienThiDanhSachMontheoTrangThai(trangthai);
     }//GEN-LAST:event_combo_trangthaiActionPerformed
+
+    private void xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaActionPerformed
+        int selectedRow = table_monAn.getSelectedRow();
+        
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một món ăn để xóa.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) table_monAn.getModel();
+        model.removeRow(selectedRow);
+    }//GEN-LAST:event_xoaActionPerformed
     
     private void hienThiDanhSachMontheoTrangThai(String trangThai){
         MonAn_DAO monAnDAO = new MonAn_DAO();
@@ -668,7 +684,6 @@ public class Frame_GoiMon extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo_loaiMon;
     private javax.swing.JComboBox<String> combo_trangthai;
     private javax.swing.JPanel ds_MA;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -680,5 +695,6 @@ public class Frame_GoiMon extends javax.swing.JFrame {
     private javax.swing.JLabel lb_thue;
     private javax.swing.JTable table_monAn;
     private javax.swing.JButton them;
+    private javax.swing.JButton xoa;
     // End of variables declaration//GEN-END:variables
 }

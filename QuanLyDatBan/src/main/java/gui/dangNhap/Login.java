@@ -24,6 +24,8 @@ public class Login extends javax.swing.JFrame {
             initComponents();
             taiKhoanDAO = new TaiKhoan_DAO();
             nhanVienDAO = new NhanVien_DAO();
+            T_TaiKhoan.setText("hao123A");
+            Password_f.setText("1234567Aa");
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -122,7 +124,9 @@ public class Login extends javax.swing.JFrame {
         Btn_dangNhap.setBackground(new java.awt.Color(0, 102, 102));
         Btn_dangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_dangNhap.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_dangNhap.setMnemonic('a');
         Btn_dangNhap.setText("Đăng Nhập");
+        Btn_dangNhap.setToolTipText("Nhấn ALT+a để đăng nhập");
         Btn_dangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_dangNhapActionPerformed(evt);
@@ -134,7 +138,9 @@ public class Login extends javax.swing.JFrame {
 
         Btn_DangKy.setBackground(new java.awt.Color(255, 255, 0));
         Btn_DangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Btn_DangKy.setMnemonic('d');
         Btn_DangKy.setText("Đăng Ký");
+        Btn_DangKy.setToolTipText("Nhấn ALT+d để đăng ký");
         Btn_DangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_DangKyActionPerformed(evt);

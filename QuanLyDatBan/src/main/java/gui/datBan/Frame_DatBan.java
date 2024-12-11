@@ -289,8 +289,8 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
             .addComponent(P_TongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(P_HoaDonLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(scrolltable, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrolltable, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+                .addGap(45, 45, 45))
         );
         P_HoaDonLayout.setVerticalGroup(
             P_HoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
