@@ -25,6 +25,10 @@ public class ChiTietYeuCau {
     public MonAn getMonAn() {
         return monAn;
     }
+    public String getMaMonAn() {
+    return monAn != null ? monAn.getMaMonAn() : null;
+}
+
 
     public void setMonAn(MonAn monAn) {
         this.monAn = monAn;

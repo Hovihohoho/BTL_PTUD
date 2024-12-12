@@ -8,6 +8,10 @@ public class NhanVien {
     private CaLamViec maCa;
     private TaiKhoan maTK;
 
+    public NhanVien(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Getters và Setters
     public String getMaNV() {
         return maNV;

@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -373,52 +373,65 @@ public class Ban_DAO {
         }
         return bans;
     }
-    public static List<Ban> getdsBanTheoMa(String maLoai) throws SQLException {
-        List<Ban> bans = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("SELECT * FROM Ban WHERE 1=1");
-
-        // Kiểm tra điều kiện mã bàn
-        if (maLoai != null && !maLoai.isEmpty()) {
-            sql.append(" AND maLoai = ?");
-        }
-
-        try (Connection conn = ConnectDB.getInstance().connect();
-             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
-
-            int index = 1;
-            if (maLoai != null && !maLoai.isEmpty()) {
-                stmt.setString(index++, maLoai);
-            }
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                
-                String maBan = rs.getString("maBan");
-                LoaiBan loaiBan = new LoaiBan(maLoai);
-                String trangThaiBan = rs.getString("trangThaiBan");
-                int soLuongGhe = rs.getInt("soLuongGhe");
-                String viTri = rs.getString("viTri");
-
-                Ban ban = new Ban(maBan, loaiBan, trangThaiBan, soLuongGhe, viTri);
-                bans.add(ban);
-            }
-        }
-        return bans;
-    }
-    
-    public void updateTrangThaiBan(Ban ban) {
-        String sql = "UPDATE Ban SET trangThaiBan = ? WHERE maBan = ?";
-
-        try (Connection conn = ConnectDB.getInstance().connect();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, ban.getTrangThaiBan());
-            ps.setString(2, ban.getMaBan());
-
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public List<String[]> getMonAnByBan(String maBan) throws SQLException {
+    List<String[]> danhSachMonAn = new ArrayList<>();
+    String query = "SELECT tenMon, soLuong, donGia FROM MonAn WHERE maBan = ?";
+    try (PreparedStatement stmt = ConnectDB.prepareStatement(query)) {
+        stmt.setString(1, maBan);
+        ResultSet rs = stmt.executeQuery();
+        int stt = 1;
+        while (rs.next()) {
+            danhSachMonAn.add(new String[] {
+                String.valueOf(stt++),
+                rs.getString("tenMon"),
+                String.valueOf(rs.getInt("soLuong")),
+                String.valueOf(rs.getDouble("donGia"))
+            });
         }
     }
+    return danhSachMonAn;
+}
+public boolean chuyenBan(String maBanCu, String maBanMoi) {
+    String sql1 = "UPDATE Ban SET trangThaiBan = 'Trống' WHERE maBan = ?";
+    String sql2 = "UPDATE Ban SET trangThaiBan = 'Đang sử dụng' WHERE maBan = ?";
+    String sql3 = "UPDATE HoaDon SET maBan = ? WHERE maBan = ? AND trangThaiHoaDon = 'Đang sử dụng'";
+
+    try (Connection conn = ConnectDB.getInstance().connect();
+         PreparedStatement ps1 = conn.prepareStatement(sql1);
+         PreparedStatement ps2 = conn.prepareStatement(sql2);
+         PreparedStatement ps3 = conn.prepareStatement(sql3)) {
+
+        // Cập nhật trạng thái bàn cũ
+        ps1.setString(1, maBanCu);
+        ps1.executeUpdate();
+
+        // Cập nhật trạng thái bàn mới
+        ps2.setString(1, maBanMoi);
+        ps2.executeUpdate();
+
+        // Cập nhật hóa đơn (nếu cần)
+        ps3.setString(1, maBanMoi);
+        ps3.setString(2, maBanCu);
+        ps3.executeUpdate();
+
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+public static boolean isMaBanExist(String maBan) throws SQLException {
+    String query = "SELECT COUNT(*) FROM Ban WHERE maBan = ?";
+    try (Connection conn = ConnectDB.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setString(1, maBan);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Nếu COUNT > 0, maBan đã tồn tại
+            }
+        }
+    }
+    return false;
+}
 
 }

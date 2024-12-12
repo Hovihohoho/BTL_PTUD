@@ -4,6 +4,18 @@ public class YeuCauKhachHang {
     private String maYeuCau;
     private KhachHang kh;
 
+    public YeuCauKhachHang(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public YeuCauKhachHang() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public YeuCauKhachHang(KhachHang khachHang) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getMaYeuCau() {
         return maYeuCau;
     }

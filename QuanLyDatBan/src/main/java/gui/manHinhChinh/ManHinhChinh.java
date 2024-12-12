@@ -11,7 +11,7 @@ import gui.KhachHangNhanVien.PhanCaNhanVien;
 import gui.KhachHangNhanVien.QuanLyKhachHang;
 import gui.KhachHangNhanVien.XemThongTinNhanVien;
 import gui.ban.Form_QuanLyBan;
-import gui.ban.LichSuDatBan;
+
 import gui.dangNhap.Login;
 import gui.datBan.ManHinh_DatBan;
 import gui.hoaDon.DanhSachHoaDon;
@@ -351,11 +351,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
         // TODO add your handling code here:
         Form_QuanLyBan qlBan = new Form_QuanLyBan();
         
-        LichSuDatBan lsdb = new LichSuDatBan();
+   
         
         JTabbedPane tabqlBan = new JTabbedPane();
         tabqlBan.addTab("Quản lý bàn", qlBan);
-        tabqlBan.addTab("Lịch sử đặt bàn", lsdb);
+
         
         P_chucNang.removeAll();
         P_chucNang.setLayout(new java.awt.BorderLayout());

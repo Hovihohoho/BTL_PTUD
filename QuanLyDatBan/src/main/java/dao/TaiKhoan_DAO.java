@@ -231,4 +231,33 @@ public class TaiKhoan_DAO {
         
         return null; // Trả về null nếu không tìm thấy tài khoản
     }
+    public boolean kiemTraTaiKhoanTonTai(String taiKhoan) throws SQLException {
+    String sql = "SELECT COUNT(*) FROM TaiKhoan WHERE tenTK = ?";
+    try (Connection conn = ConnectDB.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, taiKhoan);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) > 0; // Nếu COUNT > 0, tài khoản đã tồn tại
+        }
+    }
+    return false;
+}
+    
+
+public boolean kiemTraMatKhauDung(String tenTK, String matKhau) throws SQLException {
+    String sql = "SELECT matKhau FROM TaiKhoan WHERE tenTK = ?";
+    try (Connection conn = ConnectDB.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, tenTK);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            String matKhauDB = rs.getString("matKhau");
+            return matKhauDB.equals(matKhau); // So sánh mật khẩu
+        }
+    }
+    return false;
+}
+
+
 }

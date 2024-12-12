@@ -9,6 +9,10 @@ package entity;
  * @author Admin
  */
 public class LoaiBan {
+
+ 
+
+   
     private String maLoai;
     private String tenLoai;
     
@@ -24,17 +28,8 @@ public class LoaiBan {
         this.tenLoai = tenLoai;
     }
     
-    public void setTenLoai(String maLoai) {
-        if(maLoai.equalsIgnoreCase("L001")){
-            this.tenLoai = "bàn thường";
-        }
-        else if (maLoai.equalsIgnoreCase("L002")){
-            this.tenLoai = "bàn vip";
-        }
-        
-        else{
-            this.tenLoai = "bàn";
-        }
+    public void setMaLoai(String maLoai) {
+        this.maLoai=maLoai;
     }
     
     public LoaiBan(String maLoai) {
@@ -44,7 +39,7 @@ public class LoaiBan {
         else{
             this.maLoai = maLoai;
         }
-        setTenLoai(this.maLoai);
+      
     }
 
     public LoaiBan(String maLoai, String tenLoai) {

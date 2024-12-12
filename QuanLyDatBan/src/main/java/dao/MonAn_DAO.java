@@ -316,6 +316,43 @@ public class MonAn_DAO {
         // Nếu không tìm thấy món ăn, trả về null
         return null;
     }
+    public MonAn getMonAnByMa(String maMonAn) throws SQLException {
+        String sql = "SELECT maMonAn, tenMonAn, thongTinMon, trangThaiMonAn, giaTien, maLoai " +
+                     "FROM MonAn WHERE maMonAn = ?";  // Câu lệnh SQL tìm kiếm theo tên món ăn
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        
+        ConnectDB connectDB = new ConnectDB();
+        try {
+            con = connectDB.connect();
+        } catch (SQLException ex) {
+            Logger.getLogger(MonAn_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            ps = con.prepareStatement(sql);
+            // Set giá trị cho tham số trong câu truy vấn
+            ps.setString(1, maMonAn);
+
+            // Thực thi truy vấn và nhận kết quả
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // Tạo đối tượng MonAn và gán các giá trị từ ResultSet
+                String tenMonAn = rs.getString("tenMonAn");
+                String thongTinMon = rs.getString("thongTinMon");
+                String trangThaiMonAn = rs.getString("trangThaiMonAn");
+                double giaTien = rs.getDouble("giaTien");
+                String maLoai = rs.getString("maLoai");
+                LoaiMon loaiMon = getLoaiMonByMa(maLoai); // Implement to fetch LoaiMon
+                
+                // Trả về đối tượng MonAn
+                return new MonAn(maMonAn, tenMonAn, thongTinMon, trangThaiMonAn, giaTien, loaiMon);
+            }
+
+        // Nếu không tìm thấy món ăn, trả về null
+        return null;
+    }
     
     private void closeResources(ResultSet rs, PreparedStatement ps, Connection con) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

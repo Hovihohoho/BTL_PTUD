@@ -220,27 +220,46 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_T_TaiKhoanActionPerformed
 
     private void Btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_dangNhapActionPerformed
-        String tenTK = T_TaiKhoan.getText();
-        String matKhau = new String(Password_f.getPassword());
-        if (!Pattern.matches("^[a-zA-Z0-9]{5,20}$", tenTK)) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Tên tài khoản phải từ 5-20 ký tự và chỉ chứa chữ cái hoặc số.", "Lỗi định dạng", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                          
+    String tenTK = T_TaiKhoan.getText().trim();
+    String matKhau = new String(Password_f.getPassword()).trim();
+
+    // Kiểm tra tài khoản và mật khẩu không được để trống
+    if (tenTK.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Tên tài khoản không được để trống.", "Lỗi nhập liệu", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (matKhau.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Mật khẩu không được để trống.", "Lỗi nhập liệu", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        TaiKhoan_DAO taiKhoanDAO = new TaiKhoan_DAO();
+
+        // Kiểm tra tài khoản tồn tại
+        if (!taiKhoanDAO.kiemTraTaiKhoanTonTai(tenTK)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại!", "Lỗi đăng nhập", javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", matKhau)) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Mật khẩu phải từ 8-20 ký tự, bao gồm ít nhất một chữ cái in hoa, một chữ cái thường và một số.", "Lỗi định dạng", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        // Kiểm tra mật khẩu
+        if (!taiKhoanDAO.kiemTraMatKhauDung(tenTK, matKhau)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Mật khẩu không đúng!", "Lỗi đăng nhập", javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (taiKhoanDAO.login(tenTK, matKhau)) {
-            // Nếu đăng nhập thành công, mở Menu
-            taiKhoan = taiKhoanDAO.findTaiKhoanByTenTK(tenTK);
-            nhanVien = nhanVienDAO.findNhanVienByTaiKhoan(taiKhoan);
-            ManHinhChinh mn = new ManHinhChinh(nhanVien);
-            mn.setVisible(true);
-            this.dispose(); // Đóng cửa sổ đăng nhập
-        } else {
-            // Nếu đăng nhập thất bại, hiển thị thông báo lỗi
-            javax.swing.JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng!", "Lỗi đăng nhập", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
+
+        // Nếu tài khoản và mật khẩu hợp lệ
+        taiKhoan = taiKhoanDAO.findTaiKhoanByTenTK(tenTK);
+        nhanVien = nhanVienDAO.findNhanVienByTaiKhoan(taiKhoan);
+        ManHinhChinh mn = new ManHinhChinh(nhanVien);
+        mn.setVisible(true);
+        this.dispose(); // Đóng cửa sổ đăng nhập
+
+    } catch (SQLException ex) {
+        Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        javax.swing.JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi đăng nhập.", "Lỗi hệ thống", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_Btn_dangNhapActionPerformed
     
     private void Btn_DangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DangKyActionPerformed

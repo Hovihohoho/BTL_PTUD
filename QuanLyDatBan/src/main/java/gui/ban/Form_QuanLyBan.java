@@ -823,23 +823,53 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        String maBan = jTextField2.getText();
-        String maLoai = (String) jComboBox1.getSelectedItem();
-        String trangThai = (String) jComboBox2.getSelectedItem();
-        int soLuongGhe = Integer.parseInt(jTextField3.getText());
-        String viTri = jTextField4.getText();
+                                      
+    String maBan = jTextField2.getText().trim();
+    String maLoai = (String) jComboBox1.getSelectedItem();
+    String trangThai = (String) jComboBox2.getSelectedItem();
+    String soLuongGheText = jTextField3.getText().trim();
+    String viTri = jTextField4.getText().trim();
 
-        LoaiBan loaiBan = new LoaiBan(maLoai);
+    // Kiểm tra các trường nhập liệu
+    if (maBan.isEmpty() || maLoai == null || trangThai == null || soLuongGheText.isEmpty() || viTri.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        Ban ban = new Ban(maBan, loaiBan, trangThai, soLuongGhe, viTri);
-
-        try {
-            Ban_DAO.addBan(ban);
-            loadBanToTable(Ban_DAO.getAllBan());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lỗi khi thêm bàn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    // Kiểm tra giá trị số lượng ghế
+    int soLuongGhe;
+    try {
+        soLuongGhe = Integer.parseInt(soLuongGheText);
+        if (soLuongGhe <= 0) {
+            JOptionPane.showMessageDialog(this, "Số lượng ghế phải lớn hơn 0.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Số lượng ghế phải là số nguyên hợp lệ.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Tạo đối tượng LoaiBan và Ban
+    LoaiBan loaiBan = new LoaiBan(maLoai);
+    Ban ban = new Ban(maBan, loaiBan, trangThai, soLuongGhe, viTri);
+
+    try {
+        // Kiểm tra xem maBan đã tồn tại chưa
+        if (Ban_DAO.isMaBanExist(maBan)) {
+            JOptionPane.showMessageDialog(this, "Mã bàn đã tồn tại. Vui lòng chọn mã khác.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Thêm bàn vào cơ sở dữ liệu
+        Ban_DAO.addBan(ban);
+        loadBanToTable(Ban_DAO.getAllBan());
+        JOptionPane.showMessageDialog(this, "Thêm bàn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Lỗi khi thêm bàn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+
+
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -867,167 +897,146 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        try {
-            showBanInfo("B018");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+                                           
+    String maBan = "B018"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
+
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        try {
-            showBanInfo("B007");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+    String maBan = "B007"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        try {
-            showBanInfo("B017");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        String maBan = "B017"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        try {
-            showBanInfo("B014");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+         String maBan = "B014"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        try {
-            showBanInfo("B013");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      String maBan = "B013"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        try {
-            showBanInfo("B008");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B008"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
-            showBanInfo("B006");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+    String maBan = "B006"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            showBanInfo("B005");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+       String maBan = "B005"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            showBanInfo("B002");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+         String maBan = "B002"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            showBanInfo("B001");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       String maBan = "B001"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        try {
-            showBanInfo("B015");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+    String maBan = "B015"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        try {
-            showBanInfo("B016");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B016"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        try {
-            showBanInfo("B010");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B010"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        try {
-            showBanInfo("B009");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+         String maBan = "B009"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            showBanInfo("B004");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+         String maBan = "B004"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            showBanInfo("B003");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }// TODO add your handling code here:
+ String maBan = "B003"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
-        try {
-            showBanInfo("B020");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B020"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-        try {
-            showBanInfo("B019");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B019"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
-        try {
-            showBanInfo("B012");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B012"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-        try {
-            showBanInfo("B011");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_QuanLyBan.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+ String maBan = "B011"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+    formXemThongTinBan.setVisible(true);
+    formXemThongTinBan.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton21ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

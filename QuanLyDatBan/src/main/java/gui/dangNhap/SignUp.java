@@ -97,6 +97,11 @@ public class SignUp extends javax.swing.JFrame {
         L_TaiKhoan.setText("Tài Khoản");
 
         T_TaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        T_TaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                T_TaiKhoanActionPerformed(evt);
+            }
+        });
 
         L_MatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         L_MatKhau.setText("Mật Khẩu");
@@ -231,13 +236,20 @@ public class SignUp extends javax.swing.JFrame {
 
         TaiKhoan_DAO taiKhoanDAO;
         try {
-            taiKhoanDAO = new TaiKhoan_DAO();
-            taiKhoanDAO.dangKy(hoTen, taiKhoan, matKhau);
-            JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
-        } catch (SQLException ex) {
-            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi đăng ký.");
-        }
+    taiKhoanDAO = new TaiKhoan_DAO();
+    // Kiểm tra tài khoản đã tồn tại
+    if (taiKhoanDAO.kiemTraTaiKhoanTonTai(taiKhoan)) {
+        JOptionPane.showMessageDialog(this, "Tài khoản đã tồn tại, vui lòng chọn tài khoản khác.");
+        return;
+    }
+    // Đăng ký tài khoản nếu không trùng
+    taiKhoanDAO.dangKy(hoTen, taiKhoan, matKhau);
+    JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
+} catch (SQLException ex) {
+    Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+    JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi đăng ký.");
+}
+
     }//GEN-LAST:event_Btn_DangKyActionPerformed
 
     private void Btn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DangNhapActionPerformed
@@ -247,6 +259,10 @@ public class SignUp extends javax.swing.JFrame {
         LoginFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_Btn_DangNhapActionPerformed
+
+    private void T_TaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T_TaiKhoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_T_TaiKhoanActionPerformed
 
 
 
