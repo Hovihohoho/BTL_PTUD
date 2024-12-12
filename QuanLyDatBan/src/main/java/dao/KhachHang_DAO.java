@@ -4,15 +4,14 @@ import connectDB.ConnectDB;
 import entity.KhachHang;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class KhachHang_DAO {
     private Connection con;
@@ -85,18 +84,48 @@ public class KhachHang_DAO {
 
         // Xóa khách hàng khỏi cơ sở dữ liệu
         public boolean deleteKhachHang(String maKH) {
-            String sql = "DELETE FROM KhachHang WHERE maKH = ?";
+       // Kết nối tới cơ sở dữ liệu
+    String checkYeuCauQuery = "SELECT COUNT(*) FROM YeuCauKhachHang WHERE maKH = ?";
+    String deleteYeuCauQuery = "DELETE FROM YeuCauKhachHang WHERE maKH = ?";
+    String deleteKhachHangQuery = "DELETE FROM KhachHang WHERE maKH = ?";
 
-            try (
-                 PreparedStatement ps = con.prepareStatement(sql)) {
-
-                ps.setString(1, maKH);
-                return ps.executeUpdate() > 0;
-            } catch (SQLException e) {
-                e.printStackTrace();
+    try (Connection conn = ConnectDB.getInstance().connect()) {
+        
+        // Bước 1: Kiểm tra xem có yêu cầu nào liên quan đến khách hàng này không
+        try (PreparedStatement psCheck = conn.prepareStatement(checkYeuCauQuery)) {
+            psCheck.setString(1, maKH);
+            ResultSet rs = psCheck.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                // Nếu có yêu cầu, không thể xóa khách hàng
+                JOptionPane.showMessageDialog(null, "Không thể xóa khách hàng vì còn yêu cầu liên quan.");
+                return false;
             }
-            return false;
         }
+
+        // Bước 2: Xóa các yêu cầu liên quan đến khách hàng này
+        try (PreparedStatement psDeleteYeuCau = conn.prepareStatement(deleteYeuCauQuery)) {
+            psDeleteYeuCau.setString(1, maKH);
+            psDeleteYeuCau.executeUpdate();
+        }
+
+        // Bước 3: Xóa khách hàng
+        try (PreparedStatement psDeleteKhachHang = conn.prepareStatement(deleteKhachHangQuery)) {
+            psDeleteKhachHang.setString(1, maKH);
+            int rowsAffected = psDeleteKhachHang.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công!");
+                return true; // Thành công
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa khách hàng thất bại!");
+                return false; // Thất bại
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa khách hàng!");
+        return false; // Thất bại nếu có lỗi
+    }}
 
         // Tìm khách hàng theo mã khách hàng
         public KhachHang findKhachHangByMaKH(String maKH) {
@@ -194,6 +223,25 @@ public class KhachHang_DAO {
         }
         return false;
     }
-      
+    public boolean suaKhachHang(String maKH, String tenKH, String sdt, String diaChi, String gioiTinh) {
+        String query = "UPDATE KhachHang SET tenKH = ?, sdt = ?, diaChi = ?, gioiTinh = ? WHERE maKH = ?";
+        try (Connection conn = ConnectDB.getInstance().connect();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            // Thiết lập các tham số
+            ps.setString(1, tenKH);
+            ps.setString(2, sdt);
+            ps.setString(3, diaChi);
+            ps.setString(4, gioiTinh);
+            ps.setString(5, maKH);
 
+            // Thực thi truy vấn
+            int affectedRows = ps.executeUpdate();
+
+            // Kiểm tra xem có dòng nào bị ảnh hưởng
+            return affectedRows > 0; // Trả về true nếu thành công
+        } catch (SQLException e) {
+            e.printStackTrace(); // In lỗi ra console
+            return false; // Trả về false nếu xảy ra lỗi
+        }
+    }       
 }

@@ -30,11 +30,11 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     public QuanLyKhachHang() throws SQLException {
         initComponents();
         // Nhóm radio button lại
-        ButtonGroup group = new ButtonGroup();
-        group.add(rbtnNam);
-        group.add(rbtnNu);
-        rbtnNam.setSelected(false);
-        rbtnNu.setSelected(false);
+//        ButtonGroup group = new ButtonGroup();
+//        group.add(rbtnNam);
+//        group.add(rbtnNu);
+//        rbtnNam.setSelected(false);
+//        rbtnNu.setSelected(false);
     
         khachHangDao = new KhachHang_DAO(); // Khởi tạo đối tượng DAO
         tableModel = new DefaultTableModel();
@@ -44,6 +44,32 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         tableModel = (DefaultTableModel) table_thongTinKH.getModel()  ; // Lấy table cua bang can them du lieu
         loadTable(); 
     }
+    
+    private void loadKhachHangData() {
+    // Lấy DefaultTableModel từ JTable
+    DefaultTableModel tableModel = (DefaultTableModel) table_thongTinKH.getModel();
+
+    // Clear dữ liệu cũ trong bảng
+    tableModel.setRowCount(0);
+
+    // Truy vấn dữ liệu từ cơ sở dữ liệu
+   // khachHangDao khachHangDAO = new KhachHangDAO();
+    List<KhachHang> danhSachKhachHang = khachHangDao.getAllKhachHang();
+
+    // Thêm dữ liệu mới vào bảng
+    for (KhachHang kh : danhSachKhachHang) {
+        Object[] row = new Object[]{
+            kh.getMaKH(),
+            kh.getTenKH(),
+            kh.getSDT(),
+            kh.getDiaChi(),
+            kh.getGioiTinh()
+        };
+        tableModel.addRow(row);
+    }
+}
+
+    
     public void loadTable() {
          if (tableModel == null) {
         System.err.println("tableModel is null!"); 
@@ -417,33 +443,46 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themActionPerformed
         // Lấy thông tin từ các trường nhập liệu
-        String maKH = txtMaKH.getText();
-        String tenKH = txtTenKH.getText();
-        String sDT = txtSDT.getText();
-        String diaChi = txtDiaChi.getText();
+    String maKH = txtMaKH.getText().trim();
+    String tenKH = txtTenKH.getText().trim();
+    String sDT = txtSDT.getText().trim();
+    String diaChi = txtDiaChi.getText().trim();
         String gioiTinh = "";
+
+    // Lấy giới tính
         if (rbtnNam.isSelected()) {
             gioiTinh = "Nam";
         } else if (rbtnNu.isSelected()) {
             gioiTinh = "Nữ";
         }
+
+    // Kiểm tra lỗi nhập liệu
+    if (maKH.isEmpty() || tenKH.isEmpty() || sDT.isEmpty() || diaChi.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin khách hàng!");
+        return;
+    }
+
+   // KhachHang_DAO khachHangDao = new KhachHang_DAO();
+
         // Kiểm tra xem mã khách hàng đã tồn tại chưa
         if (khachHangDao.checkMaKhachHangExists(maKH)) {
             JOptionPane.showMessageDialog(null, "Mã khách hàng đã tồn tại! Vui lòng nhập mã khác.");
             return;
         }
+
         // Tạo đối tượng KhachHang từ thông tin đã nhập
         KhachHang khachHang = new KhachHang(maKH, tenKH, sDT, diaChi, gioiTinh);
+
         // Gọi phương thức addKhachHang để thêm vào cơ sở dữ liệu
-        addKhachHang(khachHang);
+    if (khachHangDao.insertKhachHang(khachHang)) {
+        JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công!");
+        // Cập nhật lại bảng thông tin khách hàng
+        loadKhachHangData();
+    } else {
+        JOptionPane.showMessageDialog(null, "Thêm khách hàng thất bại!");
     }//GEN-LAST:event_themActionPerformed
     
-    public void updateKhachHang(KhachHang khachHang) {
-    if (khachHangDao.updateKhachHang(khachHang)) {
-        JOptionPane.showMessageDialog(null, "Cập nhật khách hàng thành công!");
-    } else {
-        JOptionPane.showMessageDialog(null, "Cập nhật khách hàng thất bại!");
-    }
+   
 }
  
     private void suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaActionPerformed
@@ -451,35 +490,38 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 // Kiểm tra xem có dòng nào được chọn trong bảng không
             int selectedRow = table_thongTinKH.getSelectedRow();
             if (selectedRow >= 0) {
-            // Lấy thông tin từ dòng được chọn
+        // Lấy thông tin khách hàng từ giao diện
             String maKH = table_thongTinKH.getValueAt(selectedRow, 0).toString();
-            String tenKH = table_thongTinKH.getValueAt(selectedRow, 1).toString();
-            String sdt = table_thongTinKH.getValueAt(selectedRow, 2).toString();
-            String diaChi = table_thongTinKH.getValueAt(selectedRow, 3).toString();
-            String gioiTinh = table_thongTinKH.getValueAt(selectedRow, 4).toString();
+        String tenKH = txtTenKH.getText().trim();
+        String sdt = txtSDT.getText().trim();
+        String diaChi = txtDiaChi.getText().trim();
+        String gioiTinh = rbtnNam.isSelected() ? "Nam" : "Nu";
 
-            // Hiển thị thông tin lên các trường nhập liệu
-            txtMaKH.setText(maKH);
-            txtTenKH.setText(tenKH);
-            txtSDT.setText(sdt);
-            txtDiaChi.setText(diaChi);
-            if (gioiTinh.equals("Nam")) {
-                rbtnNam.setSelected(true);
+        // Gọi hàm DAO để sửa thông tin khách hàng
+       // KhachHang_DAO khachHangDAO = new KhachHangDAO();
+        boolean isSuccess = khachHangDao.suaKhachHang(maKH, tenKH, sdt, diaChi, gioiTinh);
+
+        // Hiển thị kết quả
+        if (isSuccess) {
+            JOptionPane.showMessageDialog(this, "Sửa thông tin khách hàng thành công!");
+            // Tải lại dữ liệu vào bảng
+            loadKhachHangData();
             } else {
-                rbtnNu.setSelected(true);
+            JOptionPane.showMessageDialog(this, "Sửa thông tin khách hàng thất bại!");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một khách hàng để sửa!");
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn một khách hàng để sửa!");
         }
     }//GEN-LAST:event_suaActionPerformed
     public void deleteKhachHang(String maKH) {
-        int selectedRow = table_thongTinKH.getSelectedRow(); // Lấy hàng đang được chọn
+         // Lấy dòng đang được chọn từ bảng
+    int selectedRow = table_thongTinKH.getSelectedRow();
         if (selectedRow != -1) {
         maKH = table_thongTinKH.getValueAt(selectedRow, 0).toString(); // Lấy mã khách hàng từ bảng
         
         // Gọi phương thức xóa từ KhachHangDao
         if (khachHangDao.deleteKhachHang(maKH)) {
-            JOptionPane.showMessageDialog(null, "Xóa khách hàng thành công!");
+            JOptionPane.showMessageDialog(null, "Xóa khách hàng và các yêu cầu liên quan thành công!");
             // Xóa hàng trong bảng
             DefaultTableModel model = (DefaultTableModel) table_thongTinKH.getModel();
             model.removeRow(selectedRow); // Xóa hàng đã chọn
@@ -500,25 +542,45 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     txtTenKH.setText("");
     txtSDT.setText("");
     txtDiaChi.setText("");
-    rbtnNam.setSelected(false);
-    rbtnNu.setSelected(false);
+
+    // Clear selection of radio buttons
+    buttonGroup1.clearSelection();
+    loadKhachHangData();
 }
     private void lamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lamMoiActionPerformed
         clearForm();
     }//GEN-LAST:event_lamMoiActionPerformed
     public void findKhachHang(String maKH) {
     KhachHang kh = khachHangDao.findKhachHangByMaKH(maKH);
+    DefaultTableModel tableModel = (DefaultTableModel) table_thongTinKH.getModel(); // Lấy model của bảng
+
+    // Clear các dòng hiện tại trong bảng
+    tableModel.setRowCount(0); 
+
     if (kh != null) {
+        // Cập nhật các trường nhập liệu
         txtMaKH.setText(kh.getMaKH());
         txtTenKH.setText(kh.getTenKH());
         txtSDT.setText(kh.getSDT());
         txtDiaChi.setText(kh.getDiaChi());
+
         if (kh.getGioiTinh().equals("Nam")) {
             rbtnNam.setSelected(true);
         } else {
             rbtnNu.setSelected(true);
         }
+
+        // Thêm thông tin của khách hàng tìm được vào bảng
+        Object[] row = new Object[] {
+            kh.getMaKH(), 
+            kh.getTenKH(), 
+            kh.getSDT(), 
+            kh.getDiaChi(), 
+            kh.getGioiTinh()
+        };
+        tableModel.addRow(row); // Thêm vào bảng
     } else {
+        // Hiển thị thông báo nếu không tìm thấy khách hàng
         JOptionPane.showMessageDialog(null, "Không tìm thấy khách hàng!");
     }
 }

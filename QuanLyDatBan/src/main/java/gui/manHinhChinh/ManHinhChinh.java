@@ -11,13 +11,12 @@ import gui.KhachHangNhanVien.PhanCaNhanVien;
 import gui.KhachHangNhanVien.QuanLyKhachHang;
 import gui.KhachHangNhanVien.XemThongTinNhanVien;
 import gui.ban.Form_QuanLyBan;
-
+import gui.ban.LichSuDatBan;
 import gui.dangNhap.Login;
 import gui.datBan.ManHinh_DatBan;
 import gui.hoaDon.DanhSachHoaDon;
 import gui.monAn.Form_QuanLyMon;
 import gui.thongKe.ThongKeDoanhThu;
-import gui.thongKe.ThongKeKhachHang;
 import gui.thongKe.ThongKeNhanVien;
 import gui.thongKe.ThongKeSanPham;
 import java.awt.Color;
@@ -484,7 +483,6 @@ public class ManHinhChinh extends javax.swing.JFrame {
     private void btn_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThongKeActionPerformed
         // TODO add your handling code here:
         ThongKeDoanhThu tkdt = new ThongKeDoanhThu();
-        ThongKeKhachHang tkkh = new ThongKeKhachHang();
         ThongKeNhanVien tknv = new ThongKeNhanVien();
         ThongKeSanPham tksp = new ThongKeSanPham();
         DanhSachHoaDon dshd = new DanhSachHoaDon();
@@ -492,7 +490,6 @@ public class ManHinhChinh extends javax.swing.JFrame {
         JTabbedPane tabThongKe = new JTabbedPane();
         tabThongKe.addTab("Danh Sách Hóa Đơn", dshd);
         tabThongKe.addTab("Thống kê Doanh thu", tkdt);
-        tabThongKe.addTab("Thống kê Khách hàng", tkkh);
         tabThongKe.addTab("Thống kê Nhân viên", tknv);
         tabThongKe.addTab("Thống kê Sản phẩm", tksp);
         

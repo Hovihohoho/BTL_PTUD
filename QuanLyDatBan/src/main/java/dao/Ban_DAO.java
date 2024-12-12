@@ -373,23 +373,36 @@ public class Ban_DAO {
         }
         return bans;
     }
-    public List<String[]> getMonAnByBan(String maBan) throws SQLException {
-    List<String[]> danhSachMonAn = new ArrayList<>();
-    String query = "SELECT tenMon, soLuong, donGia FROM MonAn WHERE maBan = ?";
-    try (PreparedStatement stmt = ConnectDB.prepareStatement(query)) {
-        stmt.setString(1, maBan);
+    public static List<Ban> getdsBanTheoMa(String maLoai) throws SQLException {
+        List<Ban> bans = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM Ban WHERE 1=1");
+
+        // Kiểm tra điều kiện mã bàn
+        if (maLoai != null && !maLoai.isEmpty()) {
+            sql.append(" AND maLoai = ?");
+        }
+
+        try (Connection conn = ConnectDB.getInstance().connect();
+             PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+            int index = 1;
+            if (maLoai != null && !maLoai.isEmpty()) {
+                stmt.setString(index++, maLoai);
+            }
         ResultSet rs = stmt.executeQuery();
-        int stt = 1;
         while (rs.next()) {
-            danhSachMonAn.add(new String[] {
-                String.valueOf(stt++),
-                rs.getString("tenMon"),
-                String.valueOf(rs.getInt("soLuong")),
-                String.valueOf(rs.getDouble("donGia"))
-            });
+                
+                String maBan = rs.getString("maBan");
+                LoaiBan loaiBan = new LoaiBan(maLoai);
+                String trangThaiBan = rs.getString("trangThaiBan");
+                int soLuongGhe = rs.getInt("soLuongGhe");
+                String viTri = rs.getString("viTri");
+
+                Ban ban = new Ban(maBan, loaiBan, trangThaiBan, soLuongGhe, viTri);
+                bans.add(ban);
         }
     }
-    return danhSachMonAn;
+        return bans;
 }
 public boolean chuyenBan(String maBanCu, String maBanMoi) {
     String sql1 = "UPDATE Ban SET trangThaiBan = 'Trống' WHERE maBan = ?";
@@ -433,5 +446,19 @@ public static boolean isMaBanExist(String maBan) throws SQLException {
     }
     return false;
 }
+    public void updateTrangThaiBan(Ban ban) {
+        String sql = "UPDATE Ban SET trangThaiBan = ? WHERE maBan = ?";
 
+        try (Connection conn = ConnectDB.getInstance().connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, ban.getTrangThaiBan());
+            ps.setString(2, ban.getMaBan());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
