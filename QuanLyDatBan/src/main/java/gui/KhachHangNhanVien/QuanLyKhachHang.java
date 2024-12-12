@@ -6,6 +6,7 @@ package gui.KhachHangNhanVien;
 
 import dao.KhachHang_DAO;
 import entity.KhachHang;
+import java.awt.Font;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class QuanLyKhachHang extends javax.swing.JPanel {
     private JTable tableKhachHang;
@@ -40,7 +42,18 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         tableModel = new DefaultTableModel();
         // Lấy DefaultTableModel từ tableKhachHang
         tableKhachHang = new JTable(tableModel);
+        
+        
+        table_thongTinKH.setFont(new Font("Arial", Font.PLAIN, 16));
+        table_thongTinKH.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+        table_thongTinKH.setRowHeight(30);
 
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+        table_thongTinKH.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        table_thongTinKH.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        table_thongTinKH.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        
         tableModel = (DefaultTableModel) table_thongTinKH.getModel()  ; // Lấy table cua bang can them du lieu
         loadTable(); 
     }
@@ -188,15 +201,13 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                             .addComponent(txtMaKH)
                             .addComponent(txtSDT, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(lablel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tenKH)
+                            .addComponent(diaChi))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(lablel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(lablel_1Layout.createSequentialGroup()
-                                .addComponent(tenKH)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTenKH))
-                            .addGroup(lablel_1Layout.createSequentialGroup()
-                                .addComponent(diaChi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))))
+                            .addComponent(txtDiaChi)
+                            .addComponent(txtTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         lablel_1Layout.setVerticalGroup(
@@ -227,7 +238,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         button_cn.setBackground(new java.awt.Color(255, 255, 255));
 
-        them.setBackground(new java.awt.Color(255, 51, 51));
+        them.setBackground(new java.awt.Color(204, 255, 204));
         them.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus (1).png"))); // NOI18N
         them.setText("Thêm");
@@ -237,7 +248,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        sua.setBackground(new java.awt.Color(255, 51, 51));
+        sua.setBackground(new java.awt.Color(255, 255, 204));
         sua.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tools (1).png"))); // NOI18N
         sua.setText("Sửa");
@@ -247,7 +258,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        xoa.setBackground(new java.awt.Color(255, 51, 51));
+        xoa.setBackground(new java.awt.Color(204, 204, 204));
         xoa.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).png"))); // NOI18N
         xoa.setText("Xóa");
@@ -257,7 +268,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        lamMoi.setBackground(new java.awt.Color(255, 255, 51));
+        lamMoi.setBackground(new java.awt.Color(255, 204, 255));
         lamMoi.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sync (1).png"))); // NOI18N
         lamMoi.setText("Làm mới");
@@ -267,7 +278,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        timKiem.setBackground(new java.awt.Color(255, 255, 51));
+        timKiem.setBackground(new java.awt.Color(204, 255, 255));
         timKiem.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         timKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search-interface-symbol (1).png"))); // NOI18N
         timKiem.setText("Tìm Kiếm");
@@ -277,7 +288,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        luu.setBackground(new java.awt.Color(255, 255, 51));
+        luu.setBackground(new java.awt.Color(153, 255, 153));
         luu.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         luu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bookmark (2).png"))); // NOI18N
         luu.setText("Lưu");
@@ -394,8 +405,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(thongTinKH_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(table, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -95,6 +95,7 @@ public class LichSuDatBan extends javax.swing.JPanel implements UpdateListener {
         TimKiem.setBackground(new java.awt.Color(255, 255, 255));
         TimKiem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
+        btn_reset.setBackground(new java.awt.Color(255, 255, 204));
         btn_reset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_reset.setText("Làm mới");
         btn_reset.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +109,7 @@ public class LichSuDatBan extends javax.swing.JPanel implements UpdateListener {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Nhập số điện thoại khách hàng: ");
 
+        btn_TimSDT.setBackground(new java.awt.Color(204, 255, 204));
         btn_TimSDT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_TimSDT.setText("Tìm");
         btn_TimSDT.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +118,7 @@ public class LichSuDatBan extends javax.swing.JPanel implements UpdateListener {
             }
         });
 
+        btn_chiTiet.setBackground(new java.awt.Color(204, 204, 204));
         btn_chiTiet.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_chiTiet.setText("Chi tiết");
         btn_chiTiet.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +131,7 @@ public class LichSuDatBan extends javax.swing.JPanel implements UpdateListener {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Nhập mã bàn:");
 
+        btn_TimMaBan.setBackground(new java.awt.Color(204, 255, 204));
         btn_TimMaBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_TimMaBan.setText("Tìm");
         btn_TimMaBan.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +145,7 @@ public class LichSuDatBan extends javax.swing.JPanel implements UpdateListener {
 
         text_TimMaNV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        btn_TimMaNV.setBackground(new java.awt.Color(204, 255, 204));
         btn_TimMaNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_TimMaNV.setText("Tìm");
         btn_TimMaNV.addActionListener(new java.awt.event.ActionListener() {
@@ -293,15 +298,11 @@ public class LichSuDatBan extends javax.swing.JPanel implements UpdateListener {
                     .addComponent(combobox_ngayDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(LocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LocLayout.createSequentialGroup()
-                        .addGroup(LocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(r_choXuLy)
-                            .addComponent(r_daXuLy))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(LocLayout.createSequentialGroup()
-                        .addComponent(r_daHuy)
-                        .addGap(33, 194, Short.MAX_VALUE))))
+                    .addComponent(jLabel3)
+                    .addComponent(r_choXuLy)
+                    .addComponent(r_daXuLy)
+                    .addComponent(r_daHuy))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LocLayout.setVerticalGroup(
             LocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

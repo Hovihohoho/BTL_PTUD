@@ -145,7 +145,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
 
         P_btn.setBackground(new java.awt.Color(255, 255, 255));
 
-        them.setBackground(new java.awt.Color(255, 51, 51));
+        them.setBackground(new java.awt.Color(204, 255, 204));
         them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus (1).png"))); // NOI18N
         them.setText("Thêm");
@@ -156,7 +156,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
-        Huy.setBackground(new java.awt.Color(255, 51, 51));
+        Huy.setBackground(new java.awt.Color(255, 204, 204));
         Huy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Huy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancel (3) (1).png"))); // NOI18N
         Huy.setText("Hủy");
@@ -167,7 +167,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
-        Sua.setBackground(new java.awt.Color(255, 51, 51));
+        Sua.setBackground(new java.awt.Color(255, 255, 204));
         Sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tools (1).png"))); // NOI18N
         Sua.setText("Sửa số lượng");
@@ -177,7 +177,7 @@ public class Frame_GoiMon extends javax.swing.JFrame {
             }
         });
 
-        xoa.setBackground(new java.awt.Color(255, 255, 0));
+        xoa.setBackground(new java.awt.Color(204, 204, 204));
         xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete (1).png"))); // NOI18N
         xoa.setText("Xóa món");

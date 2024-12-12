@@ -2,6 +2,7 @@ gui\datBan\Frame_DatBan$5.class
 gui\ban\Form_QuanLyBan.class
 gui\hoaDon\DanhSachHoaDon$5.class
 gui\hoaDon\Frame_HoaDon$2.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$5.class
 gui\dangNhap\Login$3.class
 gui\datBan\ManHinh_DatBan$5.class
 gui\monAn\Form_QuanLyMon$8.class
@@ -28,6 +29,7 @@ gui\manHinhChinh\ManHinhChinh$6.class
 dao\CaLamViec_DAO.class
 gui\manHinhChinh\ManHinhChinh$11.class
 dao\TaoMaHoaDon.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$4.class
 gui\KhachHangNhanVien\QuanLyKhachHang$4.class
 gui\ban\Form_QuanLyBan$2.class
 gui\manHinhChinh\ManHinhChinh.class
@@ -58,7 +60,6 @@ gui\ban\Form_QuanLyBan$24.class
 gui\hoaDon\Frame_HoaDon.class
 gui\thongKe\ThongKeDoanhThu$1.class
 gui\KhachHangNhanVien\QuanLyKhachHang$2.class
-gui\ban\Form_XemThongTinBan$1.class
 gui\hoaDon\DanhSachHoaDon$4.class
 dao\MonAn_DAO.class
 gui\datBan\Frame_DatBan$4.class
@@ -68,17 +69,20 @@ dao\TaiKhoan_DAO.class
 gui\manHinhChinh\ManHinhChinh$1.class
 gui\card\Card_Mon$CardMonListener.class
 connectDB\ConnectDB.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$6.class
 entity\LoaiBan.class
 gui\dangNhap\SignUp$3.class
 gui\thongKe\ThongKeNhanVien$2.class
 gui\thongKe\ThongKeDoanhThu$2.class
 gui\hoaDon\DanhSachHoaDon$3.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$7.class
 gui\monAn\Form_QuanLyMon$11.class
 gui\manHinhChinh\ManHinhChinh$2.class
 gui\datBan\Frame_GoiMon$2.class
 entity\YeuCauKhachHang.class
 gui\datBan\Frame_LuuHD$2.class
 gui\datBan\Frame_DatBan$7.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$8.class
 gui\ban\Form_QuanLyBan$5.class
 gui\datBan\Frame_LuuHD$1.class
 gui\datBan\Frame_DatBan$6.class
@@ -88,6 +92,7 @@ gui\ban\Form_QuanLyBan$26.class
 gui\datBan\Frame_GoiMon$10.class
 gui\manHinhChinh\ManHinhChinh$3.class
 gui\datBan\Frame_GoiMon$1.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$2.class
 gui\ban\Form_QuanLyBan$4.class
 dao\NhanVien_DAO.class
 dao\YeuCauKhachHang_DAO.class
@@ -144,6 +149,7 @@ gui\monAn\Form_QuanLyMon$4.class
 gui\datBan\Frame_DatBan$1.class
 gui\hoaDon\DanhSachHoaDon$6.class
 gui\ban\Form_QuanLyBan$21.class
+gui\KhachHangNhanVien\Panel_QuanLyNhanVien$3.class
 gui\KhachHangNhanVien\QuanLyKhachHang$8.class
 gui\monAn\Form_QuanLyMon$7.class
 gui\KhachHangNhanVien\PhanCaNhanVien$6.class

@@ -16,6 +16,9 @@ public class NhanVien_DAO {
     public NhanVien_DAO() throws SQLException {
         con = ConnectDB.getInstance().getConnection();
     }
+    public Connection getConnection() throws SQLException {
+        return ConnectDB.getInstance().connect();
+    }
     public NhanVien getNhanVienByMa(String maNV) {
         // Câu lệnh SQL để truy vấn thông tin nhân viên từ bảng NhanVien
         String sql = "SELECT maNV, maTK, maCa, tenNV, sdt, email, ngayVaoLam FROM NhanVien WHERE maNV = ?";
@@ -209,5 +212,28 @@ public class NhanVien_DAO {
                 e.printStackTrace();  // In lỗi nếu kết nối không hợp lệ
         }
         return false;
-}
+    }
+    
+    public boolean insertNhanVien(NhanVien nhanVien) {
+        String sql = "INSERT INTO NhanVien (maNV, tenNV, sDT, email, ngayVaoLam, maCa, maTK) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection con = ConnectDB.getInstance().connect();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            // Thiết lập các giá trị tham số cho câu lệnh SQL
+            ps.setString(1, nhanVien.getMaNV().trim());           // Mã nhân viên
+            ps.setString(2, nhanVien.getTenNV().trim());          // Tên nhân viên
+            ps.setString(3, nhanVien.getsDT().trim());            // Số điện thoại
+            ps.setString(4, nhanVien.getEmail().trim());          // Email
+            ps.setDate(5, java.sql.Date.valueOf(nhanVien.getNgayVaoLam())); // Ngày vào làm (chuyển từ LocalDate sang java.sql.Date)
+            ps.setString(6, nhanVien.getMaCa().getMaCa().trim()); // Mã ca làm việc
+            ps.setString(7, nhanVien.getMaTK().getMaTK().trim()); // Mã tài khoản
+
+            // Thực thi câu lệnh SQL
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace(); // Nên sử dụng logger để ghi log thay vì in ra console
+        }
+        return false;
+    }
 }

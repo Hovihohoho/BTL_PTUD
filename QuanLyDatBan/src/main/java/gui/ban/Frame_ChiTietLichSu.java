@@ -259,6 +259,7 @@ public class Frame_ChiTietLichSu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btn_CapNhatDon.setBackground(new java.awt.Color(255, 255, 204));
         btn_CapNhatDon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_CapNhatDon.setText("Cập nhật đơn");
         btn_CapNhatDon.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +268,7 @@ public class Frame_ChiTietLichSu extends javax.swing.JFrame {
             }
         });
 
+        btn_HuyDon.setBackground(new java.awt.Color(255, 204, 204));
         btn_HuyDon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_HuyDon.setText("Hủy đơn");
         btn_HuyDon.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +277,7 @@ public class Frame_ChiTietLichSu extends javax.swing.JFrame {
             }
         });
 
+        btn_dong.setBackground(new java.awt.Color(204, 204, 204));
         btn_dong.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btn_dong.setText("Đóng");
         btn_dong.addActionListener(new java.awt.event.ActionListener() {
@@ -296,9 +299,9 @@ public class Frame_ChiTietLichSu extends javax.swing.JFrame {
                         .addComponent(lb_TenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(346, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btn_HuyDon)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_CapNhatDon)
@@ -360,7 +363,15 @@ public class Frame_ChiTietLichSu extends javax.swing.JFrame {
 
     private void btn_HuyDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HuyDonActionPerformed
         // TODO add your handling code here:
-        
+        String trangThaiMoi = "Đã hủy";
+        this.hoaDon.setTrangThaiHoaDon(trangThaiMoi);
+        if (hoaDon_DAO.upDateTrangThaiHoaDon(hoaDon)) {
+                JOptionPane.showMessageDialog(this, "Cập nhật trạng thái hóa đơn thành công!");
+                updateListener.updatetable();
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Cập nhật trạng thái hóa đơn KHÔNG thành công!");
+            }
     }//GEN-LAST:event_btn_HuyDonActionPerformed
 
     private void btn_dongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dongActionPerformed

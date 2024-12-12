@@ -231,7 +231,7 @@ public class HoaDon_DAO {
         return dsHoaDon;
     }
     
-    public List<HoaDon> timHoaDonTheoMaBan(String maBan) throws SQLException {
+   public List<HoaDon> timHoaDonTheoMaBan(String maBan) throws SQLException {
         List<HoaDon> dsHoaDon = new ArrayList<>();
 
         // SQL truy vấn hóa đơn theo mã bàn
@@ -243,24 +243,23 @@ public class HoaDon_DAO {
                      "JOIN NhanVien nv ON hd.maNV = nv.maNV " +
                      "JOIN YeuCauKhachHang yckh ON hd.maYeuCau = yckh.maYeuCau " +
                      "JOIN KhachHang kh ON yckh.maKH = kh.maKH " +
-                     "JOIN NhanVien nv ON hd.maNV = nv.maNV " +
                      "JOIN Ban b ON hd.maBan = b.maBan " +
                      "WHERE b.maBan = ?";  // Điều kiện tìm kiếm theo mã bàn
 
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, maBan); // Set mã bàn vào câu truy vấn
 
-                try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     String maHD = rs.getString("maHD");
                     String tenNV = rs.getString("tenNV");
                     String tenKH = rs.getString("tenKH");
                     String maYeuCau = rs.getString("maYeuCau");
-                        LocalDate thoiGianTao = rs.getDate("thoiGianTao").toLocalDate();
-                        LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
+                    LocalDate thoiGianTao = rs.getDate("thoiGianTao").toLocalDate();
+                    LocalDate ngayDatBan = rs.getDate("ngayDatBan").toLocalDate();
                     int soLuongKhach = rs.getInt("soLuongKhach");
                     double tongTien = rs.getDouble("tongTien");
-                        String trangThai = rs.getString("trangThaiHoaDon");
+                    String trangThai = rs.getString("trangThaiHoaDon");
 
                     // Khởi tạo các đối tượng liên quan
                     NhanVien nhanVien = new NhanVien();
@@ -272,17 +271,17 @@ public class HoaDon_DAO {
                     Ban_DAO banDAO = new Ban_DAO();
                     Ban ban = banDAO.getBanByMaBan(maBan);
 
-                        // Tạo đối tượng HoaDon
+                    // Tạo đối tượng HoaDon
                     HoaDon hoaDon = new HoaDon(maHD, yeucau, nhanVien, ban, soLuongKhach, thoiGianTao, ngayDatBan, trangThai);
                     hoaDon.setTongTien(tongTien); // Gán tổng tiền vào hóa đơn
 
                     dsHoaDon.add(hoaDon);
-                    }
                 }
             }
+        }
 
         return dsHoaDon;
-        }
+    }
 
     public HoaDon getHoaDonByMaBan(String maBan) {
     HoaDon hoaDon = null;
@@ -415,11 +414,12 @@ public class HoaDon_DAO {
 
             // Thông tin hóa đơn
             Paragraph infoNhaHangKhachHang = new Paragraph(
-                    String.format("%42s %30s\n", "Nhân viên: " + hoaDon.getNhanVien().getTenNV()
+                    String.format("%42s%30s\n", "Nhân viên: " + hoaDon.getNhanVien().getTenNV()
                                                , "Bàn: " + hoaDon.getBan().getMaBan()) + 
-                    String.format("%42s %30s\n", "Mã hóa đơn: " + hoaDon.getMaHD()
-                                               , "Ngày lập: " + dtf.format(hoaDon.getThoiGianTao()))
-                    + "Tên khách hàng: " + hoaDon.getYeucau().getKh().getTenKH() + "\n\n")
+                    String.format("%42s%31s\n", "Mã hóa đơn: " + hoaDon.getMaHD()
+                                               , "Ngày lập: " + dtf.format(hoaDon.getThoiGianTao())) + 
+                    String.format("%42s%34s\n", "Tên khách hàng: " + hoaDon.getYeucau().getKh().getTenKH()
+                                               , "Ngày nhận: " + dtf.format(hoaDon.getNgayDatBan())))
                     .setFont(font)
                     .setFontSize(16)
                     .setTextAlignment(TextAlignment.LEFT);
@@ -438,7 +438,7 @@ public class HoaDon_DAO {
                     .setBorder(Border.NO_BORDER)
                     .setBorderTop(new SolidBorder(1))
                     .setBorderBottom(new SolidBorder(1)));
-
+            
             table.addCell(new Cell().add(new Paragraph("Tên món ăn")
                     .setFont(font)
                     .setBold()
@@ -908,7 +908,7 @@ public ArrayList<Object[]> LayThongKe(String loaiThongKe, LocalDate ngayBatDau, 
 
         // Xóa hết các dòng dữ liệu cũ trong tableModel
         tableModel.setRowCount(0);
-        DecimalFormat df = new DecimalFormat("#,###.00");
+        DecimalFormat df = new DecimalFormat("#,###");
         // Lặp qua ResultSet để lấy dữ liệu
         while (rs.next()) {
             String maHD = rs.getString("maHD");

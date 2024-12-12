@@ -6,6 +6,7 @@ import entity.CaLamViec;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import java.awt.Image;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -59,27 +60,19 @@ public class XemThongTinNhanVien extends javax.swing.JPanel {
                 lblGioKetThuc.setText(caLamViec.getGioKetThuc().toString());
             }
             
-            // Hiển thị hình ảnh
-//        if (nhanVien.getImagePath() != null && !nhanVien.getImagePath().isEmpty()) {
-//            // Tải hình ảnh từ đường dẫn
-//            ImageIcon icon = new ImageIcon(nhanVien.getImagePath());
-//            
-//            // Lấy kích thước của JLabel để điều chỉnh kích thước ảnh cho phù hợp
-//            int width = lblHinhAnh.getWidth();
-//            int height = lblHinhAnh.getHeight();
-//
-//            // Lấy đối tượng Image từ ImageIcon
-//            Image img = icon.getImage();
-//            
-//            // Điều chỉnh kích thước ảnh cho phù hợp với JLabel
-//            Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-//
-//            // Cập nhật ImageIcon với ảnh đã thay đổi kích thước
-//            icon = new ImageIcon(newImg);
-//
-//            // Cập nhật JLabel với ảnh mới
-//            lblHinhAnh.setIcon(icon);
-//        }
+            String fileName = "icon/anhNhanVien/" + nhanVien.getMaNV().trim() + ".jpg"; 
+
+            // Lấy đường dẫn ảnh từ tài nguyên
+            URL imageUrl = getClass().getClassLoader().getResource(fileName);
+                if (imageUrl != null) {
+                // Nếu ảnh tồn tại, gán ảnh vào JLabel
+                ImageIcon icon = new ImageIcon(imageUrl);
+                lblHinhAnh.setIcon(icon);
+            } else {
+                // Nếu không tìm thấy ảnh, gán ảnh mặc định
+                ImageIcon defaultIcon = new ImageIcon(getClass().getClassLoader().getResource("icon/monAn/no_image_icon.png"));
+                lblHinhAnh.setIcon(defaultIcon);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(XemThongTinNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -91,7 +91,6 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         jLabel5.setText("Thông tin món");
 
         jlabel_anhMonAn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlabel_anhMonAn.setText("         Chưa có ảnh");
         jlabel_anhMonAn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jlabel_anhMonAn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlabel_anhMonAn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -236,12 +235,9 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
             .addGroup(P_ThemMonLayout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(P_ThemMonLayout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(134, 134, 134))
-                    .addGroup(P_ThemMonLayout.createSequentialGroup()
-                        .addComponent(jlabel_anhMonAn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabel_anhMonAn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134)
                 .addGroup(P_ThemMonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(P_ThemMonLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,7 +522,8 @@ public class Form_QuanLyMon extends javax.swing.JPanel {
         t_giaTien.setText("");
         combo_trangThai.setSelectedIndex(0);
         jlabel_anhMonAn.setIcon(null);
-        jlabel_anhMonAn.setText("         Chưa có ảnh");
+//        jlabel_anhMonAn.setText("         Chưa có ảnh");
+        jlabel_anhMonAn.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("\\icon\\monAn\\no_image_icon.png")));
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);

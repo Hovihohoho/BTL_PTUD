@@ -15,6 +15,11 @@ public class CaLamViec {
         this.gioBatDau = gioBatDau;
         this.gioKetThuc = gioKetThuc;
     }
+    
+    
+    public CaLamViec(String maCa) {
+        this.maCa = maCa;
+    }
 
     // Getters and Setters
     public String getMaCa() {

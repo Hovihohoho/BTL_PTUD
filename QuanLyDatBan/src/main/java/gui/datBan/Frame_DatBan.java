@@ -361,7 +361,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
 
         button_bar.setBackground(new java.awt.Color(255, 255, 255));
 
-        Btn_HuyBang.setBackground(new java.awt.Color(255, 51, 51));
+        Btn_HuyBang.setBackground(new java.awt.Color(255, 204, 204));
         Btn_HuyBang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_HuyBang.setText("Hủy");
         Btn_HuyBang.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -371,7 +371,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
             }
         });
 
-        Btn_DatBan.setBackground(new java.awt.Color(0, 255, 0));
+        Btn_DatBan.setBackground(new java.awt.Color(204, 255, 204));
         Btn_DatBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_DatBan.setText("Đặt Bàn");
         Btn_DatBan.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -396,7 +396,7 @@ public class Frame_DatBan extends javax.swing.JFrame implements GoiMonListener{
             }
         });
 
-        Btn_ThemMon.setBackground(new java.awt.Color(255, 255, 51));
+        Btn_ThemMon.setBackground(new java.awt.Color(255, 255, 204));
         Btn_ThemMon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Btn_ThemMon.setText("Thêm Món");
         Btn_ThemMon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);

@@ -13,6 +13,10 @@ public class TaiKhoan {
         this.tenTK = tenTK;
         this.matKhau = matKhau;
     }
+    
+    public TaiKhoan(String maTK) {
+        this.maTK = maTK;
+    }
 
     // Getters và setters
     public String gettenTK() {

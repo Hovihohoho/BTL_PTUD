@@ -47,12 +47,12 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
         Ban_DAO banDao = new Ban_DAO();
         Ban ban = banDao.getBanByMaBan(maBan);
         LoaiBan loaiban = ban.getLoaiBan();
-        
+
         if (ban != null) {
             String message = "Mã Bàn: " + ban.getMaBan() + "\n"
                     + "Loại: " + loaiban.getMaLoai() + "\n"
                     + "Trạng Thái: " + ban.getTrangThaiBan() + "\n"
-                    + "Số Lượng Ghế: " + ban.getSoGhe()+ "\n"
+                    + "Số Lượng Ghế: " + ban.getSoGhe() + "\n"
                     + "Vị Trí: " + ban.getViTri();
             JOptionPane.showMessageDialog(this, message, "Thông Tin Bàn", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -507,7 +507,7 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
             }
         });
 
-        btn_loc.setBackground(new java.awt.Color(255, 0, 0));
+        btn_loc.setBackground(new java.awt.Color(204, 255, 204));
         btn_loc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_loc.setText("Lọc");
         btn_loc.addActionListener(new java.awt.event.ActionListener() {
@@ -516,7 +516,7 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
             }
         });
 
-        btn_them.setBackground(new java.awt.Color(255, 255, 0));
+        btn_them.setBackground(new java.awt.Color(255, 255, 204));
         btn_them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_them.setText("Thêm");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -525,7 +525,7 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
             }
         });
 
-        btn_xoa.setBackground(new java.awt.Color(255, 255, 0));
+        btn_xoa.setBackground(new java.awt.Color(255, 255, 204));
         btn_xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_xoa.setText("Xóa");
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
@@ -534,7 +534,7 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
             }
         });
 
-        btn_sua.setBackground(new java.awt.Color(255, 255, 0));
+        btn_sua.setBackground(new java.awt.Color(255, 255, 204));
         btn_sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_sua.setText("Sửa");
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
@@ -800,80 +800,80 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
-      String maBan = jTextField2.getText(); // jTextFieldMaBan là JTextField cho mã bàn
+        String maBan = jTextField2.getText(); // jTextFieldMaBan là JTextField cho mã bàn
 
-    if (maBan.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Vui lòng nhập mã bàn để xóa.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-        return; // Dừng lại nếu không có mã bàn
-    }
+        if (maBan.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã bàn để xóa.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+            return; // Dừng lại nếu không có mã bàn
+        }
 
-    try {
-        // Gọi phương thức xóa bàn từ lớp Ban_DAO
-        Ban_DAO.deleteBan(maBan);
-        loadBanToTable(Ban_DAO.getAllBan()); // Làm mới bảng để hiển thị danh sách bàn đã cập nhật
-        JOptionPane.showMessageDialog(this, "Xóa bàn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi khi xóa bàn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
+        try {
+            // Gọi phương thức xóa bàn từ lớp Ban_DAO
+            Ban_DAO.deleteBan(maBan);
+            loadBanToTable(Ban_DAO.getAllBan()); // Làm mới bảng để hiển thị danh sách bàn đã cập nhật
+            JOptionPane.showMessageDialog(this, "Xóa bàn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi xóa bàn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_xoaActionPerformed
-    
+
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-                                      
-    String maBan = jTextField2.getText().trim();
-    String maLoai = (String) jComboBox1.getSelectedItem();
-    String trangThai = (String) jComboBox2.getSelectedItem();
-    String soLuongGheText = jTextField3.getText().trim();
-    String viTri = jTextField4.getText().trim();
 
-    // Kiểm tra các trường nhập liệu
-    if (maBan.isEmpty() || maLoai == null || trangThai == null || soLuongGheText.isEmpty() || viTri.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        String maBan = jTextField2.getText().trim();
+        String maLoai = (String) jComboBox1.getSelectedItem();
+        String trangThai = (String) jComboBox2.getSelectedItem();
+        String soLuongGheText = jTextField3.getText().trim();
+        String viTri = jTextField4.getText().trim();
 
-    // Kiểm tra giá trị số lượng ghế
-    int soLuongGhe;
-    try {
-        soLuongGhe = Integer.parseInt(soLuongGheText);
-        if (soLuongGhe <= 0) {
-            JOptionPane.showMessageDialog(this, "Số lượng ghế phải lớn hơn 0.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Số lượng ghế phải là số nguyên hợp lệ.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Tạo đối tượng LoaiBan và Ban
-    LoaiBan loaiBan = new LoaiBan(maLoai);
-    Ban ban = new Ban(maBan, loaiBan, trangThai, soLuongGhe, viTri);
-
-    try {
-        // Kiểm tra xem maBan đã tồn tại chưa
-        if (Ban_DAO.isMaBanExist(maBan)) {
-            JOptionPane.showMessageDialog(this, "Mã bàn đã tồn tại. Vui lòng chọn mã khác.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        // Kiểm tra các trường nhập liệu
+        if (maBan.isEmpty() || maLoai == null || trangThai == null || soLuongGheText.isEmpty() || viTri.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Thêm bàn vào cơ sở dữ liệu
-        Ban_DAO.addBan(ban);
-        loadBanToTable(Ban_DAO.getAllBan());
-        JOptionPane.showMessageDialog(this, "Thêm bàn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi khi thêm bàn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
+        // Kiểm tra giá trị số lượng ghế
+        int soLuongGhe;
+        try {
+            soLuongGhe = Integer.parseInt(soLuongGheText);
+            if (soLuongGhe <= 0) {
+                JOptionPane.showMessageDialog(this, "Số lượng ghế phải lớn hơn 0.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Số lượng ghế phải là số nguyên hợp lệ.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Tạo đối tượng LoaiBan và Ban
+        LoaiBan loaiBan = new LoaiBan(maLoai);
+        Ban ban = new Ban(maBan, loaiBan, trangThai, soLuongGhe, viTri);
+
+        try {
+            // Kiểm tra xem maBan đã tồn tại chưa
+            if (Ban_DAO.isMaBanExist(maBan)) {
+                JOptionPane.showMessageDialog(this, "Mã bàn đã tồn tại. Vui lòng chọn mã khác.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Thêm bàn vào cơ sở dữ liệu
+            Ban_DAO.addBan(ban);
+            loadBanToTable(Ban_DAO.getAllBan());
+            JOptionPane.showMessageDialog(this, "Thêm bàn thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi thêm bàn: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
 
 
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
-                                          
+                                  
         String maBan = jTextField2.getText();
         String maLoai = (String) jComboBox1.getSelectedItem(); // jComboBox1 là JComboBox cho maLoai
         String trangThai = (String) jComboBox2.getSelectedItem(); // jComboBox2 là JComboBox cho trangThai
@@ -897,146 +897,146 @@ public class Form_QuanLyBan extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-                                           
-    String maBan = "B018"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+
+        String maBan = "B018"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-    String maBan = "B007"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B007"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         String maBan = "B017"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-         String maBan = "B014"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B014"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-      String maBan = "B013"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B013"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
- String maBan = "B008"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B008"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    String maBan = "B006"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B006"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       String maBan = "B005"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B005"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         String maBan = "B002"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B002"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String maBan = "B001"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B001"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-    String maBan = "B015"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B015"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
- String maBan = "B016"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B016"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
- String maBan = "B010"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B010"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-         String maBan = "B009"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B009"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         String maBan = "B004"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B004"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- String maBan = "B003"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B003"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
- String maBan = "B020"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B020"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
- String maBan = "B019"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B019"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
- String maBan = "B012"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B012"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
- String maBan = "B011"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
-    Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
-    formXemThongTinBan.setVisible(true);
-    formXemThongTinBan.setLocationRelativeTo(this);
+        String maBan = "B011"; // Lấy mã bàn từ nguồn phù hợp (ví dụ: ô nhập liệu hoặc danh sách chọn)
+        Form_XemThongTinBan formXemThongTinBan = new Form_XemThongTinBan(maBan);
+        formXemThongTinBan.setVisible(true);
+        formXemThongTinBan.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton21ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

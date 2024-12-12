@@ -15,17 +15,20 @@ import gui.ban.LichSuDatBan;
 import gui.dangNhap.Login;
 import gui.datBan.ManHinh_DatBan;
 import gui.hoaDon.DanhSachHoaDon;
+import gui.hoaDon.huongDanSuDung.PDF_HuongDanSuDung;
 import gui.monAn.Form_QuanLyMon;
 import gui.thongKe.ThongKeDoanhThu;
 import gui.thongKe.ThongKeNhanVien;
 import gui.thongKe.ThongKeSanPham;
 import java.awt.Color;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.LineBorder;
 
@@ -350,10 +353,12 @@ public class ManHinhChinh extends javax.swing.JFrame {
         // TODO add your handling code here:
         Form_QuanLyBan qlBan = new Form_QuanLyBan();
         
+        LichSuDatBan lsdb = new LichSuDatBan();
    
         
         JTabbedPane tabqlBan = new JTabbedPane();
         tabqlBan.addTab("Quản lý bàn", qlBan);
+        tabqlBan.addTab("Lịch sử đặt bàn", lsdb);
 
         
         P_chucNang.removeAll();
@@ -532,14 +537,14 @@ public class ManHinhChinh extends javax.swing.JFrame {
             P_chucNang.validate();
             P_chucNang.repaint();
             
-             btn_qly_ban.setBackground(Color.white);
-        btn_TrangChu.setBackground(Color.white);
-        btn_DatBan.setBackground(Color.white);
-        btn_ThongKe.setBackground(Color.white);
-        btn_qlyKhachHang.setBackground(Color.YELLOW);
-        btn_qly_mon.setBackground(Color.white);
-        btn_qlyNhanVien.setBackground(Color.white);
-        btn_hdsd.setBackground(Color.white);
+            btn_qly_ban.setBackground(Color.white);
+            btn_TrangChu.setBackground(Color.white);
+            btn_DatBan.setBackground(Color.white);
+            btn_ThongKe.setBackground(Color.white);
+            btn_qlyKhachHang.setBackground(Color.YELLOW);
+            btn_qly_mon.setBackground(Color.white);
+            btn_qlyNhanVien.setBackground(Color.white);
+            btn_hdsd.setBackground(Color.white);
         
 
             btn_TrangChu.setForeground(Color.black);
@@ -556,11 +561,13 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     private void btn_qlyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_qlyNhanVienActionPerformed
         // TODO add your handling code here:
-        PhanCaNhanVien pcnv = new PhanCaNhanVien();
-        XemThongTinNhanVien xemtt = new XemThongTinNhanVien(this.nhanvien.getMaNV());
         JTabbedPane tabNhanVien = new JTabbedPane();
-        tabNhanVien.add("Xem thông tin nhân viên", xemtt);
-        tabNhanVien.add("Phân ca nhân viên", pcnv);
+        Panel_QuanLyNhanVien pnqlnv = new Panel_QuanLyNhanVien();
+        if(nhanvien.getMaTK().getChucVu().equalsIgnoreCase("Quản lý")){
+            PhanCaNhanVien pcnv = new PhanCaNhanVien();
+            tabNhanVien.add("Phân ca nhân viên", pcnv);
+        }
+        tabNhanVien.add("Quản lý nhân viên", pnqlnv);
         
         P_chucNang.removeAll();
         P_chucNang.setLayout(new java.awt.BorderLayout());
@@ -590,6 +597,14 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     private void btn_hdsdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hdsdActionPerformed
         // TODO add your handling code here:
+        URL pdfURL = getClass().getClassLoader().getResource("hdsd/09_7_ApplicationDevelopment_UserManual.pdf");
+        PDF_HuongDanSuDung pdfhdsd = new PDF_HuongDanSuDung(pdfURL.getPath());
+        
+        P_chucNang.removeAll();
+        P_chucNang.setLayout(new java.awt.BorderLayout());
+        P_chucNang.add(pdfhdsd);
+        P_chucNang.validate();
+        P_chucNang.repaint();
         
         btn_hdsd.setBackground(Color.YELLOW);
         btn_hdsd.setForeground(Color.black);
